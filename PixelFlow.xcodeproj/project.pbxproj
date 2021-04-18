@@ -35,6 +35,7 @@
 		6EF8EA23261A27F8009FA21B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA22261A27F8009FA21B /* UIColor+Extension.swift */; };
 		6EF8EA26261A2D8C009FA21B /* UIView+Anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA25261A2D8C009FA21B /* UIView+Anchors.swift */; };
 		6EF8EA29261A2E38009FA21B /* ConstraintItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA28261A2E38009FA21B /* ConstraintItems.swift */; };
+		7A55C594262C951B0013865E /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55C593262C951B0013865E /* Year.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		6EF8EA22261A27F8009FA21B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6EF8EA25261A2D8C009FA21B /* UIView+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
 		6EF8EA28261A2E38009FA21B /* ConstraintItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintItems.swift; sourceTree = "<group>"; };
+		7A55C593262C951B0013865E /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				6EC1187426222D9100212203 /* Day.swift */,
+				7A55C593262C951B0013865E /* Year.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				6EC1188326233F6D00212203 /* TextButton.swift in Sources */,
 				6EBA7507261863F600C1F18D /* SceneDelegate.swift in Sources */,
 				6E76EAF0261B937500DCF8C9 /* Constrainable.swift in Sources */,
+				7A55C594262C951B0013865E /* Year.swift in Sources */,
 				6E76EAFC261B95C400DCF8C9 /* UIWindow+Extension.swift in Sources */,
 				6EC11889262346C400212203 /* Button.swift in Sources */,
 			);
