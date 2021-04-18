@@ -19,9 +19,9 @@ class PixelSheetCell: UICollectionViewCell {
     private func setupLayout() {
 
         addSubview(pixelLayout)
-        pixelLayout.layout.vertical.equal(to: self, offset: 12)
+        pixelLayout.layout.vertical.equal(to: self)
 
-        pixelLayout.layout.horizontal.equal(to: self, offset: 12)
+        pixelLayout.layout.horizontal.equal(to: self, offset: CGFloat(mainHorizontalMargin))
     }
 
     required init?(coder: NSCoder) {

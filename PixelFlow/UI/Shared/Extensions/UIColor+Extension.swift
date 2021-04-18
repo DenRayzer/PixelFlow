@@ -9,7 +9,7 @@ import UIKit
 
 extension UIColor {
     enum PF {
-        static let stroke = rgb(224, 224, 231)
+        static let stroke = rgb(212, 212, 221)
         static let background = rgb(240, 240, 243)
         static let darkShadow = rgb( 174, 174, 192)
         static let regularText = rgb( 128, 139, 159)
