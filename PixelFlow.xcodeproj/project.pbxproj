@@ -36,9 +36,11 @@
 		6EF8EA26261A2D8C009FA21B /* UIView+Anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA25261A2D8C009FA21B /* UIView+Anchors.swift */; };
 		6EF8EA29261A2E38009FA21B /* ConstraintItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA28261A2E38009FA21B /* ConstraintItems.swift */; };
 		7A55C594262C951B0013865E /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55C593262C951B0013865E /* Year.swift */; };
+		97EC820B2BD7BC8E9E6880DF /* Pods_PixelFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4ABA671B44E4626CF4FBA /* Pods_PixelFlow.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		51B4ABA671B44E4626CF4FBA /* Pods_PixelFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PixelFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E76EAEF261B937500DCF8C9 /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		6E76EAF3261B93D500DCF8C9 /* UILayoutPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILayoutPriority.swift; sourceTree = "<group>"; };
 		6E76EAF7261B949A00DCF8C9 /* SafeLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLayoutGuide.swift; sourceTree = "<group>"; };
@@ -70,6 +72,8 @@
 		6EF8EA25261A2D8C009FA21B /* UIView+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
 		6EF8EA28261A2E38009FA21B /* ConstraintItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintItems.swift; sourceTree = "<group>"; };
 		7A55C593262C951B0013865E /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
+		A51B7406CC81603F271AA5E5 /* Pods-PixelFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelFlow.debug.xcconfig"; path = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.debug.xcconfig"; sourceTree = "<group>"; };
+		BC926B551DDC3B56BA60F45B /* Pods-PixelFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelFlow.release.xcconfig"; path = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,17 +81,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97EC820B2BD7BC8E9E6880DF /* Pods_PixelFlow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04EE33ABC164C1A5F19A5300 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A51B7406CC81603F271AA5E5 /* Pods-PixelFlow.debug.xcconfig */,
+				BC926B551DDC3B56BA60F45B /* Pods-PixelFlow.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6EBA74F8261863F600C1F18D = {
 			isa = PBXGroup;
 			children = (
 				6EBA7503261863F600C1F18D /* PixelFlow */,
 				6EBA7502261863F600C1F18D /* Products */,
+				04EE33ABC164C1A5F19A5300 /* Pods */,
+				A9E7330A003BEFD3BEC552E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,6 +257,14 @@
 			path = DayMenu;
 			sourceTree = "<group>";
 		};
+		A9E7330A003BEFD3BEC552E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51B4ABA671B44E4626CF4FBA /* Pods_PixelFlow.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,9 +272,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6EBA7515261863F700C1F18D /* Build configuration list for PBXNativeTarget "PixelFlow" */;
 			buildPhases = (
+				FAF782C191BEFF800301D938 /* [CP] Check Pods Manifest.lock */,
 				6EBA74FD261863F600C1F18D /* Sources */,
 				6EBA74FE261863F600C1F18D /* Frameworks */,
 				6EBA74FF261863F600C1F18D /* Resources */,
+				A49C01DFF2C9699BA1F60307 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -305,6 +332,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A49C01DFF2C9699BA1F60307 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PixelFlow/Pods-PixelFlow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PixelFlow/Pods-PixelFlow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PixelFlow/Pods-PixelFlow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAF782C191BEFF800301D938 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PixelFlow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6EBA74FD261863F600C1F18D /* Sources */ = {
@@ -471,6 +540,7 @@
 		};
 		6EBA7516261863F700C1F18D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A51B7406CC81603F271AA5E5 /* Pods-PixelFlow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -490,6 +560,7 @@
 		};
 		6EBA7517261863F700C1F18D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC926B551DDC3B56BA60F45B /* Pods-PixelFlow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
