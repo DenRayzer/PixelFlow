@@ -14,6 +14,16 @@ extension UIColor {
         static let darkShadow = rgb( 174, 174, 192)
         static let regularText = rgb( 128, 139, 159)
     }
+
+    enum colorScheme {
+        static let lightGreen = rgb(160, 217, 147)
+        static let darkGreen = rgb(17, 128, 135)
+        static let pink = rgb(212, 212, 221)
+        static let orange = rgb(244, 195, 150)
+        static let vinous = rgb(182, 46, 81)
+        static let dustyRose = rgb(163, 129, 162)
+        static let brown = rgb(88, 50, 78)
+    }
 }
 
 func rgb(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> UIColor {

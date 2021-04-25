@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FittedSheets
 
 class PixelDayView: UIView {
     var day: Day?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.PF.background
@@ -23,8 +25,17 @@ class PixelDayView: UIView {
     
     @objc
     func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        guard let day = day else { return }
+        let controller = DayMenuController(for: day)
+        
+        controller.layout.dayInfoLabel.text = "\(day.date)"
+        let options = SheetOptions(useInlineMode: true)
+        let sheetController = SheetViewController(controller: controller, sizes: [.fixed(508), .marginFromTop(130)], options: options)
+        sheetController.allowPullingPastMaxHeight = false
+        sheetController.gripColor = .clear
 
-        print("DAY DAY DAY \(day?.date)")
+        let viewController = UIApplication.shared.windows.first!.rootViewController!
+        sheetController.animateIn(to: viewController.view, in: viewController)
     }
     
     required init?(coder: NSCoder) {
