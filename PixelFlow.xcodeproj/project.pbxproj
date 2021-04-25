@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,7 +35,12 @@
 		6EF8EA23261A27F8009FA21B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA22261A27F8009FA21B /* UIColor+Extension.swift */; };
 		6EF8EA26261A2D8C009FA21B /* UIView+Anchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA25261A2D8C009FA21B /* UIView+Anchors.swift */; };
 		6EF8EA29261A2E38009FA21B /* ConstraintItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA28261A2E38009FA21B /* ConstraintItems.swift */; };
+		7A2DDC8726346149009976EF /* DayMenuLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2DDC8626346149009976EF /* DayMenuLayout.swift */; };
+		7A2DDC8A26346155009976EF /* DayMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2DDC8926346155009976EF /* DayMenuController.swift */; };
+		7A2DDC8D26346D63009976EF /* ColorInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2DDC8C26346D63009976EF /* ColorInfoItem.swift */; };
 		7A55C594262C951B0013865E /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55C593262C951B0013865E /* Year.swift */; };
+		7AE1E56926357A9B00E4E9B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1E56B26357A9B00E4E9B2 /* Localizable.strings */; };
+		7AE1E56F2635821100E4E9B2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1E56E2635821100E4E9B2 /* String+Extension.swift */; };
 		97EC820B2BD7BC8E9E6880DF /* Pods_PixelFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4ABA671B44E4626CF4FBA /* Pods_PixelFlow.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +55,6 @@
 		6EBA7506261863F600C1F18D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6EBA7508261863F600C1F18D /* PixelSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelSheetController.swift; sourceTree = "<group>"; };
 		6EBA750D261863F700C1F18D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6EBA7510261863F700C1F18D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6EBA7512261863F700C1F18D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EC118652621B53300212203 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		6EC1186D2621EEB000212203 /* PixelSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelSheetCell.swift; sourceTree = "<group>"; };
@@ -71,7 +75,14 @@
 		6EF8EA22261A27F8009FA21B /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6EF8EA25261A2D8C009FA21B /* UIView+Anchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchors.swift"; sourceTree = "<group>"; };
 		6EF8EA28261A2E38009FA21B /* ConstraintItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintItems.swift; sourceTree = "<group>"; };
+		7A2DDC8626346149009976EF /* DayMenuLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayMenuLayout.swift; sourceTree = "<group>"; };
+		7A2DDC8926346155009976EF /* DayMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayMenuController.swift; sourceTree = "<group>"; };
+		7A2DDC8C26346D63009976EF /* ColorInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInfoItem.swift; sourceTree = "<group>"; };
 		7A55C593262C951B0013865E /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
+		7AE1E5662635799A00E4E9B2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7AE1E56A26357A9B00E4E9B2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7AE1E56D26357AA000E4E9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7AE1E56E2635821100E4E9B2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		A51B7406CC81603F271AA5E5 /* Pods-PixelFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelFlow.debug.xcconfig"; path = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.debug.xcconfig"; sourceTree = "<group>"; };
 		BC926B551DDC3B56BA60F45B /* Pods-PixelFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelFlow.release.xcconfig"; path = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,7 +105,6 @@
 				A51B7406CC81603F271AA5E5 /* Pods-PixelFlow.debug.xcconfig */,
 				BC926B551DDC3B56BA60F45B /* Pods-PixelFlow.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -122,6 +132,7 @@
 				6EF8EA12261A1DA7009FA21B /* App */,
 				6EF8EA17261A2247009FA21B /* UI */,
 				6EC1187326222D6100212203 /* Entity */,
+				7AE1E56B26357A9B00E4E9B2 /* Localizable.strings */,
 			);
 			path = PixelFlow;
 			sourceTree = "<group>";
@@ -167,7 +178,9 @@
 		6EF8EA11261A1D94009FA21B /* PixelSheet */ = {
 			isa = PBXGroup;
 			children = (
-				7A55C596262C9E300013865E /* DayMenu */,
+				6EC1186C2621ED4B00212203 /* CalendarHeader */,
+				7A2DDC852634613A009976EF /* DayMenu */,
+				6EF8EA14261A1E4E009FA21B /* PixelSheetLayout.swift */,
 				6EBA7508261863F600C1F18D /* PixelSheetController.swift */,
 				6EC1186D2621EEB000212203 /* PixelSheetCell.swift */,
 			);
@@ -219,9 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				6EC1187B2623046100212203 /* Button */,
-				6EC1186C2621ED4B00212203 /* CalendarHeader */,
-				6EF8EA1D261A2651009FA21B /* PixelDayView.swift */,
-				6EF8EA14261A1E4E009FA21B /* PixelSheetLayout.swift */,
 				6EC118852623446300212203 /* Label.swift */,
 			);
 			path = Components;
@@ -234,6 +244,7 @@
 				6EF8EA25261A2D8C009FA21B /* UIView+Anchors.swift */,
 				6E76EAFB261B95C400DCF8C9 /* UIWindow+Extension.swift */,
 				6EC1187F26231E2400212203 /* Delegated.swift */,
+				7AE1E56E2635821100E4E9B2 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -250,11 +261,23 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		7A55C596262C9E300013865E /* DayMenu */ = {
+		7A2DDC852634613A009976EF /* DayMenu */ = {
 			isa = PBXGroup;
 			children = (
+				7A2DDC8F26346D6C009976EF /* Components */,
+				7A2DDC8626346149009976EF /* DayMenuLayout.swift */,
+				7A2DDC8926346155009976EF /* DayMenuController.swift */,
 			);
 			path = DayMenu;
+			sourceTree = "<group>";
+		};
+		7A2DDC8F26346D6C009976EF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6EF8EA1D261A2651009FA21B /* PixelDayView.swift */,
+				7A2DDC8C26346D63009976EF /* ColorInfoItem.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		A9E7330A003BEFD3BEC552E2 /* Frameworks */ = {
@@ -307,6 +330,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 				Base,
 			);
 			mainGroup = 6EBA74F8261863F600C1F18D;
@@ -324,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AE1E56926357A9B00E4E9B2 /* Localizable.strings in Resources */,
 				6EC1188E26234B8A00212203 /* Rubik-Medium.ttf in Resources */,
 				6EC1189026234B8C00212203 /* Rubik-Regular.ttf in Resources */,
 				6EBA7511261863F700C1F18D /* LaunchScreen.storyboard in Resources */,
@@ -384,6 +409,7 @@
 				6EF8EA26261A2D8C009FA21B /* UIView+Anchors.swift in Sources */,
 				6EC1187526222D9100212203 /* Day.swift in Sources */,
 				6EBA7509261863F600C1F18D /* PixelSheetController.swift in Sources */,
+				7A2DDC8D26346D63009976EF /* ColorInfoItem.swift in Sources */,
 				6EC118A12623664F00212203 /* Neu.swift in Sources */,
 				6EBA7505261863F600C1F18D /* AppDelegate.swift in Sources */,
 				6EC1189326234E7700212203 /* UIFont+Extension.swift in Sources */,
@@ -391,6 +417,7 @@
 				6EC118662621B53300212203 /* Consts.swift in Sources */,
 				6EF8EA1A261A228D009FA21B /* Layout.swift in Sources */,
 				6E76EAF4261B93D500DCF8C9 /* UILayoutPriority.swift in Sources */,
+				7A2DDC8A26346155009976EF /* DayMenuController.swift in Sources */,
 				6EC118792622FACC00212203 /* Header.swift in Sources */,
 				6EF8EA15261A1E4E009FA21B /* PixelSheetLayout.swift in Sources */,
 				6EC1186E2621EEB000212203 /* PixelSheetCell.swift in Sources */,
@@ -399,11 +426,13 @@
 				6EC1187D2623182000212203 /* BasicButton.swift in Sources */,
 				6EF8EA29261A2E38009FA21B /* ConstraintItems.swift in Sources */,
 				6EF8EA1E261A2651009FA21B /* PixelDayView.swift in Sources */,
+				7A2DDC8726346149009976EF /* DayMenuLayout.swift in Sources */,
 				6EC1188326233F6D00212203 /* TextButton.swift in Sources */,
 				6EBA7507261863F600C1F18D /* SceneDelegate.swift in Sources */,
 				6E76EAF0261B937500DCF8C9 /* Constrainable.swift in Sources */,
 				7A55C594262C951B0013865E /* Year.swift in Sources */,
 				6E76EAFC261B95C400DCF8C9 /* UIWindow+Extension.swift in Sources */,
+				7AE1E56F2635821100E4E9B2 /* String+Extension.swift in Sources */,
 				6EC11889262346C400212203 /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,9 +443,18 @@
 		6EBA750F261863F700C1F18D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6EBA7510261863F700C1F18D /* Base */,
+				7AE1E5662635799A00E4E9B2 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7AE1E56B26357A9B00E4E9B2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7AE1E56A26357A9B00E4E9B2 /* ru */,
+				7AE1E56D26357AA000E4E9B2 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -426,6 +464,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -487,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -547,6 +587,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FWSZ5X6664;
 				INFOPLIST_FILE = PixelFlow/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -554,7 +595,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Ezinenko.Mandarin.PixelFlow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -567,6 +608,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FWSZ5X6664;
 				INFOPLIST_FILE = PixelFlow/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -574,7 +616,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Ezinenko.Mandarin.PixelFlow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
