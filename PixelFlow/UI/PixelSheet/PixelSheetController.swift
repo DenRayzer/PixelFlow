@@ -8,16 +8,24 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var collevtionView: UICollectionView!
+    var collectionView: UICollectionView!
     var header: Header!
-    var array = [1,2,3,4,5,6,7,8]
+    var array = [1, 2, 3, 4, 5, 6, 7, 8]
+    private var lastContentOffset: CGFloat = 0
+    let collectionViewFlowLayout = UICollectionViewFlowLayout()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
+    }
+
+    private func setupViews() {
         view.backgroundColor = UIColor.PF.background
+
         setupNavigationBar()
         setupCollectionView()
+        setupSettingsButton()
     }
 
     private func setupNavigationBar() {
@@ -27,38 +35,38 @@ class ViewController: UIViewController {
         header.layout.height.equal(to: 44)
         header.layout.top.equal(to: view.safeAreaLayoutGuide, offset: 16)
 
-      //  navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .camera, target: nil, action: nil)
+        //  navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .camera, target: nil, action: nil)
     }
 
     private func setupCollectionView() {
-        let layout = UICollectionViewFlowLayout()
-
-        layout.itemSize = CGSize(width: view.frame.width, height: view.frame.height - 89)
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        collevtionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.addSubview(collevtionView)
-        collevtionView.layout.top.equal(to: header.layout.bottom, offset: 12)
-        collevtionView.layout.bottom.equal(to: view)
-        collevtionView.layout.horizontal.equal(to: view)
-//        collevtionView.translatesAutoresizingMaskIntoConstraints = false
-        collevtionView.register(PixelSheetCell.self, forCellWithReuseIdentifier: "collectionViewCell")
-        collevtionView.dataSource = self
-        collevtionView.isPagingEnabled = true
-        collevtionView.backgroundColor = UIColor.PF.background
-
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "home"))
-        let playView = Button(type: .floating, view: imageView)
-        view.addSubview(playView)
-        playView.layout.height.equal(to: 55)
-        playView.layout.width.equal(to: 55)
-        playView.layout.bottom.equal(to: view.safeAreaLayoutGuide, offset: -8)
-        playView.layout.right.equal(to: view.safeAreaLayoutGuide, offset: -18)
-        
-
+        collectionViewFlowLayout.scrollDirection = .horizontal
+        collectionViewFlowLayout.minimumInteritemSpacing = 0
+        collectionViewFlowLayout.minimumLineSpacing = 0
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
+        view.addSubview(collectionView)
+        collectionView.layout.top.equal(to: header.layout.bottom, offset: 12)
+        collectionView.layout.bottom.equal(to: view)
+        collectionView.layout.horizontal.equal(to: view)
+        collectionView.register(PixelSheetCell.self, forCellWithReuseIdentifier: "collectionViewCell")
+        collectionView.dataSource = self
+        collectionView.isPagingEnabled = true
+        collectionView.backgroundColor = UIColor.PF.background
     }
 
+    override func viewDidLayoutSubviews() {
+        collectionViewFlowLayout.itemSize = collectionView.frame.size
+    }
+
+    private func setupSettingsButton() {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "home"))
+        let settingsButton = Button(type: .floating, view: imageView)
+        view.addSubview(settingsButton)
+        settingsButton.layout.height.equal(to: 55)
+        settingsButton.layout.width.equal(to: 55)
+        settingsButton.layout.bottom.equal(to: view, offset: -18)
+        settingsButton.layout.right.equal(to: view, offset: -18)
+        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -68,12 +76,18 @@ extension ViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! PixelSheetCell
-        collectionView.transform = CGAffineTransform(scaleX:-1,y: 1)
+        cell.pixelLayout.configureCell(with: Year(year: 2021))
+        cell.transform = CGAffineTransform(scaleX: -1, y: 1)
         return cell
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if lastContentOffset > scrollView.contentOffset.x && lastContentOffset < scrollView.contentSize.width - scrollView.frame.width {
+            print("move up")
+        } else if lastContentOffset < scrollView.contentOffset.x && scrollView.contentOffset.x > 0 {
+            print("move down")
+        }
 
-
-
+        lastContentOffset = scrollView.contentOffset.x
+    }
 }
-

@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  PixelFlow
+
+  Created by Elizaveta on 4/25/21.
+  
+*/
+
+"pf_day_mood_excellent" = "Отличный";
+"pf_day_mood_good" = "Хороший";
+"pf_day_mood_lazy" = "Ленивый";
+"pf_day_mood_ordinary" = "Обычный";
+"pf_day_mood_bad" = "Плохой";
+"pf_day_mood_tired" = "Устал";
+"pf_day_mood_sick" = "Болел";
