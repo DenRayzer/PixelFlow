@@ -29,9 +29,11 @@ class PixelDayView: UIView {
         let controller = DayMenuController(for: day)
         
         controller.layout.dayInfoLabel.text = "\(day.date)"
-        let options = SheetOptions(useInlineMode: true)
-        let sheetController = SheetViewController(controller: controller, sizes: [.fixed(508), .marginFromTop(130)], options: options)
+        let options = SheetOptions(useFullScreenMode: false, useInlineMode: true)
+        let sheetController = SheetViewController(controller: controller, sizes: [.marginFromTop(130)], options: options)
         sheetController.allowPullingPastMaxHeight = false
+        
+     //   sheetController.autoAdjustToKeyboard = false
         sheetController.gripColor = .clear
 
         let viewController = UIApplication.shared.windows.first!.rootViewController!

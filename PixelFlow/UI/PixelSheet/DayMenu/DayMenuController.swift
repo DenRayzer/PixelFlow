@@ -31,7 +31,7 @@ class DayMenuController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMMM yyyy, E"
         dateFormatter.locale = Locale.current
-        layout.dayInfoLabel.text =  dateFormatter.string(from: day.date)
+        layout.dayInfoLabel.text =  dateFormatter.string(from: day.date).lowercased()
     }
     
 }

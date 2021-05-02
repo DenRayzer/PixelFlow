@@ -13,6 +13,7 @@ extension UIColor {
         static let background = rgb(240, 240, 243)
         static let darkShadow = rgb( 174, 174, 192)
         static let regularText = rgb( 128, 139, 159)
+        static let accentColor = rgb( 131, 219, 214)
     }
 
     enum colorScheme {

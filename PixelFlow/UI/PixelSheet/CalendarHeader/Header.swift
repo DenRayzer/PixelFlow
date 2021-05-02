@@ -10,7 +10,7 @@ import UIKit
 class Header: UIView {
     private(set) var headerHeight: CGFloat = 44
     private(set) var leftButton: SoftUIView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "LeftArrow"))
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "left_arrow"))
         let button = Button(type: .bulging, view: imageView)
         button.layout.height.equal(to: 43)
         button.layout.width.equal(to: 43)
@@ -18,7 +18,7 @@ class Header: UIView {
     }()
     
     private(set) var rightButton: SoftUIView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "arrow"))
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "right_arrow"))
         let button = Button(type: .bulging, view: imageView)
         button.layout.height.equal(to: 43)
         button.layout.width.equal(to: 43)

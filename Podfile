@@ -7,4 +7,5 @@ target 'PixelFlow' do
 
   # Pods for PixelFlow
   pod 'FittedSheets'
+  pod 'GrowingTextView'
 end

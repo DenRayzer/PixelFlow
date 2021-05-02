@@ -137,8 +137,8 @@ extension Anchor where Type: AnchorType.Edge {
     }
     
     /// Pins the edge to the respected edges of the given container.
-    @discardableResult func pin(to container: LayoutItem, inset: CGFloat = 0, relation: NSLayoutConstraint.Relation = .equal) -> NSLayoutConstraint {
-        return _pin(to: container, attribute: attribute, inset: inset, relation: relation)
+    @discardableResult func pin(to dayInfoContainer: LayoutItem, inset: CGFloat = 0, relation: NSLayoutConstraint.Relation = .equal) -> NSLayoutConstraint {
+        return _pin(to: dayInfoContainer, attribute: attribute, inset: inset, relation: relation)
     }
     
     /// Pins the edge to the safe area of the view controller. Falls back to

@@ -34,8 +34,6 @@ class ViewController: UIViewController {
         header.layout.horizontal.equal(to: view)
         header.layout.height.equal(to: 44)
         header.layout.top.equal(to: view.safeAreaLayoutGuide, offset: 16)
-
-        //  navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .camera, target: nil, action: nil)
     }
 
     private func setupCollectionView() {

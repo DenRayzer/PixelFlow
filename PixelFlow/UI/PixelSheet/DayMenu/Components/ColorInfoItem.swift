@@ -24,7 +24,7 @@ class ColorInfoItem: UIView {
         colorView.mainColor = color.cgColor
         infoLabel.text = text
         addSubview(colorView)
-        colorView.layout.left.equal(to: self)
+        colorView.layout.left.equal(to: self, offset: 16)
         colorView.layout.vertical.equal(to: self)
         
         addSubview(infoLabel)
