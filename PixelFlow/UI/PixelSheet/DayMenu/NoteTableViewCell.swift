@@ -13,7 +13,7 @@ protocol GrowingCellProtocol: AnyObject {
 }
 
 class NoteTableViewCell: UITableViewCell {
-    let field = GrowingTextView()//UITextView()
+    let field = UITextView()
     weak var cellDelegate: GrowingCellProtocol?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -38,16 +38,17 @@ class NoteTableViewCell: UITableViewCell {
         contentView.addSubview(field)
 
         field.layout.all.equal(to: contentView, offset: UIEdgeInsets(horizontal: 16, vertical: 8))
-      //  field.layout.height.greater(than: 70, priority: .defaultHigh, removeExisting: true)
+        field.layout.height.greater(than: 70, priority: .defaultHigh, removeExisting: true)
 
         //field.textContainer.heightTracksTextView = true
         field.isScrollEnabled = false
+   //     field.maxHeight = 160
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.PF.stroke.cgColor
         field.layer.cornerRadius = 10
         field.backgroundColor = UIColor.PF.background
-        field.placeholder = "Вы можете оставить заметку об этом дне"
-        field.minHeight = 70
+    //    field.placeholder = "Вы можете оставить заметку об этом дне"
+     //   field.minHeight = 70
         field.font = .font(family: .rubik(.regular), size: 14)
         field.textColor = UIColor.PF.regularText
         backgroundColor = .clear

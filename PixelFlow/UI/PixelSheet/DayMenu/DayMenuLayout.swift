@@ -101,7 +101,7 @@ class DayMenuLayout: UIView {
         notesTableView.delegate = self
         notesTableView.dataSource = self
         notesTableView.tableFooterView = UIView()
-        notesTableView.estimatedRowHeight = 50
+    //    notesTableView.estimatedRowHeight = 50
         notesTableView.separatorStyle = .none
         notesTableView.showsVerticalScrollIndicator = false
         notesTableView.backgroundColor = .clear
@@ -132,14 +132,14 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            notes.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        } else if editingStyle == .insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+//        }
+//    }
 }
 
 final class ContentSizedTableView: UITableView {

@@ -10,6 +10,16 @@ import UIKit
 class PixelSheetCell: UICollectionViewCell {
 
     var pixelLayout = PixelSheetLayout()
+    var year: Year? {
+        didSet {
+            guard let year = year else { return }
+            pixelLayout.configureCell(with: year)
+        }
+    }
+    
+    override func prepareForReuse() {
+        year = nil
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

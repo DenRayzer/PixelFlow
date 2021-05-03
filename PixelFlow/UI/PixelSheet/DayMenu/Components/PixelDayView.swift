@@ -32,7 +32,8 @@ class PixelDayView: UIView {
         let options = SheetOptions(useFullScreenMode: false, useInlineMode: true)
         let sheetController = SheetViewController(controller: controller, sizes: [.marginFromTop(130)], options: options)
         sheetController.allowPullingPastMaxHeight = false
-        
+    //    sheetController.dismissOnPull = false
+     //   sheetController.allowPullingPastMinHeight = false
      //   sheetController.autoAdjustToKeyboard = false
         sheetController.gripColor = .clear
 

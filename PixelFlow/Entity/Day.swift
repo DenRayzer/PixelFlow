@@ -16,11 +16,11 @@ enum DayType {
 struct Day {
     var date: Date
     var type: DayType
-    var note: String?
+    var notes: [String]?
     
-    init(date: Date, type: DayType = .empty, note: String? = nil) {
+    init(date: Date, type: DayType = .empty, notes: [String]? = nil) {
         self.date = date
         self.type = type
-        self.note = note
+        self.notes = notes
     }
 }
