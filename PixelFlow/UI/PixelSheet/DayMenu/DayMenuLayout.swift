@@ -5,11 +5,12 @@
 //  Created by Elizaveta on 4/24/21.
 //
 
-import GrowingTextView
 import UIKit
 
 class DayMenuLayout: UIView {
     var dayInfoLabel = Label(type: .title)
+    var selectedItem: ColorInfoItem?
+
     private(set) lazy var dayInfoContainer: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -30,14 +31,14 @@ class DayMenuLayout: UIView {
         stack.isUserInteractionEnabled = true
         return stack
     }()
-    
+
     private(set) lazy var addNoteButton: SoftUIView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "new_note"))
         let selectedImage = UIImageView(image: #imageLiteral(resourceName: "new_note_selected"))
         let button = Button(type: .bulging, view: image, selectedView: selectedImage)
         button.layout.height.equal(to: 45)
         button.layout.width.equal(to: 45)
-        
+
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleAddNoteButtonTap(_:)))
         button.addGestureRecognizer(recognizer)
         return button
@@ -60,22 +61,21 @@ class DayMenuLayout: UIView {
         setupNotesTableView()
         setupColorItems()
     }
-    
+
     @objc
     func handleAddNoteButtonTap(_ sender: UITapGestureRecognizer? = nil) {
-
         notes.append("vcvcv")
         notesTableView.reloadData()
     }
 
     private func setupColorItems() {
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(color: UIColor.colorScheme.lightGreen, text: "pf_day_mood_excellent".localize()))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(color: UIColor.colorScheme.darkGreen, text: "pf_day_mood_good".localize()))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(color: UIColor.colorScheme.pink, text: "pf_day_mood_lazy".localize()))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(color: UIColor.colorScheme.orange, text: "pf_day_mood_ordinary".localize()))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(color: UIColor.colorScheme.vinous, text: "pf_day_mood_bad".localize()))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(color: UIColor.colorScheme.dustyRose, text: "pf_day_mood_tired".localize()))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(color: UIColor.colorScheme.brown, text: "pf_day_mood_sick".localize()))
+        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .first))
+        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .second))
+        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .third))
+        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .fourth))
+        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .fifth))
+        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .sixth))
+        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .seventh))
     }
 
     private func setupNotesTableView() {
@@ -83,7 +83,7 @@ class DayMenuLayout: UIView {
         notesTableView.layout.top.equal(to: dayInfoLabel.layout.bottom, offset: 20)
         notesTableView.layout.bottom.equal(to: self)
         notesTableView.layout.horizontal.equal(to: self)
-        
+
         let headerView = UIView()
         headerView.layout.height.equal(to: 150)
         headerView.addSubview(dayInfoContainer)
@@ -91,21 +91,49 @@ class DayMenuLayout: UIView {
         addNoteButton.layout.right.equal(to: headerView, offset: -16)
         addNoteButton.layout.bottom.equal(to: headerView, offset: -20)
         
+        let view = UIView()
+        let layer = CAShapeLayer()
+        let bounds = CGRect(x: 0, y: 0, width: 43, height: 43)
+        layer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        layer.strokeColor = UIColor.PF.accentColor.cgColor
+        layer.fillColor = nil
+        layer.lineDashPattern = [8, 6]
+        view.layer.addSublayer(layer)
+       // layer.lineDashPattern?.reduce(0) { $0 - $1.intValue }
+        
+        let animation = CABasicAnimation(keyPath: "lineDashPhase")
+        animation.fromValue = 0
+        animation.toValue = layer.lineDashPattern?.reduce(0) { $0 - $1.intValue } ?? 0
+        animation.duration = 1
+        animation.repeatCount = .infinity
+        layer.add(animation, forKey: "line")
+        
+        
+        headerView.addSubview(view)
+        view.layout.right.equal(to: headerView, offset: -60)
+        view.layout.top.equal(to: headerView, offset: 60)
+//        headerView.addSubview(view)
+//        view.layout.right.equal(to: headerView, offset: 16)
+//        view.layout.top.equal(to: headerView, offset: 16)
+        view.backgroundColor = .red
+        
+        
+        
         dayInfoContainer.layout.horizontal.equal(to: headerView)
-        
-        dayInfoContainer.layout.vertical.equal(to: headerView, offset: 20)
-        notesTableView.tableHeaderView = headerView//dayInfoContainer
+
+        dayInfoContainer.layout.vertical.equal(to: headerView, offset: (4,20))
+        notesTableView.tableHeaderView = headerView // dayInfoContainer
         headerView.layout.width.equal(to: notesTableView)
-        
+
         notesTableView.register(NoteTableViewCell.self, forCellReuseIdentifier: "MyCell")
         notesTableView.delegate = self
         notesTableView.dataSource = self
         notesTableView.tableFooterView = UIView()
-    //    notesTableView.estimatedRowHeight = 50
+        //    notesTableView.estimatedRowHeight = 50
         notesTableView.separatorStyle = .none
         notesTableView.showsVerticalScrollIndicator = false
         notesTableView.backgroundColor = .clear
-        
+
         notesTableView.keyboardDismissMode = .onDrag
     }
 
@@ -132,18 +160,35 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
         return UITableView.automaticDimension
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            notes.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-//        }
-//    }
-}
-
-final class ContentSizedTableView: UITableView {
-    override var intrinsicContentSize: CGSize { CGSize(width: contentSize.width, height: contentSize.height) }
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                notes.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            } else if editingStyle == .insert {
+                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            }
+        }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+            -> UISwipeActionsConfiguration? {
+            let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+                // delete the item here
+                completionHandler(true)
+            }
+            deleteAction.image = UIImage(systemName: "trash")
+            deleteAction.backgroundColor = .systemRed
+            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+            return configuration
+    }
+    
+    func setCheckedView(type: DayType) {
+        for view in dayInfoContainer.arrangedSubviews {
+            let view = view as? ColorInfoItem
+            if view?.type == type {
+                view?.setSelected()
+                selectedItem = view
+            }
+        }
+    }
 }
 
 extension DayMenuLayout: GrowingCellProtocol {
@@ -161,4 +206,8 @@ extension DayMenuLayout: GrowingCellProtocol {
             }
         }
     }
+}
+
+final class ContentSizedTableView: UITableView {
+    override var intrinsicContentSize: CGSize { CGSize(width: contentSize.width, height: contentSize.height) }
 }

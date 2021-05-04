@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         header = Header(frame: .zero)
         view.addSubview(header)
         header.layout.horizontal.equal(to: view)
-        header.layout.height.equal(to: 44)
+        header.layout.height.equal(to: 60)
         header.layout.top.equal(to: view.safeAreaLayoutGuide, offset: 16)
     }
 
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         collectionViewFlowLayout.minimumLineSpacing = 0
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
         view.addSubview(collectionView)
-        collectionView.layout.top.equal(to: header.layout.bottom, offset: 12)
+        collectionView.layout.top.equal(to: header.layout.bottom)
         collectionView.layout.bottom.equal(to: view)
         collectionView.layout.horizontal.equal(to: view)
         collectionView.register(PixelSheetCell.self, forCellWithReuseIdentifier: "collectionViewCell")

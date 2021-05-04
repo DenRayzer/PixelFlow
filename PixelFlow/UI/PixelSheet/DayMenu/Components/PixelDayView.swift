@@ -26,11 +26,11 @@ class PixelDayView: UIView {
     @objc
     func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         guard let day = day else { return }
-        let controller = DayMenuController(for: day)
+        let controller = DayMenuController(for: day, delegate: self)
         
         controller.layout.dayInfoLabel.text = "\(day.date)"
         let options = SheetOptions(useFullScreenMode: false, useInlineMode: true)
-        let sheetController = SheetViewController(controller: controller, sizes: [.marginFromTop(130)], options: options)
+        let sheetController = SheetViewController(controller: controller, sizes: [.percent(0.84)], options: options)
         sheetController.allowPullingPastMaxHeight = false
     //    sheetController.dismissOnPull = false
      //   sheetController.allowPullingPastMinHeight = false
@@ -43,5 +43,12 @@ class PixelDayView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension PixelDayView: DayMenuDelegate {
+    func onDayMenuItemTap(dayType: DayType) {
+        day?.type = dayType
+        backgroundColor = DayTypeInfo.getDayInfo(for: dayType).color
     }
 }

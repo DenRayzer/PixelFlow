@@ -1,20 +1,16 @@
 PODS:
   - FittedSheets (2.4.0)
-  - GrowingTextView (0.7.2)
 
 DEPENDENCIES:
   - FittedSheets
-  - GrowingTextView
 
 SPEC REPOS:
   trunk:
     - FittedSheets
-    - GrowingTextView
 
 SPEC CHECKSUMS:
   FittedSheets: 470a7740a083156d711ab6ccd37d1d539005e6aa
-  GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
 
-PODFILE CHECKSUM: 66f5c2d483705ac7c3f1480716b09fcf179cb8f2
+PODFILE CHECKSUM: 0132268c8ede5e99aff9e83c848f160af8206582
 
 COCOAPODS: 1.10.1

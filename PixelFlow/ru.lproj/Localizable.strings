@@ -13,3 +13,15 @@
 "pf_day_mood_bad" = "Плохой";
 "pf_day_mood_tired" = "Устал";
 "pf_day_mood_sick" = "Болел";
+"pf_month_jan" = "Янв";
+"pf_month_feb" = "Фев";
+"pf_month_mar" = "Мар";
+"pf_month_apr" = "Апр";
+"pf_month_may" = "Май";
+"pf_month_jun" = "Июн";
+"pf_month_jul" = "Июл";
+"pf_month_aug" = "Авг";
+"pf_month_sep" = "Сен";
+"pf_month_oct" = "Окт";
+"pf_month_nov" = "Ноя";
+"pf_month_dec" = "Дек";

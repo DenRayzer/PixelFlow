@@ -63,11 +63,13 @@ class PixelSheetLayout: UIScrollView {
                     dayViews[month][day].isHidden = true
                     continue
                 }
+                if yearDay.date > Date() {
+                    dayViews[month][day].isUserInteractionEnabled = false
+                    dayViews[month][day].backgroundColor = UIColor.PF.lightGray
+                   // dayViews[month][day].layer.borderColor = UIColor.PF.lightGray.cgColor
+                }
                 dayViews[month][day].day = yearDay
             }
         }
     }
-    
-
-    
 }

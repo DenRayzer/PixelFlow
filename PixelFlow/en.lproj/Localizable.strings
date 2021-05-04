@@ -13,3 +13,15 @@
 "pf_day_mood_bad" = "Bad";
 "pf_day_mood_tired" = "Tired";
 "pf_day_mood_sick" = "Sick";
+"pf_month_jan" = "Jan";
+"pf_month_feb" = "Feb";
+"pf_month_mar" = "Mar";
+"pf_month_apr" = "Apr";
+"pf_month_may" = "May";
+"pf_month_jun" = "Jun";
+"pf_month_jul" = "Jul";
+"pf_month_aug" = "Aug";
+"pf_month_sep" = "Sep";
+"pf_month_oct" = "Oct";
+"pf_month_nov" = "Nov";
+"pf_month_dec" = "Dec";

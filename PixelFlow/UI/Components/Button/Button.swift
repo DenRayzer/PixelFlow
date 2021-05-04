@@ -24,14 +24,8 @@ class Button: SoftUIView {
         mainColor = UIColor.PF.background.cgColor
 
         layer.masksToBounds = false
-        view?.translatesAutoresizingMaskIntoConstraints = false
-        selectedView?.translatesAutoresizingMaskIntoConstraints = false
-        setContentView(view, selectedContentView: selectedView)
-        view?.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        view?.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        selectedView?.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        selectedView?.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
+        addView(view: view, selectedView: selectedView)
 
         switch type {
         case .custom:
@@ -43,6 +37,17 @@ class Button: SoftUIView {
         }
 
     }
+    
+    func addView(view: UIView?, selectedView: UIView? = nil) {
+        view?.translatesAutoresizingMaskIntoConstraints = false
+        selectedView?.translatesAutoresizingMaskIntoConstraints = false
+        setContentView(view, selectedContentView: selectedView)
+        view?.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        view?.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        selectedView?.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        selectedView?.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
 
     func configureBulgingButton() {
         cornerRadius = 10

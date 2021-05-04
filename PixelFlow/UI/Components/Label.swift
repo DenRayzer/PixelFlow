@@ -71,4 +71,8 @@ extension Label.LabelType {
         .default(UIColor.PF.regularText,
                  .font(family: .rubik(.regular), size: 16),
                  .left, 1)
+    static let smallText = Label.LabelType
+        .default(UIColor.PF.regularText,
+                 .font(family: .rubik(.regular), size: 11),
+                 .center, 1)
 }

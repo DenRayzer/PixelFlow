@@ -8,9 +8,15 @@
 import Foundation
 
 enum DayType {
-    case good
-    case bad
-    case empty
+    case null
+    case first
+    case second
+    case third
+    case fourth
+    case fifth
+    case sixth
+    case seventh
+    case eighth
 }
 
 struct Day {
@@ -18,7 +24,7 @@ struct Day {
     var type: DayType
     var notes: [String]?
     
-    init(date: Date, type: DayType = .empty, notes: [String]? = nil) {
+    init(date: Date, type: DayType = .null, notes: [String]? = nil) {
         self.date = date
         self.type = type
         self.notes = notes

@@ -7,40 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04ED8ACCDD98126C11F8CB3B9138C1F8 /* GrowingTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 49FB4FDD93B088EBBB273943DDA19FA6 /* GrowingTextView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		11D817B6A282C2D60B1CF78CA9FFB628 /* Yalta.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04566AB750243FBF7DBC429C866BB95 /* Yalta.swift */; };
-		136D4451BD94ED473CE229F04A638A55 /* SheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DA53A387F7C54C122A529FA326A7C8 /* SheetContentViewController.swift */; };
-		223743D385DCAC6D32AC105334AC38F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		26760843DDB86C34C81772E573284E23 /* SheetSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFFBAF75A0C4C7094AD0647578E6EF /* SheetSize.swift */; };
-		28EC8DF515BA8EA5251A9D5806F003F4 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B80C14B665CAA2AFAA496AC1873A74 /* SheetViewController.swift */; };
-		3BEF28CFE23B1EEFBF0C49793BCA1223 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E195CE411A7BDDB2E25369FB25A2884B /* SheetView.swift */; };
-		3DFF2F0EC839CC9656D1DC564002BDAD /* Pods-PixelFlow-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D253715E64F9F439A266112603E036A0 /* Pods-PixelFlow-dummy.m */; };
-		41AC2AF1F95A1E8CD29848F3C58DA922 /* GrowingTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFF03AE2FD4AB9C8A0D0E6578F6EC0C /* GrowingTextView-dummy.m */; };
-		44C27C2AD182013088203CA6ED02B9B0 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC0F577994DBB7AE1004C36EBF00B7C /* Localize.swift */; };
-		4844B9EAC1D5D197B1D8CE0E2E93480B /* SheetViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E4DF0D25D686C2733C2C922888887 /* SheetViewDelegate.swift */; };
-		51D56D2CC7B9AE191B2AC1F2CAB16A2B /* Pods-PixelFlow-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5049938621409C37237939A0E9652E47 /* Pods-PixelFlow-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11D817B6A282C2D60B1CF78CA9FFB628 /* Yalta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AFF931954042A97F782863F0BA785F /* Yalta.swift */; };
+		136D4451BD94ED473CE229F04A638A55 /* SheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400C2451161961FBB1758FF23D342B71 /* SheetContentViewController.swift */; };
+		26760843DDB86C34C81772E573284E23 /* SheetSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C0778131EBF0046DA467E6A63E78C9 /* SheetSize.swift */; };
+		28EC8DF515BA8EA5251A9D5806F003F4 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502D7391A8DD6FD2CDED228056EB61DF /* SheetViewController.swift */; };
+		2E7FC79B645DF26EB9799D44C7764AE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		33CDC8912D9CDF31ABE59E44712C1597 /* Pods-PixelFlow-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D253715E64F9F439A266112603E036A0 /* Pods-PixelFlow-dummy.m */; };
+		3BEF28CFE23B1EEFBF0C49793BCA1223 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A04EDF75CB32CA07892E6F36189AAB /* SheetView.swift */; };
+		44C27C2AD182013088203CA6ED02B9B0 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C3A31038DAB012B62A3621A0E4E820 /* Localize.swift */; };
+		4844B9EAC1D5D197B1D8CE0E2E93480B /* SheetViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FED93F406F16A10E94AE8957AF3BC6 /* SheetViewDelegate.swift */; };
+		4C010E4A40F4EAC03ECB7497DE578912 /* Pods-PixelFlow-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5049938621409C37237939A0E9652E47 /* Pods-PixelFlow-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80329703B2E80C51A98F80D4481AA612 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		92CF8346F1812D173F93CB02AE44254E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324E0049A5D69AE38970B64879F07556 /* UIViewControllerExtension.swift */; };
-		A276A9C8230EA918BA27B4E5B569EF32 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A71E611902CD48564E33BA8D8476E33 /* UIColorExtension.swift */; };
-		AA2F862DE1854CE0B286BFB507057BC6 /* FittedSheets-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AEBAD7CC55AA858365BE2B1765B0BAB8 /* FittedSheets-dummy.m */; };
-		B416B1DAC416AB1A9010328F60C396D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		C43ABC58247ABB64A97532ABFEE0EC3A /* SheetOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A33EDCBBB86FE32709A93CC97BE561 /* SheetOptions.swift */; };
-		C798AED42F28FF465E5D110328793EA5 /* GrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57651DB8AC4BFC960BD856F26DCDF7BA /* GrowingTextView.swift */; };
-		D1C977371C0D7540F25538763A0E8612 /* SheetContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E984CC2F36117ECA8247A11DDF3EF517 /* SheetContentViewDelegate.swift */; };
-		D9E1C00EE40F26DDE7FF9F3041F002B5 /* FittedSheets-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C66264E069D3527207C1DDA9E4C2711 /* FittedSheets-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F059FC9E88435CCA534220D2C6B387CF /* SheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D26AB3184A28811A3DF7512D6AE536 /* SheetTransition.swift */; };
-		FAF784E7B390407144EBA9436373CAF0 /* InitialTouchPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E671663CBD5FC02C751DBAD566EE7746 /* InitialTouchPanGestureRecognizer.swift */; };
+		92CF8346F1812D173F93CB02AE44254E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19742EF0C17074BE6C8BB0FEB72BC75 /* UIViewControllerExtension.swift */; };
+		A276A9C8230EA918BA27B4E5B569EF32 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B3E29EB528A08E25994CFD349EAD47 /* UIColorExtension.swift */; };
+		AA2F862DE1854CE0B286BFB507057BC6 /* FittedSheets-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F353F613D54D249019B0CA80C61580 /* FittedSheets-dummy.m */; };
+		C43ABC58247ABB64A97532ABFEE0EC3A /* SheetOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A3CB1084B789084ACD859C2B1E4457 /* SheetOptions.swift */; };
+		D1C977371C0D7540F25538763A0E8612 /* SheetContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06971FD9FC9CC466BEF2644F3B6A090D /* SheetContentViewDelegate.swift */; };
+		D9E1C00EE40F26DDE7FF9F3041F002B5 /* FittedSheets-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E35DA390E7128E9511F7D940DF147AE4 /* FittedSheets-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F059FC9E88435CCA534220D2C6B387CF /* SheetTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A41ACC31DB5F2E7C6C761FA9AF8D55 /* SheetTransition.swift */; };
+		FAF784E7B390407144EBA9436373CAF0 /* InitialTouchPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB9FFCAC2E0BE19250ECDBA2EB354EC /* InitialTouchPanGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0583BBE6834BF4B9840F21D44AA2A97C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1696A504A8F8B95B82B2382D0A461BF4;
-			remoteInfo = GrowingTextView;
-		};
-		56D9CC6B92487579F4AEE5DFA2EB91CA /* PBXContainerItemProxy */ = {
+		DBC5887211F61838EC62E25DA598EB9A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -50,48 +39,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		033EA361746BDD2E0C3B761D2AC096EC /* FittedSheets-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FittedSheets-prefix.pch"; sourceTree = "<group>"; };
-		0C66264E069D3527207C1DDA9E4C2711 /* FittedSheets-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FittedSheets-umbrella.h"; sourceTree = "<group>"; };
+		06971FD9FC9CC466BEF2644F3B6A090D /* SheetContentViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetContentViewDelegate.swift; path = FittedSheets/SheetContentViewDelegate.swift; sourceTree = "<group>"; };
+		07AFF931954042A97F782863F0BA785F /* Yalta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Yalta.swift; path = FittedSheets/Yalta.swift; sourceTree = "<group>"; };
+		07F353F613D54D249019B0CA80C61580 /* FittedSheets-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FittedSheets-dummy.m"; sourceTree = "<group>"; };
+		0F2DEBE78CAC57E95D31EA5F0F008953 /* FittedSheets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FittedSheets.release.xcconfig; sourceTree = "<group>"; };
 		0F4D5B7F1E31268C3A0631BD9B0A043D /* Pods_PixelFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PixelFlow.framework; path = "Pods-PixelFlow.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		123E4DF0D25D686C2733C2C922888887 /* SheetViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetViewDelegate.swift; path = FittedSheets/SheetViewDelegate.swift; sourceTree = "<group>"; };
 		21AAE79511133937606E376EE52BED4F /* FittedSheets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FittedSheets.framework; path = FittedSheets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		22C59E6BD79B65F197C03EC90D9BC563 /* GrowingTextView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GrowingTextView-Info.plist"; sourceTree = "<group>"; };
-		324E0049A5D69AE38970B64879F07556 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = FittedSheets/UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		3FBFFBAF75A0C4C7094AD0647578E6EF /* SheetSize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetSize.swift; path = FittedSheets/SheetSize.swift; sourceTree = "<group>"; };
-		3FC0F577994DBB7AE1004C36EBF00B7C /* Localize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Localize.swift; path = FittedSheets/Localization/Localize.swift; sourceTree = "<group>"; };
-		49FB4FDD93B088EBBB273943DDA19FA6 /* GrowingTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GrowingTextView-umbrella.h"; sourceTree = "<group>"; };
+		30331F1FBB5FA78EEC8B128C096D7122 /* FittedSheets.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FittedSheets.modulemap; sourceTree = "<group>"; };
+		30A41ACC31DB5F2E7C6C761FA9AF8D55 /* SheetTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetTransition.swift; path = FittedSheets/SheetTransition.swift; sourceTree = "<group>"; };
+		400C2451161961FBB1758FF23D342B71 /* SheetContentViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetContentViewController.swift; path = FittedSheets/SheetContentViewController.swift; sourceTree = "<group>"; };
+		425D15B39B58E64CB1534B44D79C3726 /* FittedSheets-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FittedSheets-prefix.pch"; sourceTree = "<group>"; };
+		502D7391A8DD6FD2CDED228056EB61DF /* SheetViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetViewController.swift; path = FittedSheets/SheetViewController.swift; sourceTree = "<group>"; };
 		5049938621409C37237939A0E9652E47 /* Pods-PixelFlow-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PixelFlow-umbrella.h"; sourceTree = "<group>"; };
-		51D26AB3184A28811A3DF7512D6AE536 /* SheetTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetTransition.swift; path = FittedSheets/SheetTransition.swift; sourceTree = "<group>"; };
-		57651DB8AC4BFC960BD856F26DCDF7BA /* GrowingTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GrowingTextView.swift; path = Sources/GrowingTextView/GrowingTextView.swift; sourceTree = "<group>"; };
-		6A71E611902CD48564E33BA8D8476E33 /* UIColorExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = FittedSheets/UIColorExtension.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		83C0778131EBF0046DA467E6A63E78C9 /* SheetSize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetSize.swift; path = FittedSheets/SheetSize.swift; sourceTree = "<group>"; };
 		8E52822CB7601A40858C38C7FB320B90 /* Pods-PixelFlow-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PixelFlow-acknowledgements.plist"; sourceTree = "<group>"; };
-		98B80C14B665CAA2AFAA496AC1873A74 /* SheetViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetViewController.swift; path = FittedSheets/SheetViewController.swift; sourceTree = "<group>"; };
+		90A3CB1084B789084ACD859C2B1E4457 /* SheetOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetOptions.swift; path = FittedSheets/SheetOptions.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A1FED93F406F16A10E94AE8957AF3BC6 /* SheetViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetViewDelegate.swift; path = FittedSheets/SheetViewDelegate.swift; sourceTree = "<group>"; };
 		A78D33ED96F1F8279485FC1886008CE5 /* Pods-PixelFlow-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PixelFlow-Info.plist"; sourceTree = "<group>"; };
-		A7AD8887B808A169662A5A7D5E72C034 /* GrowingTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GrowingTextView.modulemap; sourceTree = "<group>"; };
-		AAFF03AE2FD4AB9C8A0D0E6578F6EC0C /* GrowingTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GrowingTextView-dummy.m"; sourceTree = "<group>"; };
-		AEBAD7CC55AA858365BE2B1765B0BAB8 /* FittedSheets-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FittedSheets-dummy.m"; sourceTree = "<group>"; };
-		B04566AB750243FBF7DBC429C866BB95 /* Yalta.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Yalta.swift; path = FittedSheets/Yalta.swift; sourceTree = "<group>"; };
-		B94F9D9B3E22EDA9DE41468FB5685125 /* FittedSheets.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FittedSheets.modulemap; sourceTree = "<group>"; };
-		B9DA53A387F7C54C122A529FA326A7C8 /* SheetContentViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetContentViewController.swift; path = FittedSheets/SheetContentViewController.swift; sourceTree = "<group>"; };
+		AFDEA2FC73E8D76B973CE2E75183CADB /* FittedSheets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FittedSheets.debug.xcconfig; sourceTree = "<group>"; };
+		B19742EF0C17074BE6C8BB0FEB72BC75 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtension.swift; path = FittedSheets/UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		B4B3E29EB528A08E25994CFD349EAD47 /* UIColorExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = FittedSheets/UIColorExtension.swift; sourceTree = "<group>"; };
+		BDB9FFCAC2E0BE19250ECDBA2EB354EC /* InitialTouchPanGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InitialTouchPanGestureRecognizer.swift; path = FittedSheets/InitialTouchPanGestureRecognizer.swift; sourceTree = "<group>"; };
 		C0CAA0DF70EE87EBB7EC4DF0B62009C5 /* Pods-PixelFlow.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PixelFlow.modulemap"; sourceTree = "<group>"; };
 		C4EE0547294FD51A06220EEDC4DEF337 /* Pods-PixelFlow-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PixelFlow-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C8A33EDCBBB86FE32709A93CC97BE561 /* SheetOptions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetOptions.swift; path = FittedSheets/SheetOptions.swift; sourceTree = "<group>"; };
-		C954D085B7E7C1C795832C6968FC3DF1 /* GrowingTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GrowingTextView-prefix.pch"; sourceTree = "<group>"; };
-		CA29067FE70AEE74D69171578B931D3F /* FittedSheets.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FittedSheets.debug.xcconfig; sourceTree = "<group>"; };
-		D09F2BF14C5CD24E5A80288B38AEC7BB /* GrowingTextView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GrowingTextView.release.xcconfig; sourceTree = "<group>"; };
+		C6A04EDF75CB32CA07892E6F36189AAB /* SheetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetView.swift; path = FittedSheets/SheetView.swift; sourceTree = "<group>"; };
 		D253715E64F9F439A266112603E036A0 /* Pods-PixelFlow-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PixelFlow-dummy.m"; sourceTree = "<group>"; };
 		D48CF70A26632272AC70ECEDBC33E47D /* Pods-PixelFlow-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PixelFlow-frameworks.sh"; sourceTree = "<group>"; };
-		D644919DC04C3DC7B6674102C0BEBC08 /* GrowingTextView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GrowingTextView.debug.xcconfig; sourceTree = "<group>"; };
 		DEF99BBD9A74185EBCF1D7B3BE33EC4F /* Pods-PixelFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PixelFlow.release.xcconfig"; sourceTree = "<group>"; };
-		E13F106E91F62641C2197E748568D225 /* FittedSheets-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FittedSheets-Info.plist"; sourceTree = "<group>"; };
-		E195CE411A7BDDB2E25369FB25A2884B /* SheetView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetView.swift; path = FittedSheets/SheetView.swift; sourceTree = "<group>"; };
-		E671663CBD5FC02C751DBAD566EE7746 /* InitialTouchPanGestureRecognizer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InitialTouchPanGestureRecognizer.swift; path = FittedSheets/InitialTouchPanGestureRecognizer.swift; sourceTree = "<group>"; };
-		E984CC2F36117ECA8247A11DDF3EF517 /* SheetContentViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SheetContentViewDelegate.swift; path = FittedSheets/SheetContentViewDelegate.swift; sourceTree = "<group>"; };
-		EE6DD8FC166ED967B4261137B1A50A96 /* GrowingTextView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GrowingTextView.framework; path = GrowingTextView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0C3A31038DAB012B62A3621A0E4E820 /* Localize.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Localize.swift; path = FittedSheets/Localization/Localize.swift; sourceTree = "<group>"; };
+		E35DA390E7128E9511F7D940DF147AE4 /* FittedSheets-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FittedSheets-umbrella.h"; sourceTree = "<group>"; };
 		F43E98FAB6CB342110EE937A104BDF76 /* Pods-PixelFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PixelFlow.debug.xcconfig"; sourceTree = "<group>"; };
-		FB712AF9EC72156B7B85CD9D5B39B5F4 /* FittedSheets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FittedSheets.release.xcconfig; sourceTree = "<group>"; };
+		FBEFBD83B1F2AE33BAADF9FAEDC648FA /* FittedSheets-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FittedSheets-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,19 +83,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5A02A84CEEA524C95A24290B97465CCE /* Frameworks */ = {
+		66F4ECF324BAC2EDA7940AB9746582A9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B416B1DAC416AB1A9010328F60C396D3 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		76A9073A478EB0870917FC12DE0DC01B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				223743D385DCAC6D32AC105334AC38F8 /* Foundation.framework in Frameworks */,
+				2E7FC79B645DF26EB9799D44C7764AE0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,26 +111,13 @@
 			path = "Target Support Files/Pods-PixelFlow";
 			sourceTree = "<group>";
 		};
-		312F4E39711CA0681BBCB190D022FB5E /* FittedSheets */ = {
+		21774EDF812A2E4B4B35010DF14A07C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E671663CBD5FC02C751DBAD566EE7746 /* InitialTouchPanGestureRecognizer.swift */,
-				3FC0F577994DBB7AE1004C36EBF00B7C /* Localize.swift */,
-				B9DA53A387F7C54C122A529FA326A7C8 /* SheetContentViewController.swift */,
-				E984CC2F36117ECA8247A11DDF3EF517 /* SheetContentViewDelegate.swift */,
-				C8A33EDCBBB86FE32709A93CC97BE561 /* SheetOptions.swift */,
-				3FBFFBAF75A0C4C7094AD0647578E6EF /* SheetSize.swift */,
-				51D26AB3184A28811A3DF7512D6AE536 /* SheetTransition.swift */,
-				E195CE411A7BDDB2E25369FB25A2884B /* SheetView.swift */,
-				98B80C14B665CAA2AFAA496AC1873A74 /* SheetViewController.swift */,
-				123E4DF0D25D686C2733C2C922888887 /* SheetViewDelegate.swift */,
-				6A71E611902CD48564E33BA8D8476E33 /* UIColorExtension.swift */,
-				324E0049A5D69AE38970B64879F07556 /* UIViewControllerExtension.swift */,
-				B04566AB750243FBF7DBC429C866BB95 /* Yalta.swift */,
-				CF09A5DE34263171FDED2F94AD98C423 /* Support Files */,
+				21AAE79511133937606E376EE52BED4F /* FittedSheets.framework */,
+				0F4D5B7F1E31268C3A0631BD9B0A043D /* Pods_PixelFlow.framework */,
 			);
-			name = FittedSheets;
-			path = FittedSheets;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -169,63 +128,26 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		7AB3124F2AC85383BDD2CDD4BDB1E2F9 /* Products */ = {
+		849D3163745CD972BA4B182D793C6125 /* FittedSheets */ = {
 			isa = PBXGroup;
 			children = (
-				21AAE79511133937606E376EE52BED4F /* FittedSheets.framework */,
-				EE6DD8FC166ED967B4261137B1A50A96 /* GrowingTextView.framework */,
-				0F4D5B7F1E31268C3A0631BD9B0A043D /* Pods_PixelFlow.framework */,
+				BDB9FFCAC2E0BE19250ECDBA2EB354EC /* InitialTouchPanGestureRecognizer.swift */,
+				E0C3A31038DAB012B62A3621A0E4E820 /* Localize.swift */,
+				400C2451161961FBB1758FF23D342B71 /* SheetContentViewController.swift */,
+				06971FD9FC9CC466BEF2644F3B6A090D /* SheetContentViewDelegate.swift */,
+				90A3CB1084B789084ACD859C2B1E4457 /* SheetOptions.swift */,
+				83C0778131EBF0046DA467E6A63E78C9 /* SheetSize.swift */,
+				30A41ACC31DB5F2E7C6C761FA9AF8D55 /* SheetTransition.swift */,
+				C6A04EDF75CB32CA07892E6F36189AAB /* SheetView.swift */,
+				502D7391A8DD6FD2CDED228056EB61DF /* SheetViewController.swift */,
+				A1FED93F406F16A10E94AE8957AF3BC6 /* SheetViewDelegate.swift */,
+				B4B3E29EB528A08E25994CFD349EAD47 /* UIColorExtension.swift */,
+				B19742EF0C17074BE6C8BB0FEB72BC75 /* UIViewControllerExtension.swift */,
+				07AFF931954042A97F782863F0BA785F /* Yalta.swift */,
+				E3ACE78053EAC091DD11694F8C2F013E /* Support Files */,
 			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9CE6E4558C1D22F909751D6604C36810 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				A7AD8887B808A169662A5A7D5E72C034 /* GrowingTextView.modulemap */,
-				AAFF03AE2FD4AB9C8A0D0E6578F6EC0C /* GrowingTextView-dummy.m */,
-				22C59E6BD79B65F197C03EC90D9BC563 /* GrowingTextView-Info.plist */,
-				C954D085B7E7C1C795832C6968FC3DF1 /* GrowingTextView-prefix.pch */,
-				49FB4FDD93B088EBBB273943DDA19FA6 /* GrowingTextView-umbrella.h */,
-				D644919DC04C3DC7B6674102C0BEBC08 /* GrowingTextView.debug.xcconfig */,
-				D09F2BF14C5CD24E5A80288B38AEC7BB /* GrowingTextView.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/GrowingTextView";
-			sourceTree = "<group>";
-		};
-		AA6B9E5D89D3358103F03DBE15F6B0FA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				312F4E39711CA0681BBCB190D022FB5E /* FittedSheets */,
-				CE23131DB0F0A68E7E992C1E0CC14D2D /* GrowingTextView */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		CE23131DB0F0A68E7E992C1E0CC14D2D /* GrowingTextView */ = {
-			isa = PBXGroup;
-			children = (
-				57651DB8AC4BFC960BD856F26DCDF7BA /* GrowingTextView.swift */,
-				9CE6E4558C1D22F909751D6604C36810 /* Support Files */,
-			);
-			name = GrowingTextView;
-			path = GrowingTextView;
-			sourceTree = "<group>";
-		};
-		CF09A5DE34263171FDED2F94AD98C423 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B94F9D9B3E22EDA9DE41468FB5685125 /* FittedSheets.modulemap */,
-				AEBAD7CC55AA858365BE2B1765B0BAB8 /* FittedSheets-dummy.m */,
-				E13F106E91F62641C2197E748568D225 /* FittedSheets-Info.plist */,
-				033EA361746BDD2E0C3B761D2AC096EC /* FittedSheets-prefix.pch */,
-				0C66264E069D3527207C1DDA9E4C2711 /* FittedSheets-umbrella.h */,
-				CA29067FE70AEE74D69171578B931D3F /* FittedSheets.debug.xcconfig */,
-				FB712AF9EC72156B7B85CD9D5B39B5F4 /* FittedSheets.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FittedSheets";
+			name = FittedSheets;
+			path = FittedSheets;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -233,8 +155,8 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				AA6B9E5D89D3358103F03DBE15F6B0FA /* Pods */,
-				7AB3124F2AC85383BDD2CDD4BDB1E2F9 /* Products */,
+				D8164650EC25F9D58C62A05E3FE3521D /* Pods */,
+				21774EDF812A2E4B4B35010DF14A07C3 /* Products */,
 				ED7689F03488E93CF47BA0B30D77D864 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -245,6 +167,29 @@
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8164650EC25F9D58C62A05E3FE3521D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				849D3163745CD972BA4B182D793C6125 /* FittedSheets */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E3ACE78053EAC091DD11694F8C2F013E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				30331F1FBB5FA78EEC8B128C096D7122 /* FittedSheets.modulemap */,
+				07F353F613D54D249019B0CA80C61580 /* FittedSheets-dummy.m */,
+				FBEFBD83B1F2AE33BAADF9FAEDC648FA /* FittedSheets-Info.plist */,
+				425D15B39B58E64CB1534B44D79C3726 /* FittedSheets-prefix.pch */,
+				E35DA390E7128E9511F7D940DF147AE4 /* FittedSheets-umbrella.h */,
+				AFDEA2FC73E8D76B973CE2E75183CADB /* FittedSheets.debug.xcconfig */,
+				0F2DEBE78CAC57E95D31EA5F0F008953 /* FittedSheets.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FittedSheets";
 			sourceTree = "<group>";
 		};
 		ED7689F03488E93CF47BA0B30D77D864 /* Targets Support Files */ = {
@@ -266,57 +211,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D34845DBB4A3D9BE7DC9554AEC44895C /* Headers */ = {
+		B4DA1F78C7D6A9E14217E1E58D3431A1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51D56D2CC7B9AE191B2AC1F2CAB16A2B /* Pods-PixelFlow-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FA6AE2E3877CB8DC80C1755A2BAADD24 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04ED8ACCDD98126C11F8CB3B9138C1F8 /* GrowingTextView-umbrella.h in Headers */,
+				4C010E4A40F4EAC03ECB7497DE578912 /* Pods-PixelFlow-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1696A504A8F8B95B82B2382D0A461BF4 /* GrowingTextView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 75C0C06D51F61D6A4B6A818D31ACD0B6 /* Build configuration list for PBXNativeTarget "GrowingTextView" */;
-			buildPhases = (
-				FA6AE2E3877CB8DC80C1755A2BAADD24 /* Headers */,
-				49E6826AB355277E5CEB76376E6EB782 /* Sources */,
-				76A9073A478EB0870917FC12DE0DC01B /* Frameworks */,
-				AE58D7CE046346035791E5151FC89AE3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = GrowingTextView;
-			productName = GrowingTextView;
-			productReference = EE6DD8FC166ED967B4261137B1A50A96 /* GrowingTextView.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		44A456FA63914C04F931129B8CDAE1DA /* Pods-PixelFlow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50E2134DEBC208E50EFEBE3A06B42FCB /* Build configuration list for PBXNativeTarget "Pods-PixelFlow" */;
+			buildConfigurationList = 794AF55BB261E6679B65A218C54B11E7 /* Build configuration list for PBXNativeTarget "Pods-PixelFlow" */;
 			buildPhases = (
-				D34845DBB4A3D9BE7DC9554AEC44895C /* Headers */,
-				37E300DED335ECC83EED6BC590312247 /* Sources */,
-				5A02A84CEEA524C95A24290B97465CCE /* Frameworks */,
-				B687DC818ACA7C199CE17B631E20E336 /* Resources */,
+				B4DA1F78C7D6A9E14217E1E58D3431A1 /* Headers */,
+				2FB04DC82395769A91550E62F8901A2D /* Sources */,
+				66F4ECF324BAC2EDA7940AB9746582A9 /* Frameworks */,
+				89D7B17CC2B534A2D2E859C718AEBD1D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0C61F794927A61A40B0B9A1BB821CB86 /* PBXTargetDependency */,
-				62624F0F5F1EB21D2A0C24853CA3F8AF /* PBXTargetDependency */,
+				C98B7DE769C7C3E884A1812A27F2A23F /* PBXTargetDependency */,
 			);
 			name = "Pods-PixelFlow";
 			productName = "Pods-PixelFlow";
@@ -359,33 +277,25 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 7AB3124F2AC85383BDD2CDD4BDB1E2F9 /* Products */;
+			productRefGroup = 21774EDF812A2E4B4B35010DF14A07C3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				B71C614CBF9B1B690FE941C4DF44D040 /* FittedSheets */,
-				1696A504A8F8B95B82B2382D0A461BF4 /* GrowingTextView */,
 				44A456FA63914C04F931129B8CDAE1DA /* Pods-PixelFlow */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		89D7B17CC2B534A2D2E859C718AEBD1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9544C34A04EB9CB2338A479211B5DE9E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		AE58D7CE046346035791E5151FC89AE3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B687DC818ACA7C199CE17B631E20E336 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -395,20 +305,11 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		37E300DED335ECC83EED6BC590312247 /* Sources */ = {
+		2FB04DC82395769A91550E62F8901A2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DFF2F0EC839CC9656D1DC564002BDAD /* Pods-PixelFlow-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49E6826AB355277E5CEB76376E6EB782 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				41AC2AF1F95A1E8CD29848F3C58DA922 /* GrowingTextView-dummy.m in Sources */,
-				C798AED42F28FF465E5D110328793EA5 /* GrowingTextView.swift in Sources */,
+				33CDC8912D9CDF31ABE59E44712C1597 /* Pods-PixelFlow-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,96 +337,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0C61F794927A61A40B0B9A1BB821CB86 /* PBXTargetDependency */ = {
+		C98B7DE769C7C3E884A1812A27F2A23F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FittedSheets;
 			target = B71C614CBF9B1B690FE941C4DF44D040 /* FittedSheets */;
-			targetProxy = 56D9CC6B92487579F4AEE5DFA2EB91CA /* PBXContainerItemProxy */;
-		};
-		62624F0F5F1EB21D2A0C24853CA3F8AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GrowingTextView;
-			target = 1696A504A8F8B95B82B2382D0A461BF4 /* GrowingTextView */;
-			targetProxy = 0583BBE6834BF4B9840F21D44AA2A97C /* PBXContainerItemProxy */;
+			targetProxy = DBC5887211F61838EC62E25DA598EB9A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		105F7F4A60D35A0149D24E5D4F18A44F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEF99BBD9A74185EBCF1D7B3BE33EC4F /* Pods-PixelFlow.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		506299700CC4276538075CAEAECA3611 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F43E98FAB6CB342110EE937A104BDF76 /* Pods-PixelFlow.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		8DE5143C03248BB6CD542DE3963D6F3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -592,40 +412,6 @@
 			};
 			name = Debug;
 		};
-		92C1497FE87663C87A9A81A5BFDA28FD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D644919DC04C3DC7B6674102C0BEBC08 /* GrowingTextView.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/GrowingTextView/GrowingTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GrowingTextView/GrowingTextView-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/GrowingTextView/GrowingTextView.modulemap";
-				PRODUCT_MODULE_NAME = GrowingTextView;
-				PRODUCT_NAME = GrowingTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		9E406C6AAF85E580207CD97B0044DEAB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -688,9 +474,46 @@
 			};
 			name = Release;
 		};
+		AB94464F93BC3BF13FDE7278AFAD09BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F43E98FAB6CB342110EE937A104BDF76 /* Pods-PixelFlow.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		B9822CCBF14F48D0C7CDB82C668F43C6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB712AF9EC72156B7B85CD9D5B39B5F4 /* FittedSheets.release.xcconfig */;
+			baseConfigurationReference = 0F2DEBE78CAC57E95D31EA5F0F008953 /* FittedSheets.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -724,9 +547,47 @@
 			};
 			name = Release;
 		};
+		CEE49EF2CC43AF268E6E8F38084060C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEF99BBD9A74185EBCF1D7B3BE33EC4F /* Pods-PixelFlow.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E70FE3B6F2C716A1F5ECC581EB1207AC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA29067FE70AEE74D69171578B931D3F /* FittedSheets.debug.xcconfig */;
+			baseConfigurationReference = AFDEA2FC73E8D76B973CE2E75183CADB /* FittedSheets.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -759,41 +620,6 @@
 			};
 			name = Debug;
 		};
-		FEB65D27DABA5AC3FE44C8D7CD482C89 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D09F2BF14C5CD24E5A80288B38AEC7BB /* GrowingTextView.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/GrowingTextView/GrowingTextView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GrowingTextView/GrowingTextView-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/GrowingTextView/GrowingTextView.modulemap";
-				PRODUCT_MODULE_NAME = GrowingTextView;
-				PRODUCT_NAME = GrowingTextView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -815,20 +641,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		50E2134DEBC208E50EFEBE3A06B42FCB /* Build configuration list for PBXNativeTarget "Pods-PixelFlow" */ = {
+		794AF55BB261E6679B65A218C54B11E7 /* Build configuration list for PBXNativeTarget "Pods-PixelFlow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				506299700CC4276538075CAEAECA3611 /* Debug */,
-				105F7F4A60D35A0149D24E5D4F18A44F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		75C0C06D51F61D6A4B6A818D31ACD0B6 /* Build configuration list for PBXNativeTarget "GrowingTextView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				92C1497FE87663C87A9A81A5BFDA28FD /* Debug */,
-				FEB65D27DABA5AC3FE44C8D7CD482C89 /* Release */,
+				AB94464F93BC3BF13FDE7278AFAD09BD /* Debug */,
+				CEE49EF2CC43AF268E6E8F38084060C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
