@@ -7,8 +7,44 @@
 
 import UIKit
 
+class dottedDayView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        let view = UIView()
+        let layer = CAShapeLayer()
+        let bounds = CGRect(x: 0, y: 0, width: 43, height: 43)
+        layer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        layer.strokeColor = UIColor.PF.accentColor.cgColor
+        layer.fillColor = nil
+        layer.lineDashPattern = [8, 6]
+        view.layer.addSublayer(layer)
+        
+        let animation = CABasicAnimation(keyPath: "lineDashPhase")
+        animation.fromValue = 0
+        animation.toValue = layer.lineDashPattern?.reduce(0) { $0 - $1.intValue } ?? 0
+        animation.duration = 1
+        animation.repeatCount = .infinity
+        layer.add(animation, forKey: "line")
+        
+        addSubview(view)
+        view.layout.all.equal(to: self)
+        layout.size.equal(to: CGSize(width: 40, height: 40))
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
 class DayMenuLayout: UIView {
     var dayInfoLabel = Label(type: .title)
+    var additionalDayColorButton: BasicButton = {
+        let button = BasicButton()
+        button.setImage(#imageLiteral(resourceName: "additional_color"), for: .normal)
+        return button
+    }()
     var selectedItem: ColorInfoItem?
 
     private(set) lazy var dayInfoContainer: UIStackView = {
@@ -20,17 +56,18 @@ class DayMenuLayout: UIView {
         stack.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return stack
     }()
-
-    var notes = ["vvv"]
-    private(set) lazy var notesContainer: UIStackView = {
+    
+    private(set) lazy var additionalDayColorsContainer: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.alignment = .leading
         stack.spacing = 10
-        stack.isUserInteractionEnabled = true
+        stack.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return stack
     }()
+
+    var notes = ["vvv"]
 
     private(set) lazy var addNoteButton: SoftUIView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "new_note"))
@@ -45,18 +82,67 @@ class DayMenuLayout: UIView {
     }()
 
     var notesTableView = ContentSizedTableView()
+    private var activeAdditionalColor: UIView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setupViews()
     }
+    
+    private func addNewDayColor() {
+        if activeAdditionalColor != nil { return }
+        print("clen")
+        let view = UIView()
+  //      view.layout.size.equal(to: CGSize(width: 43, height: 43))
+        let layer = CAShapeLayer()
+        let bounds = CGRect(x: 0, y: 0, width: 43, height: 43)
+        layer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5)).cgPath
+        layer.strokeColor = UIColor.PF.accentColor.cgColor
+        layer.fillColor = nil
+        layer.lineDashPattern = [8, 6]
+        view.layer.addSublayer(layer)
+        
+        let animation = CABasicAnimation(keyPath: "lineDashPhase")
+        animation.fromValue = 0
+        animation.toValue = layer.lineDashPattern?.reduce(0) { $0 - $1.intValue } ?? 0
+        animation.duration = 1
+        animation.repeatCount = .infinity
+        layer.add(animation, forKey: "line")
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        view.addGestureRecognizer(recognizer)
+        
+        let newView = dottedDayView()
+        newView.addGestureRecognizer(recognizer)
+        activeAdditionalColor = newView
+        additionalDayColorsContainer.addArrangedSubview(newView)
+    }
 
+    @objc
+    func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        print("хе хех хе")
+        let view = activeAdditionalColor?.subviews.first
+        view?.removeFromSuperview()
+        let colorView: Button = {
+            let button = Button(type: .bulging)
+            button.layout.height.equal(to: 43)
+            button.layout.width.equal(to: 40)
+            return button
+        }()
+        activeAdditionalColor?.addSubview(colorView)
+        activeAdditionalColor = nil
+    }
     private func setupViews() {
         addSubview(dayInfoLabel)
         dayInfoLabel.layout.top.equal(to: self, offset: 20)
         dayInfoLabel.layout.left.equal(to: self, offset: 16)
         dayInfoLabel.layout.height.equal(to: 20)
+        
+        addSubview(additionalDayColorButton)
+        additionalDayColorButton.layout.top.equal(to: self, offset: 20)
+        additionalDayColorButton.layout.right.equal(to: self, offset: -24)
+        additionalDayColorButton.touch.delegate(to: self) { _,_ in self.addNewDayColor() }
 
         setupNotesTableView()
         setupColorItems()
@@ -91,37 +177,15 @@ class DayMenuLayout: UIView {
         addNoteButton.layout.right.equal(to: headerView, offset: -16)
         addNoteButton.layout.bottom.equal(to: headerView, offset: -20)
         
-        let view = UIView()
-        let layer = CAShapeLayer()
-        let bounds = CGRect(x: 0, y: 0, width: 43, height: 43)
-        layer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        layer.strokeColor = UIColor.PF.accentColor.cgColor
-        layer.fillColor = nil
-        layer.lineDashPattern = [8, 6]
-        view.layer.addSublayer(layer)
-       // layer.lineDashPattern?.reduce(0) { $0 - $1.intValue }
-        
-        let animation = CABasicAnimation(keyPath: "lineDashPhase")
-        animation.fromValue = 0
-        animation.toValue = layer.lineDashPattern?.reduce(0) { $0 - $1.intValue } ?? 0
-        animation.duration = 1
-        animation.repeatCount = .infinity
-        layer.add(animation, forKey: "line")
-        
-        
-        headerView.addSubview(view)
-        view.layout.right.equal(to: headerView, offset: -60)
-        view.layout.top.equal(to: headerView, offset: 60)
-//        headerView.addSubview(view)
-//        view.layout.right.equal(to: headerView, offset: 16)
-//        view.layout.top.equal(to: headerView, offset: 16)
-        view.backgroundColor = .red
-        
-        
-        
-        dayInfoContainer.layout.horizontal.equal(to: headerView)
-
+        dayInfoContainer.layout.left.equal(to: headerView)
         dayInfoContainer.layout.vertical.equal(to: headerView, offset: (4,20))
+        
+        headerView.addSubview(additionalDayColorsContainer)
+        additionalDayColorsContainer.layout.right.equal(to: headerView, offset: -16)
+        additionalDayColorsContainer.layout.top.equal(to: headerView, offset: 4)
+        additionalDayColorsContainer.layout.width.equal(to: 45)
+    //    additionalDayColorsContainer.addArrangedSubview(ColorInfoItem(type: .first))
+        
         notesTableView.tableHeaderView = headerView // dayInfoContainer
         headerView.layout.width.equal(to: notesTableView)
 
