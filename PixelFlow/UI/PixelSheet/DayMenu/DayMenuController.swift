@@ -36,10 +36,15 @@ class DayMenuController: UIViewController {
     @objc
     func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         guard let view = sender?.view as? ColorInfoItem else { return }
+        if layout.activeAdditionalColor == nil {
         delegate.onDayMenuItemTap(dayType: view.type)
         view.colorView.addView(view: UIImageView(image: #imageLiteral(resourceName: "check")))
         layout.selectedItem?.colorView.addView(view: nil)
         layout.selectedItem = view
+        } else {
+            layout.activeAdditionalColor?.changeColorView(with: view.color)
+            layout.activeAdditionalColor = nil
+        }
     }
 
     private func setupViews() {

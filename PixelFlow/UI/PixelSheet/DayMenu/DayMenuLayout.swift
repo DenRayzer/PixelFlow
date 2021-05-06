@@ -7,37 +7,6 @@
 
 import UIKit
 
-class dottedDayView: UIView {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        let view = UIView()
-        let layer = CAShapeLayer()
-        let bounds = CGRect(x: 0, y: 0, width: 43, height: 43)
-        layer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        layer.strokeColor = UIColor.PF.accentColor.cgColor
-        layer.fillColor = nil
-        layer.lineDashPattern = [8, 6]
-        view.layer.addSublayer(layer)
-        
-        let animation = CABasicAnimation(keyPath: "lineDashPhase")
-        animation.fromValue = 0
-        animation.toValue = layer.lineDashPattern?.reduce(0) { $0 - $1.intValue } ?? 0
-        animation.duration = 1
-        animation.repeatCount = .infinity
-        layer.add(animation, forKey: "line")
-        
-        addSubview(view)
-        view.layout.all.equal(to: self)
-        layout.size.equal(to: CGSize(width: 40, height: 40))
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
 class DayMenuLayout: UIView {
     var dayInfoLabel = Label(type: .title)
     var additionalDayColorButton: BasicButton = {
@@ -62,8 +31,8 @@ class DayMenuLayout: UIView {
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.alignment = .leading
-        stack.spacing = 10
-        stack.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        stack.spacing = 12
+        stack.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         return stack
     }()
 
@@ -82,7 +51,7 @@ class DayMenuLayout: UIView {
     }()
 
     var notesTableView = ContentSizedTableView()
-    private var activeAdditionalColor: UIView?
+    var activeAdditionalColor: DottedDayView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,48 +60,40 @@ class DayMenuLayout: UIView {
     }
     
     private func addNewDayColor() {
-        if activeAdditionalColor != nil { return }
-        print("clen")
-        let view = UIView()
-  //      view.layout.size.equal(to: CGSize(width: 43, height: 43))
-        let layer = CAShapeLayer()
-        let bounds = CGRect(x: 0, y: 0, width: 43, height: 43)
-        layer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 5, height: 5)).cgPath
-        layer.strokeColor = UIColor.PF.accentColor.cgColor
-        layer.fillColor = nil
-        layer.lineDashPattern = [8, 6]
-        view.layer.addSublayer(layer)
+        if activeAdditionalColor != nil || additionalDayColorsContainer.subviews.count == dayInfoContainer.subviews.count - 1 { return }
         
-        let animation = CABasicAnimation(keyPath: "lineDashPhase")
-        animation.fromValue = 0
-        animation.toValue = layer.lineDashPattern?.reduce(0) { $0 - $1.intValue } ?? 0
-        animation.duration = 1
-        animation.repeatCount = .infinity
-        layer.add(animation, forKey: "line")
+        let dottedRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDottedTap(_:)))
+        let coloredRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleColoredTap(_:)))
         
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        view.addGestureRecognizer(recognizer)
-        
-        let newView = dottedDayView()
-        newView.addGestureRecognizer(recognizer)
+        let newView = DottedDayView()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.locale = Locale.current
+//        layout.dayInfoLabel.text = dateFormatter.string(from: day.date).lowercased()
+        newView.timeLabel.text = dateFormatter.string(from: Date())
+        newView.dottedView.addGestureRecognizer(dottedRecognizer)
+        newView.coloredView.addGestureRecognizer(coloredRecognizer)
         activeAdditionalColor = newView
         additionalDayColorsContainer.addArrangedSubview(newView)
     }
-
+        
+    
     @objc
-    func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        print("хе хех хе")
-        let view = activeAdditionalColor?.subviews.first
-        view?.removeFromSuperview()
-        let colorView: Button = {
-            let button = Button(type: .bulging)
-            button.layout.height.equal(to: 43)
-            button.layout.width.equal(to: 40)
-            return button
-        }()
-        activeAdditionalColor?.addSubview(colorView)
+    func handleDottedTap(_ sender: UITapGestureRecognizer? = nil) {
+        let view = sender?.view //activeAdditionalColor
+        view?.superview?.removeFromSuperview()
+      //  view?.changeColorView(with: .cyan)
         activeAdditionalColor = nil
     }
+    
+    @objc
+    func handleColoredTap(_ sender: UITapGestureRecognizer? = nil) {
+        let view = sender?.view //activeAdditionalColor
+        view?.superview?.removeFromSuperview()
+      //  view?.changeColorView(with: .cyan)
+        activeAdditionalColor = nil
+    }
+        
     private func setupViews() {
         addSubview(dayInfoLabel)
         dayInfoLabel.layout.top.equal(to: self, offset: 20)
@@ -181,9 +142,9 @@ class DayMenuLayout: UIView {
         dayInfoContainer.layout.vertical.equal(to: headerView, offset: (4,20))
         
         headerView.addSubview(additionalDayColorsContainer)
-        additionalDayColorsContainer.layout.right.equal(to: headerView, offset: -16)
+        additionalDayColorsContainer.layout.right.equal(to: headerView, offset: -19)
         additionalDayColorsContainer.layout.top.equal(to: headerView, offset: 4)
-        additionalDayColorsContainer.layout.width.equal(to: 45)
+       // additionalDayColorsContainer.layout.width.equal(to: 45)
     //    additionalDayColorsContainer.addArrangedSubview(ColorInfoItem(type: .first))
         
         notesTableView.tableHeaderView = headerView // dayInfoContainer
