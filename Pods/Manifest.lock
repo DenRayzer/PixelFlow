@@ -1,16 +1,20 @@
 PODS:
   - FittedSheets (2.4.0)
+  - Floaty (4.2.0)
 
 DEPENDENCIES:
   - FittedSheets
+  - Floaty
 
 SPEC REPOS:
   trunk:
     - FittedSheets
+    - Floaty
 
 SPEC CHECKSUMS:
   FittedSheets: 470a7740a083156d711ab6ccd37d1d539005e6aa
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
 
-PODFILE CHECKSUM: 0132268c8ede5e99aff9e83c848f160af8206582
+PODFILE CHECKSUM: 8aa4671dbe983c830b163ce0328d2963bf9189fe
 
 COCOAPODS: 1.10.1

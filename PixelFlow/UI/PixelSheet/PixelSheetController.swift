@@ -6,14 +6,16 @@
 //
 
 import UIKit
+//import Floaty
 
-class ViewController: UIViewController {
+class PixelSheetController: UIViewController {
     var collectionView: UICollectionView!
     var header: Header!
     var array = [Year(year: 2021), Year(year: 2020), Year(year: 2019), Year(year: 2018), Year(year: 2017)]
     var currentYearIndex = 0
     private var lastContentOffset: CGFloat = 0
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
+    var floaty = Floaty()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,7 @@ class ViewController: UIViewController {
         header = Header(frame: .zero)
         view.addSubview(header)
         header.layout.horizontal.equal(to: view)
-        header.layout.height.equal(to: 60)
+  //      header.layout.height.equal(to: 60)
         header.layout.top.equal(to: view.safeAreaLayoutGuide, offset: 16)
     }
 
@@ -60,6 +62,13 @@ class ViewController: UIViewController {
     }
 
     private func setupSettingsButton() {
+        layoutFAB()
+        floaty.addDragging()
+        
+//        let floatingActionButton = LiquidFloatingActionButton(frame: floatingFrame)
+//        floatingActionButton.dataSource = self
+//        floatingActionButton.delegate = self
+        
         let imageView = UIImageView(image: #imageLiteral(resourceName: "home"))
         let settingsButton = Button(type: .floating, view: imageView)
         view.addSubview(settingsButton)
@@ -68,6 +77,37 @@ class ViewController: UIViewController {
         settingsButton.layout.bottom.equal(to: view, offset: -18)
         settingsButton.layout.right.equal(to: view, offset: -18)
         collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
+    }
+    
+    func layoutFAB() {
+        
+        
+      let item = FloatyItem()
+      item.hasShadow = false
+      item.buttonColor = UIColor.blue
+      item.circleShadowColor = UIColor.red
+      item.titleShadowColor = UIColor.blue
+      item.titleLabelPosition = .right
+      item.title = "titlePosition right"
+      item.handler = { item in
+        
+      }
+      
+      floaty.hasShadow = false
+      floaty.addItem(title: "I got a title")
+      floaty.addItem("I got a icon", icon: UIImage(named: "icShare"))
+      floaty.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
+        let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+      }
+      floaty.addItem(item: item)
+      floaty.paddingX = self.view.frame.width/2 - floaty.frame.width/2
+      floaty.fabDelegate = self
+      
+        floaty.overlayColor = .clear
+      self.view.addSubview(floaty)
+      
     }
 
     private func setupHeaderButtons() {
@@ -100,7 +140,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension PixelSheetController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         array.count
     }
@@ -127,3 +167,22 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         }
     }
 }
+
+extension PixelSheetController: FloatyDelegate {
+    
+}
+
+//extension UIView {
+//    func addDragging(){
+//
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedAction(_ :)))
+//        self.addGestureRecognizer(panGesture)
+//    }
+//
+//    @objc private func draggedAction(_ pan:UIPanGestureRecognizer){
+//
+//        let translation = pan.translation(in: self.superview)
+//        self.center = CGPoint(x: self.center.x + translation.x, y: self.center.y + translation.y)
+//        pan.setTranslation(CGPoint.zero, in: self.superview)
+//    }
+//}

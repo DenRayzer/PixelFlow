@@ -46,6 +46,10 @@
 		7AE1E56F2635821100E4E9B2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1E56E2635821100E4E9B2 /* String+Extension.swift */; };
 		7AE1E5802635BC8900E4E9B2 /* KeyBoardCloser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1E57F2635BC8900E4E9B2 /* KeyBoardCloser.swift */; };
 		7AE1E5842635CDD700E4E9B2 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1E5832635CDD700E4E9B2 /* NoteTableViewCell.swift */; };
+		7AEB8F702646A23C00C6F0D9 /* FloatyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB8F6F2646A23C00C6F0D9 /* FloatyItem.swift */; };
+		7AEB8F722646A24500C6F0D9 /* Floaty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEB8F712646A24500C6F0D9 /* Floaty.swift */; };
+		7AFFCA7926448173004DA7AF /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCA7826448173004DA7AF /* MainMenuController.swift */; };
+		7AFFCA8D26448E86004DA7AF /* FloatyBible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFFCA8C26448E86004DA7AF /* FloatyBible.swift */; };
 		97EC820B2BD7BC8E9E6880DF /* Pods_PixelFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51B4ABA671B44E4626CF4FBA /* Pods_PixelFlow.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +97,10 @@
 		7AE1E56E2635821100E4E9B2 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7AE1E57F2635BC8900E4E9B2 /* KeyBoardCloser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardCloser.swift; sourceTree = "<group>"; };
 		7AE1E5832635CDD700E4E9B2 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		7AEB8F6F2646A23C00C6F0D9 /* FloatyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatyItem.swift; sourceTree = "<group>"; };
+		7AEB8F712646A24500C6F0D9 /* Floaty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floaty.swift; sourceTree = "<group>"; };
+		7AFFCA7826448173004DA7AF /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
+		7AFFCA8C26448E86004DA7AF /* FloatyBible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatyBible.swift; sourceTree = "<group>"; };
 		A51B7406CC81603F271AA5E5 /* Pods-PixelFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelFlow.debug.xcconfig"; path = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.debug.xcconfig"; sourceTree = "<group>"; };
 		BC926B551DDC3B56BA60F45B /* Pods-PixelFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PixelFlow.release.xcconfig"; path = "Target Support Files/Pods-PixelFlow/Pods-PixelFlow.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -242,6 +250,7 @@
 		6EF8EA1C261A2639009FA21B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7AEB8F6E2646A22400C6F0D9 /* Floaty */,
 				7AE1E57E2635BC7300E4E9B2 /* Controls */,
 				6EC1187B2623046100212203 /* Button */,
 			);
@@ -312,9 +321,20 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7AEB8F6E2646A22400C6F0D9 /* Floaty */ = {
+			isa = PBXGroup;
+			children = (
+				7AEB8F6F2646A23C00C6F0D9 /* FloatyItem.swift */,
+				7AEB8F712646A24500C6F0D9 /* Floaty.swift */,
+				7AFFCA8C26448E86004DA7AF /* FloatyBible.swift */,
+			);
+			path = Floaty;
+			sourceTree = "<group>";
+		};
 		7AFFCA77264480CE004DA7AF /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				7AFFCA7826448173004DA7AF /* MainMenuController.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -456,19 +476,23 @@
 				6EC118862623446300212203 /* Label.swift in Sources */,
 				6EC118662621B53300212203 /* Consts.swift in Sources */,
 				6EF8EA1A261A228D009FA21B /* Layout.swift in Sources */,
+				7AEB8F722646A24500C6F0D9 /* Floaty.swift in Sources */,
 				6E76EAF4261B93D500DCF8C9 /* UILayoutPriority.swift in Sources */,
 				7A2DDC8A26346155009976EF /* DayMenuController.swift in Sources */,
 				7AE1E5842635CDD700E4E9B2 /* NoteTableViewCell.swift in Sources */,
 				6EC118792622FACC00212203 /* Header.swift in Sources */,
 				7A8DA45C26403A7700268578 /* DayMenuDelegate.swift in Sources */,
 				6EF8EA15261A1E4E009FA21B /* PixelSheetLayout.swift in Sources */,
+				7AFFCA8D26448E86004DA7AF /* FloatyBible.swift in Sources */,
 				6EC1186E2621EEB000212203 /* PixelSheetCell.swift in Sources */,
 				6E76EAF8261B949A00DCF8C9 /* SafeLayoutGuide.swift in Sources */,
+				7AEB8F702646A23C00C6F0D9 /* FloatyItem.swift in Sources */,
 				6EC1188026231E2400212203 /* Delegated.swift in Sources */,
 				6EC1187D2623182000212203 /* BasicButton.swift in Sources */,
 				6EF8EA29261A2E38009FA21B /* ConstraintItems.swift in Sources */,
 				6EF8EA1E261A2651009FA21B /* PixelDayView.swift in Sources */,
 				7A2DDC8726346149009976EF /* DayMenuLayout.swift in Sources */,
+				7AFFCA7926448173004DA7AF /* MainMenuController.swift in Sources */,
 				7ACE6C222642FFD70051A5EB /* DottedDayView.swift in Sources */,
 				6EC1188326233F6D00212203 /* TextButton.swift in Sources */,
 				7A8DA45E2640794B00268578 /* UITextView+Extension.swift in Sources */,
