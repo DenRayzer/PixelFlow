@@ -185,10 +185,14 @@ open class FloatyItem: SoftViewBase {
   public init() {
     super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
     backgroundColor = UIColor.clear
+    
+    cornerRadius = size/2
   }
   
   required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+    
+    cornerRadius = size/2
   }
   
   /**
@@ -199,7 +203,7 @@ open class FloatyItem: SoftViewBase {
     
     self.layer.shouldRasterize = true
     self.layer.rasterizationScale = UIScreen.main.scale
-    createCircleLayer()
+   // createCircleLayer()
     setShadow()
     
     if _titleLabel != nil {

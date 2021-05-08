@@ -13,10 +13,31 @@ open class SoftViewBase: UIView {
     private var lightOuterShadowLayer: CAShapeLayer!
     private var darkInnerShadowLayer: CAShapeLayer!
     private var lightInnerShadowLayer: CAShapeLayer!
+    
+    private var contentView: UIView?
+    private var selectedContentView: UIView?
+    private var selectedTransform: CGAffineTransform?
+    
+    var isSelected: Bool = false {
+        didSet {
+            updateShadowLayers()
+            updateContentView()
+        }
+    }
 
-//    open var type: SoftUIViewType = .pushButton {
-//        didSet { updateShadowLayers() }
-//    }
+    open var type: SoftUIViewType = .pushButton {
+        didSet { updateShadowLayers() }
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        createSubLayers()
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        createSubLayers()
+    }
 
     open var mainColor: CGColor = SoftUIView.defalutMainColorColor {
         didSet { updateMainColor() }
@@ -199,8 +220,82 @@ open class SoftViewBase: UIView {
 
         updateSublayersShape()
     }
-
-    fileprivate func createCircleLayer() {
-        createSubLayers()
+    
+    func updateShadowLayers() {
+        darkOuterShadowLayer.isHidden = isSelected
+        lightOuterShadowLayer.isHidden = isSelected
+        darkInnerShadowLayer.isHidden = !isSelected
+        lightInnerShadowLayer.isHidden = !isSelected
     }
+    
+    func updateContentView() {
+        if isSelected, selectedContentView != nil {
+            showSelectedContentView()
+        } else if isSelected, selectedTransform != nil {
+            showSelectedTransform()
+        } else {
+            showContentView()
+        }
+    }
+    
+    func showContentView() {
+        contentView?.isHidden = false
+        contentView?.transform = .identity
+        selectedContentView?.isHidden = true
+    }
+
+    func showSelectedContentView() {
+        contentView?.isHidden = true
+        contentView?.transform = .identity
+        selectedContentView?.isHidden = false
+    }
+
+    func showSelectedTransform() {
+        contentView?.isHidden = false
+        selectedTransform.map { contentView?.transform = $0 }
+        selectedContentView?.isHidden = true
+    }
+    
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        switch type {
+        case .pushButton:
+            isSelected = true
+        case .toggleButton:
+            isSelected = !isSelected
+        case .normal:
+            break
+        }
+        super.touchesBegan(touches, with: event)
+    }
+
+//    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        switch type {
+//        case .pushButton:
+//            isSelected = !isSelected//isTracking
+//        case .normal, .toggleButton:
+//            break
+//        }
+//        super.touchesMoved(touches, with: event)
+//    }
+
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        switch type {
+        case .pushButton:
+            isSelected = false
+        case .normal, .toggleButton:
+            break
+        }
+        super.touchesEnded(touches, with: event)
+    }
+
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        switch type {
+        case .pushButton:
+            isSelected = false
+        case .normal, .toggleButton:
+            break
+        }
+        super.touchesCancelled(touches, with: event)
+    }
+    
 }

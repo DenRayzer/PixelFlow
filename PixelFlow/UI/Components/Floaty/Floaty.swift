@@ -259,6 +259,13 @@ open class Floaty: SoftViewBase {
         backgroundColor = UIColor.clear
         setObserver()
         setAccessibilityView()
+        
+        cornerRadius = 16
+        shadowRadius = 12
+        lightShadowColor = UIColor.white.cgColor
+        darkShadowColor = UIColor.PF.darkShadow.withAlphaComponent(0.5).cgColor
+        shadowOffset = .init(width: 10, height: 10)
+    //    mainColor = UIColor.colorScheme.dustyRose.cgColor
     }
 
     /**
@@ -270,6 +277,13 @@ open class Floaty: SoftViewBase {
         backgroundColor = UIColor.clear
         setObserver()
         setAccessibilityView()
+        
+        cornerRadius = 16
+        shadowRadius = 12
+        lightShadowColor = UIColor.white.cgColor
+        darkShadowColor = UIColor.PF.darkShadow.withAlphaComponent(0.5).cgColor
+        shadowOffset = .init(width: 10, height: 10)
+  //      mainColor = UIColor.colorScheme.dustyRose.cgColor
     }
 
     /**
@@ -282,6 +296,13 @@ open class Floaty: SoftViewBase {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
+        
+        cornerRadius = 16
+        shadowRadius = 12
+        lightShadowColor = UIColor.white.cgColor
+        darkShadowColor = UIColor.PF.darkShadow.withAlphaComponent(0.5).cgColor
+        shadowOffset = .init(width: 10, height: 10)
+      //  mainColor = UIColor.colorScheme.dustyRose.cgColor
     }
 
     /**
@@ -295,6 +316,13 @@ open class Floaty: SoftViewBase {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
+        
+        cornerRadius = 16
+        shadowRadius = 12
+        lightShadowColor = UIColor.white.cgColor
+        darkShadowColor = UIColor.PF.darkShadow.withAlphaComponent(0.5).cgColor
+        shadowOffset = .init(width: 10, height: 10)
+     //   mainColor = UIColor.colorScheme.dustyRose.cgColor
     }
 
     // MARK: - Method
@@ -667,7 +695,7 @@ open class Floaty: SoftViewBase {
 //    circleLayer.backgroundColor = buttonColor.cgColor
 //    circleLayer.cornerRadius = size/2
         //  layer.addSublayer(circleLayer)
-        createSubLayers()
+    //    createSubLayers()
     }
 
     fileprivate func setPlusLayer() {

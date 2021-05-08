@@ -15,7 +15,7 @@ class PixelSheetController: UIViewController {
     var currentYearIndex = 0
     private var lastContentOffset: CGFloat = 0
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
-    var floaty = Floaty(frame: CGRect(x: 150, y: 300, width: 55, height: 55))
+    var floaty = Floaty()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,19 +69,19 @@ class PixelSheetController: UIViewController {
 //        floatingActionButton.dataSource = self
 //        floatingActionButton.delegate = self
         
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "home"))
-        let settingsButton = Button(type: .floating, view: imageView)
-        view.addSubview(settingsButton)
-        settingsButton.layout.height.equal(to: 55)
-        settingsButton.layout.width.equal(to: 55)
-        settingsButton.layout.bottom.equal(to: view, offset: -18)
-        settingsButton.layout.right.equal(to: view, offset: -18)
-        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
+//        let imageView = UIImageView(image: #imageLiteral(resourceName: "home"))
+//        let settingsButton = Button(type: .floating, view: imageView)
+//        view.addSubview(settingsButton)
+//        settingsButton.layout.height.equal(to: 55)
+//        settingsButton.layout.width.equal(to: 55)
+//        settingsButton.layout.bottom.equal(to: view, offset: -18)
+//        settingsButton.layout.right.equal(to: view, offset: -18)
+//        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
     }
     
     func layoutFAB() {
-        
-        
+        floaty.frame = CGRect(x: view.frame.width - 20 - view.safeAreaInsets.bottom, y: view.frame.height - 20 - view.safeAreaInsets.bottom, width: 55, height: 55)
+        floaty.buttonImage = #imageLiteral(resourceName: "home")
       let item = FloatyItem()
       item.hasShadow = false
       item.buttonColor = UIColor.blue
@@ -102,7 +102,7 @@ class PixelSheetController: UIViewController {
         self.present(alert, animated: true, completion: nil)
       }
       floaty.addItem(item: item)
-      floaty.paddingX = self.view.frame.width/2 - floaty.frame.width/2
+   //   floaty.paddingX = self.view.frame.width/2 - floaty.frame.width/2
       floaty.fabDelegate = self
       
         floaty.overlayColor = .clear

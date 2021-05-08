@@ -28,7 +28,7 @@
 		6EC1188E26234B8A00212203 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1188C26234B2A00212203 /* Rubik-Medium.ttf */; };
 		6EC1189026234B8C00212203 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1188D26234B4400212203 /* Rubik-Regular.ttf */; };
 		6EC1189326234E7700212203 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1189226234E7700212203 /* UIFont+Extension.swift */; };
-		6EC118A12623664F00212203 /* Neu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC118A02623664F00212203 /* Neu.swift */; };
+		6EC118A12623664F00212203 /* SoftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC118A02623664F00212203 /* SoftUIView.swift */; };
 		6EF8EA15261A1E4E009FA21B /* PixelSheetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA14261A1E4E009FA21B /* PixelSheetLayout.swift */; };
 		6EF8EA1A261A228D009FA21B /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA19261A228D009FA21B /* Layout.swift */; };
 		6EF8EA1E261A2651009FA21B /* PixelDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF8EA1D261A2651009FA21B /* PixelDayView.swift */; };
@@ -78,7 +78,7 @@
 		6EC1188C26234B2A00212203 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		6EC1188D26234B4400212203 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		6EC1189226234E7700212203 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
-		6EC118A02623664F00212203 /* Neu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neu.swift; sourceTree = "<group>"; };
+		6EC118A02623664F00212203 /* SoftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftUIView.swift; sourceTree = "<group>"; };
 		6EF8EA14261A1E4E009FA21B /* PixelSheetLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelSheetLayout.swift; sourceTree = "<group>"; };
 		6EF8EA19261A228D009FA21B /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		6EF8EA1D261A2651009FA21B /* PixelDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelDayView.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 				6EC1187C2623182000212203 /* BasicButton.swift */,
 				6EC1188226233F6D00212203 /* TextButton.swift */,
 				6EC11888262346C400212203 /* Button.swift */,
-				6EC118A02623664F00212203 /* Neu.swift */,
+				6EC118A02623664F00212203 /* SoftUIView.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -472,7 +472,7 @@
 				6EC1187526222D9100212203 /* Day.swift in Sources */,
 				6EBA7509261863F600C1F18D /* PixelSheetController.swift in Sources */,
 				7A2DDC8D26346D63009976EF /* ColorInfoItem.swift in Sources */,
-				6EC118A12623664F00212203 /* Neu.swift in Sources */,
+				6EC118A12623664F00212203 /* SoftUIView.swift in Sources */,
 				6EBA7505261863F600C1F18D /* AppDelegate.swift in Sources */,
 				6EC1189326234E7700212203 /* UIFont+Extension.swift in Sources */,
 				7AE1E5802635BC8900E4E9B2 /* KeyBoardCloser.swift in Sources */,
