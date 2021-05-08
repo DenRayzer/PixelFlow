@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class FloatyItem: UIView {
+open class FloatyItem: SoftViewBase {
   
   // MARK: - Properties
   
@@ -208,15 +208,6 @@ open class FloatyItem: UIView {
     if _iconImageView != nil {
       bringSubviewToFront(_: iconImageView)
     }
-  }
-  
-  fileprivate func createCircleLayer() {
-    //        circleLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
-    let castParent : Floaty = superview as! Floaty
-    circleLayer.frame = CGRect(x: castParent.itemSize/2 - (size/2), y: 0, width: size, height: size)
-    circleLayer.backgroundColor = buttonColor.cgColor
-    circleLayer.cornerRadius = size/2
-  //  layer.addSublayer(circleLayer)
   }
   
   fileprivate func createTintLayer() {

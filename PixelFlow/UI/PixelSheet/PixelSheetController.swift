@@ -15,7 +15,7 @@ class PixelSheetController: UIViewController {
     var currentYearIndex = 0
     private var lastContentOffset: CGFloat = 0
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
-    var floaty = Floaty()
+    var floaty = Floaty(frame: CGRect(x: 150, y: 300, width: 55, height: 55))
 
     override func viewDidLoad() {
         super.viewDidLoad()
