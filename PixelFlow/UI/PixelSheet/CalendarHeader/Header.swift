@@ -23,7 +23,16 @@ class MonthNameView: UIView {
 }
 
 class Header: UIView {
+
+    enum HeaderType {
+        case calendar
+        case navigationBar
+    }
+
+    var leftButtonAction: () -> Void  = {}
     private(set) var headerHeight: CGFloat = 44
+    private let mainContainer = UIView()
+
     private(set) var leftButton: SoftUIView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "left_arrow"))
         let button = Button(type: .bulging, view: imageView)
@@ -32,7 +41,7 @@ class Header: UIView {
         return button
     }()
 
-    private(set) var rightButton: SoftUIView = {
+    private(set) var rightButton: Button = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "right_arrow"))
         let button = Button(type: .bulging, view: imageView)
         button.layout.height.equal(to: 43)
@@ -42,8 +51,8 @@ class Header: UIView {
 
     private(set) var titleButton: TextButton = {
         let button = TextButton(type: .default(UIColor.PF.regularText, .font(family: .rubik(.regular), size: 22), .center, 1),
-                                textMode: .uppercase,
-                                text: "2021")
+                                textMode: .default,
+            text: "2021")
         button.titleLabel?.adjustsFontSizeToFitWidth = true
 
         return button
@@ -74,11 +83,28 @@ class Header: UIView {
         return stack
     }()
 
+    convenience init(type: HeaderType) {
+        self.init()
+        configureView()
+
+        switch type {
+
+        case .calendar:
+            addMonthsViewContainer()
+        case .navigationBar:
+            mainContainer.layout.bottom.equal(to: self)
+            rightButton.isHidden = true
+            let leftRecognizer = UITapGestureRecognizer(target: self, action: #selector(leftButton(_:)))
+            leftButton.addGestureRecognizer(leftRecognizer)
+        }
+
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
+    }
 
-        let mainContainer = UIView()
-
+    private func configureView() {
         mainContainer.addSubview(titleButton)
         titleButton.layout.center.equal(to: mainContainer)
 
@@ -93,12 +119,11 @@ class Header: UIView {
         addSubview(mainContainer)
         mainContainer.layout.horizontal.equal(to: self)
         mainContainer.layout.top.equal(to: self)
-        //      mainContainer.backgroundColor = .green
-        mainContainer.layout.height.equal(to: 43)
+        mainContainer.layout.height.equal(to: headerHeight)
+    }
 
+    private func addMonthsViewContainer() {
         let monthsViewContainer = UIView()
-
-        //    monthsViewContainer.backgroundColor = .cyan
         addSubview(monthsViewContainer)
         monthsViewContainer.layout.top.equal(to: mainContainer.layout.bottom)
         monthsViewContainer.layout.horizontal.equal(to: self)
@@ -109,7 +134,6 @@ class Header: UIView {
         monthsContainer.layout.centerY.equal(to: monthsViewContainer)
         monthsContainer.layout.bottom.equal(to: monthsViewContainer)
         monthsContainer.layout.horizontal.equal(to: monthsViewContainer, offset: 8)
-        //   monthsViewContainer.isHidden = true
     }
 
     required init?(coder: NSCoder) {
@@ -118,4 +142,8 @@ class Header: UIView {
 
     @objc func playTapHandler() {
     }
+
+    @objc
+   private func leftButton(_ sender: Any?) { leftButtonAction() }
+
 }

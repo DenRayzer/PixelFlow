@@ -14,7 +14,7 @@ open class FloatyItem: SoftViewBase {
   /**
    This object's button size.
    */
-  @objc open var size: CGFloat = 42 {
+  @objc open var size: CGFloat = 43 {
     didSet {
       self.frame = CGRect(x: 0, y: 0, width: size, height: size)
       titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
@@ -58,7 +58,7 @@ open class FloatyItem: SoftViewBase {
   @objc open var handler: ((FloatyItem) -> Void)? = nil
   
   @objc open var imageOffset: CGPoint = CGPoint.zero
-  @objc open var imageSize: CGSize = CGSize(width: 25, height: 25) {
+  @objc open var imageSize: CGSize = CGSize(width: 21, height: 21) {
     didSet {
       _iconImageView?.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
       _iconImageView?.center = CGPoint(x: size/2, y: size/2) + imageOffset

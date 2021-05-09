@@ -23,6 +23,11 @@ class PixelSheetController: UIViewController {
         setupViews()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+
     private func setupViews() {
         view.backgroundColor = UIColor.PF.background
 
@@ -33,7 +38,7 @@ class PixelSheetController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        header = Header(frame: .zero)
+        header = Header(type: .calendar)
         view.addSubview(header)
         header.layout.horizontal.equal(to: view)
   //      header.layout.height.equal(to: 60)
@@ -55,11 +60,17 @@ class PixelSheetController: UIViewController {
         collectionView.delegate = self
         collectionView.isPagingEnabled = true
         collectionView.backgroundColor = UIColor.PF.background
+        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
     }
 
     override func viewDidLayoutSubviews() {
         collectionViewFlowLayout.itemSize = collectionView.frame.size
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    } 
 
     private func setupSettingsButton() {
         layoutFAB()
@@ -76,33 +87,52 @@ class PixelSheetController: UIViewController {
 //        settingsButton.layout.width.equal(to: 55)
 //        settingsButton.layout.bottom.equal(to: view, offset: -18)
 //        settingsButton.layout.right.equal(to: view, offset: -18)
-//        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
     }
     
     func layoutFAB() {
-        floaty.frame = CGRect(x: view.frame.width - 20 - view.safeAreaInsets.bottom, y: view.frame.height - 20 - view.safeAreaInsets.bottom, width: 55, height: 55)
-        floaty.buttonImage = #imageLiteral(resourceName: "home")
-      let item = FloatyItem()
-      item.hasShadow = false
-      item.buttonColor = UIColor.blue
-      item.circleShadowColor = UIColor.red
-      item.titleShadowColor = UIColor.blue
-      item.titleLabelPosition = .right
-      item.title = "titlePosition right"
-      item.handler = { item in
-        
-      }
+    //    floaty.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
+        floaty.buttonImage = #imageLiteral(resourceName: "settings")
+//      let item = FloatyItem()
+//        item._iconImageView = UIImageView(image: #imageLiteral(resourceName: "home"))
+//      item.hasShadow = false
+//      item.buttonColor = UIColor.blue
+//      item.circleShadowColor = UIColor.red
+//      item.titleShadowColor = UIColor.blue
+//      item.titleLabelPosition = .right
+//      item.title = "titlePosition right"
+//      item.handler = { item in
+//
+//      }
       
       floaty.hasShadow = false
-      floaty.addItem(title: "I got a title")
-      floaty.addItem("I got a icon", icon: UIImage(named: "icShare"))
-      floaty.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
-        let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+  //    floaty.addItem(title: "I got a title")
+        floaty.addItem("I got a icon", icon: #imageLiteral(resourceName: "home_icon")) {
+            item in
+            let vc = MainMenuController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+        floaty.addItem("I got a handler", icon: #imageLiteral(resourceName: "settings")) { item in
+        let vc = MainMenuController()
+        vc.modalPresentationStyle = .fullScreen
+     //   self.navigationController?.pushViewController(vc, animated: true)
+
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.type = CATransitionType.push
+//        transition.subtype = CATransitionSubtype.fromLeft
+//        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
+//        self.view.window!.layer.add(transition, forKey: kCATransition)
+        self.present(vc, animated: true, completion: nil)
+
+      //  self.present(vc, animated: true, completion: nil)
+//        let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
       }
-      floaty.addItem(item: item)
-   //   floaty.paddingX = self.view.frame.width/2 - floaty.frame.width/2
+   //   floaty.addItem(item: item)
+        floaty.paddingX = view.safeAreaInsets.right + 20// -self.view.frame.width + floaty.frame.width// - 40
+        floaty.paddingY = view.safeAreaInsets.bottom + 20// + 20
       floaty.fabDelegate = self
       
         floaty.overlayColor = .clear
