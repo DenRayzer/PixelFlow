@@ -27,3 +27,7 @@
 "pf_month_dec" = "Dec";
 
 "pf_your_boards" = "Your boards";
+"pf_new_board" = "New board";
+"pf_name_field_placeholder" = "Name";
+"pf_add_parameters_title" = "Add parameters";
+"pf_add_notifications_title" = "Set up notifications";

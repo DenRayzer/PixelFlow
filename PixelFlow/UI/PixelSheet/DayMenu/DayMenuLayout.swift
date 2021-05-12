@@ -69,7 +69,6 @@ class DayMenuLayout: UIView {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.locale = Locale.current
-//        layout.dayInfoLabel.text = dateFormatter.string(from: day.date).lowercased()
         newView.timeLabel.text = dateFormatter.string(from: Date())
         newView.dottedView.addGestureRecognizer(dottedRecognizer)
         newView.coloredView.addGestureRecognizer(coloredRecognizer)

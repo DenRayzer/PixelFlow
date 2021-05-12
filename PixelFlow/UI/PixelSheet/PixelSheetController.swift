@@ -108,7 +108,7 @@ class PixelSheetController: UIViewController {
   //    floaty.addItem(title: "I got a title")
         floaty.addItem("I got a icon", icon: #imageLiteral(resourceName: "home_icon")) {
             item in
-            let vc = MainMenuController()
+            let vc = NewBoardController()
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }

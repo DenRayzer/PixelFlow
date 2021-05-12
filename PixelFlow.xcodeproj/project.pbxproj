@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E4585E3264ADEF9000166B4 /* NewBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4585E2264ADEF9000166B4 /* NewBoardController.swift */; };
+		6E4585E6264AE25C000166B4 /* FieldWithButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4585E5264AE25C000166B4 /* FieldWithButtonView.swift */; };
+		6E4585E9264AEE4B000166B4 /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4585E8264AEE4B000166B4 /* Toggle.swift */; };
+		6E4585EC264AFA72000166B4 /* NewBoardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4585EB264AFA72000166B4 /* NewBoardLayout.swift */; };
+		6E4585F8264B0D8D000166B4 /* NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4585F7264B0D8D000166B4 /* NotificationSettingView.swift */; };
 		6E76EAF0261B937500DCF8C9 /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E76EAEF261B937500DCF8C9 /* Constrainable.swift */; };
 		6E76EAF4261B93D500DCF8C9 /* UILayoutPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E76EAF3261B93D500DCF8C9 /* UILayoutPriority.swift */; };
 		6E76EAF8261B949A00DCF8C9 /* SafeLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E76EAF7261B949A00DCF8C9 /* SafeLayoutGuide.swift */; };
@@ -59,6 +64,11 @@
 
 /* Begin PBXFileReference section */
 		51B4ABA671B44E4626CF4FBA /* Pods_PixelFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PixelFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E4585E2264ADEF9000166B4 /* NewBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBoardController.swift; sourceTree = "<group>"; };
+		6E4585E5264AE25C000166B4 /* FieldWithButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldWithButtonView.swift; sourceTree = "<group>"; };
+		6E4585E8264AEE4B000166B4 /* Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toggle.swift; sourceTree = "<group>"; };
+		6E4585EB264AFA72000166B4 /* NewBoardLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBoardLayout.swift; sourceTree = "<group>"; };
+		6E4585F7264B0D8D000166B4 /* NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingView.swift; sourceTree = "<group>"; };
 		6E76EAEF261B937500DCF8C9 /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		6E76EAF3261B93D500DCF8C9 /* UILayoutPriority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILayoutPriority.swift; sourceTree = "<group>"; };
 		6E76EAF7261B949A00DCF8C9 /* SafeLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLayoutGuide.swift; sourceTree = "<group>"; };
@@ -132,6 +142,25 @@
 				BC926B551DDC3B56BA60F45B /* Pods-PixelFlow.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		6E4585E1264ADEDC000166B4 /* NewBoard */ = {
+			isa = PBXGroup;
+			children = (
+				6E4585EE264AFFEE000166B4 /* Components */,
+				6E4585E2264ADEF9000166B4 /* NewBoardController.swift */,
+				6E4585EB264AFA72000166B4 /* NewBoardLayout.swift */,
+			);
+			path = NewBoard;
+			sourceTree = "<group>";
+		};
+		6E4585EE264AFFEE000166B4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				6E4585E5264AE25C000166B4 /* FieldWithButtonView.swift */,
+				6E4585F7264B0D8D000166B4 /* NotificationSettingView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		6EBA74F8261863F600C1F18D = {
@@ -320,6 +349,7 @@
 				6EC118852623446300212203 /* Label.swift */,
 				6EFF2F98264808EB00318BDB /* NavigationBar.swift */,
 				6EFF2F9B26480B6600318BDB /* GestureRecognizer.swift */,
+				6E4585E8264AEE4B000166B4 /* Toggle.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -345,6 +375,7 @@
 		7AFFCA77264480CE004DA7AF /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				6E4585E1264ADEDC000166B4 /* NewBoard */,
 				7AFFCA7826448173004DA7AF /* MainMenuController.swift */,
 				6EFF2FA62648360A00318BDB /* MainMenuTableViewCell.swift */,
 			);
@@ -479,6 +510,7 @@
 				6EF8EA23261A27F8009FA21B /* UIColor+Extension.swift in Sources */,
 				6EF8EA26261A2D8C009FA21B /* UIView+Anchors.swift in Sources */,
 				6EC1187526222D9100212203 /* Day.swift in Sources */,
+				6E4585E6264AE25C000166B4 /* FieldWithButtonView.swift in Sources */,
 				6EBA7509261863F600C1F18D /* PixelSheetController.swift in Sources */,
 				6EFF2F9C26480B6600318BDB /* GestureRecognizer.swift in Sources */,
 				6EFF2FA72648360A00318BDB /* MainMenuTableViewCell.swift in Sources */,
@@ -501,6 +533,8 @@
 				6EC1186E2621EEB000212203 /* PixelSheetCell.swift in Sources */,
 				6E76EAF8261B949A00DCF8C9 /* SafeLayoutGuide.swift in Sources */,
 				7AEB8F702646A23C00C6F0D9 /* FloatyItem.swift in Sources */,
+				6E4585E3264ADEF9000166B4 /* NewBoardController.swift in Sources */,
+				6E4585E9264AEE4B000166B4 /* Toggle.swift in Sources */,
 				6EC1188026231E2400212203 /* Delegated.swift in Sources */,
 				6EC1187D2623182000212203 /* BasicButton.swift in Sources */,
 				6EF8EA29261A2E38009FA21B /* ConstraintItems.swift in Sources */,
@@ -511,11 +545,13 @@
 				6EC1188326233F6D00212203 /* TextButton.swift in Sources */,
 				7A8DA45E2640794B00268578 /* UITextView+Extension.swift in Sources */,
 				6EBA7507261863F600C1F18D /* SceneDelegate.swift in Sources */,
+				6E4585F8264B0D8D000166B4 /* NotificationSettingView.swift in Sources */,
 				6E76EAF0261B937500DCF8C9 /* Constrainable.swift in Sources */,
 				7AEB8F742646CF7C00C6F0D9 /* SoftViewBase.swift in Sources */,
 				6EFF2F99264808EB00318BDB /* NavigationBar.swift in Sources */,
 				7A55C594262C951B0013865E /* Year.swift in Sources */,
 				6E76EAFC261B95C400DCF8C9 /* UIWindow+Extension.swift in Sources */,
+				6E4585EC264AFA72000166B4 /* NewBoardLayout.swift in Sources */,
 				7AE1E56F2635821100E4E9B2 /* String+Extension.swift in Sources */,
 				6EC11889262346C400212203 /* Button.swift in Sources */,
 			);
