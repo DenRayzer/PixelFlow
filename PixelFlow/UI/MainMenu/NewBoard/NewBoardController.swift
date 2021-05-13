@@ -26,12 +26,16 @@ class NewBoardController: UIViewController {
         layout.addSubview(newBoardView)
 //        layout.backgroundColor = .blue
 //        newBoardView.backgroundColor = .red
-            //  layout.contentSize = newBoardView.frame.size
+        //  layout.contentSize = newBoardView.frame.size
         newBoardView.layout.width.equal(to: view.frame.width)
         newBoardView.layout.all.equal(to: layout)
 
         view.backgroundColor = UIColor.PF.background
 
+        newBoardView.parametersViews.forEach { view in
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleColorViewTap(_:)))
+            view.settingButton.addGestureRecognizer(recognizer)
+        }
     }
 
     private func configureHeader() {
@@ -47,8 +51,12 @@ class NewBoardController: UIViewController {
     }
 
     @objc
-    func handleAddNoteButtonTap(_ sender: UITapGestureRecognizer? = nil) {
-        print("vcvcv")
+    func handleColorViewTap(_ sender: UITapGestureRecognizer? = nil) {
+        print("vfdmkmvdfk")
+
+        let pickerView = ColorPickerView()
+        view.addSubview(pickerView)
+        pickerView.layout.all.equal(to: view)
     }
 
 }

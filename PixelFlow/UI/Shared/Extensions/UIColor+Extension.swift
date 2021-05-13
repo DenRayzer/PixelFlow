@@ -25,6 +25,9 @@ extension UIColor {
         static let vinous = rgb(182, 46, 81)
         static let dustyRose = rgb(163, 129, 162)
         static let brown = rgb(88, 50, 78)
+        static let ddd = rgb(160, 217, 147)
+
+        static let allValues = [lightGreen, darkGreen, pink, orange, vinous, dustyRose, brown]
     }
 }
 

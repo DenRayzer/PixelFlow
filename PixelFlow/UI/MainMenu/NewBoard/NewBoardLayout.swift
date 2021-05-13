@@ -50,6 +50,7 @@ class NewBoardLayout: UIView {
 
     var parametersViews: [FieldWithButtonView] = []
     var notificationsViews: [NotificationSettingView] = []
+    var colorViewAction: () -> Void = { }
 
     override init(frame: CGRect) {
         super.init(frame: frame)

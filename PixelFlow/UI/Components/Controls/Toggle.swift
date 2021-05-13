@@ -140,4 +140,3 @@ class Toggle: UIControl {
 protocol ToggleDelegate: AnyObject {
     func tapGestureAction()
 }
-
