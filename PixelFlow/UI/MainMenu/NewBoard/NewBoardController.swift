@@ -11,31 +11,12 @@ class NewBoardController: UIViewController {
     let navigationBar = Header(type: .navigationBar)
     private let layout = UIScrollView()
     let newBoardView = NewBoardLayout()
-    //NewBoardLayout()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureHeader()
-        view.addSubview(layout)
-        layout.layout.top.equal(to: navigationBar.layout.bottom, offset: 12)
-        layout.layout.horizontal.equal(to: view)
-        layout.layout.bottom.equal(to: view)
-        layout.showsVerticalScrollIndicator = false
-
-        layout.addSubview(newBoardView)
-//        layout.backgroundColor = .blue
-//        newBoardView.backgroundColor = .red
-        //  layout.contentSize = newBoardView.frame.size
-        newBoardView.layout.width.equal(to: view.frame.width)
-        newBoardView.layout.all.equal(to: layout)
-
-        view.backgroundColor = UIColor.PF.background
-
-        newBoardView.parametersViews.forEach { view in
-            let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleColorViewTap(_:)))
-            view.settingButton.addGestureRecognizer(recognizer)
-        }
+        configureView()
     }
 
     private func configureHeader() {
@@ -50,13 +31,41 @@ class NewBoardController: UIViewController {
         }
     }
 
-    @objc
-    func handleColorViewTap(_ sender: UITapGestureRecognizer? = nil) {
-        print("vfdmkmvdfk")
+    private func configureView() {
+        view.backgroundColor = UIColor.PF.background
 
-        let pickerView = ColorPickerView()
-        view.addSubview(pickerView)
-        pickerView.layout.all.equal(to: view)
+        view.addSubview(layout)
+        layout.layout.top.equal(to: navigationBar.layout.bottom, offset: 12)
+        layout.layout.horizontal.equal(to: view)
+        layout.layout.bottom.equal(to: view)
+        layout.showsVerticalScrollIndicator = false
+
+        layout.addSubview(newBoardView)
+        newBoardView.selectImageAction = { [weak self] in
+            guard let self = self else { return }
+            let pickerView = ImagePickerView()
+
+            pickerView.selectImageAction = { [weak self] image in
+                self?.newBoardView.nameField.settingButton.setImage(image, for: .normal)
+            }
+
+            self.view.addSubview(pickerView)
+            pickerView.layout.all.equal(to: self.view)
+        }
+        newBoardView.colorViewAction = { [weak self] in
+            guard let self = self else { return }
+            
+            let pickerView = ColorPickerView()
+            pickerView.colorViewAction = { [weak self] color in
+                guard let self = self else { return }
+                self.newBoardView.selectedParameter?.buttonColor = color ?? UIColor.PF.background
+                
+            }
+            self.view.addSubview(pickerView)
+            pickerView.layout.all.equal(to: self.view)
+        }
+        newBoardView.layout.width.equal(to: view.frame.width)
+        newBoardView.layout.all.equal(to: layout)
     }
 
 }

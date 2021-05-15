@@ -13,8 +13,10 @@ extension UIColor {
         static let background = rgb(240, 240, 243)
         static let darkShadow = rgb( 174, 174, 192)
         static let regularText = rgb( 128, 139, 159)
-        static let accentColor = rgb( 131, 219, 214)
+        static let accentColor = rgb( 136, 199, 195)
         static let lightGray = rgb( 234, 234, 240)
+        static let lilac = rgb( 172, 194, 255)
+
     }
 
     enum colorScheme {
@@ -29,6 +31,8 @@ extension UIColor {
 
         static let allValues = [lightGreen, darkGreen, pink, orange, vinous, dustyRose, brown]
     }
+
+    static let imageValues = [PF.accentColor, PF.lilac, colorScheme.orange]
 }
 
 func rgb(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> UIColor {

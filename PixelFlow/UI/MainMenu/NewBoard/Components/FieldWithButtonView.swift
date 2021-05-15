@@ -8,6 +8,15 @@
 import UIKit
 
 class FieldWithButtonView: UIView {
+    var buttonColor: UIColor? {
+        didSet {
+        print("Color")
+            guard let color = buttonColor else { return }
+            settingButton.backgroundColor = color
+            settingButton.layer.borderWidth = 0//borderColor = color.cgColor
+        }
+    }
+
     let textField: UITextField = {
         let field = UITextField()
         field.font = .font(family: .rubik(.medium), size: 16)

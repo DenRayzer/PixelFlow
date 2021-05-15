@@ -17,6 +17,8 @@ class ColorPickerView: UIView {
     }()
 
     var colorViews: [Button] = []
+    var colorViewAction: (_ color: UIColor?)-> Void = {_ in }
+    var selectedColor: UIColor?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,7 +37,7 @@ class ColorPickerView: UIView {
        // isUserInteractionEnabled = true
 
         addSubview(backgroundView)
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleAddNoteButtonTap(_:)))
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap(_:)))
         overlayView.addGestureRecognizer(recognizer)
         backgroundView.layout.center.equal(to: self)
         createColors()
@@ -62,23 +64,31 @@ class ColorPickerView: UIView {
         bottomStack.layout.top.equal(to: topStack.layout.bottom, offset: 22)
         bottomStack.layout.bottom.equal(to: backgroundView, offset: -38)
 
-        var count = 0
+        var count2 = 0
         UIColor.colorScheme.allValues.forEach { color in
             let view = Button(type: .bulging)
             view.layout.size.equal(to: CGSize(width: 40, height: 40))
             view.mainColor = color.cgColor
-            if count < 5 {
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorTap(_:))))
+            if count2 < 5 {
                 topStack.addArrangedSubview(view)
             } else {
                 bottomStack.addArrangedSubview(view)
             }
-            count += 1
+            count2 += 1
         }
     }
 
     @objc
-    func handleAddNoteButtonTap(_ sender: UITapGestureRecognizer? = nil) {
-        print("vcvcv")
+    func handleOverlayTap(_ sender: UITapGestureRecognizer? = nil) {
+        removeFromSuperview()
+    }
+
+    @objc
+    func handleColorTap(_ sender: UITapGestureRecognizer? = nil) {
+        guard let view = sender?.view as? Button else { return }
+        selectedColor = UIColor(cgColor: view.mainColor)
+        colorViewAction(selectedColor)
         removeFromSuperview()
     }
 }
