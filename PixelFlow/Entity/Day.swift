@@ -7,21 +7,13 @@
 
 import Foundation
 
-enum DayType: Int {
-    case null = 1, first, second, third, fourth, fifth, sixth, seventh, eighth
-}
-
-enum ColorShemeType: Int {
-    case base = 0
-}
-
 struct Day {
     var date: Date
     var type: DayType
-    var notes: [String]?
+    var notes: [Note]?
     var additionalColors: [AdditionalColor]?
     
-    init(date: Date, type: DayType = .null, notes: [String]? = nil, additionalColors: [AdditionalColor]? = nil) {
+    init(date: Date, type: DayType = .null, notes: [Note]? = nil, additionalColors: [AdditionalColor]? = nil) {
         self.date = date
         self.type = type
         self.notes = notes

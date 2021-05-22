@@ -25,18 +25,19 @@ class DayMenuLayout: UIView {
         stack.layoutMargins = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         return stack
     }()
-    
+
     private(set) lazy var additionalDayColorsContainer: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fillProportionally
-        stack.alignment = .leading
+        stack.alignment = .trailing
         stack.spacing = 12
         stack.layoutMargins = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         return stack
     }()
 
-    var notes = ["vvv"]
+    var notes: [Note] = [Note(text: "", date: Date())]
+    var additionalColors: [AdditionalColor] = []
 
     private(set) lazy var addNoteButton: SoftUIView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "new_note"))
@@ -52,66 +53,61 @@ class DayMenuLayout: UIView {
 
     var notesTableView = ContentSizedTableView()
     var activeAdditionalColor: DottedDayView?
+    var saveNoteAction: ([Note]) -> Void = { _ in }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setupViews()
     }
-    
+
     private func addNewDayColor() {
         if activeAdditionalColor != nil || additionalDayColorsContainer.subviews.count == dayInfoContainer.subviews.count - 1 { return }
-        
+
         let dottedRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDottedTap(_:)))
         let coloredRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleColoredTap(_:)))
-        
-        let newView = DottedDayView()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        dateFormatter.locale = Locale.current
-        newView.timeLabel.text = dateFormatter.string(from: Date())
+
+        let newView = DottedDayView(isDotted: true)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm"
+//        dateFormatter.locale = Locale.current
+        //  newView.timeLabel.text = Date().getString(with: "HH:mm")
         newView.dottedView.addGestureRecognizer(dottedRecognizer)
         newView.coloredView.addGestureRecognizer(coloredRecognizer)
         activeAdditionalColor = newView
         additionalDayColorsContainer.addArrangedSubview(newView)
     }
-        
-    
+
+
     @objc
     func handleDottedTap(_ sender: UITapGestureRecognizer? = nil) {
         let view = sender?.view //activeAdditionalColor
         view?.superview?.removeFromSuperview()
-      //  view?.changeColorView(with: .cyan)
+        //  view?.changeColorView(with: .cyan)
         activeAdditionalColor = nil
     }
-    
+
     @objc
     func handleColoredTap(_ sender: UITapGestureRecognizer? = nil) {
         let view = sender?.view //activeAdditionalColor
         view?.superview?.removeFromSuperview()
-      //  view?.changeColorView(with: .cyan)
+        //  view?.changeColorView(with: .cyan)
         activeAdditionalColor = nil
     }
-        
+
     private func setupViews() {
         addSubview(dayInfoLabel)
         dayInfoLabel.layout.top.equal(to: self, offset: 20)
         dayInfoLabel.layout.left.equal(to: self, offset: 16)
         dayInfoLabel.layout.height.equal(to: 20)
-        
+
         addSubview(additionalDayColorButton)
         additionalDayColorButton.layout.top.equal(to: self, offset: 20)
         additionalDayColorButton.layout.right.equal(to: self, offset: -24)
-        additionalDayColorButton.touch.delegate(to: self) { _,_ in self.addNewDayColor() }
+        additionalDayColorButton.touch.delegate(to: self) { _, _ in self.addNewDayColor() }
 
         setupNotesTableView()
         setupColorItems()
-    }
-
-    @objc
-    func handleAddNoteButtonTap(_ sender: UITapGestureRecognizer? = nil) {
-        notes.append("vcvcv")
-        notesTableView.reloadData()
     }
 
     private func setupColorItems() {
@@ -136,16 +132,21 @@ class DayMenuLayout: UIView {
         headerView.addSubview(addNoteButton)
         addNoteButton.layout.right.equal(to: headerView, offset: -16)
         addNoteButton.layout.bottom.equal(to: headerView, offset: -20)
-        
+
         dayInfoContainer.layout.left.equal(to: headerView)
-        dayInfoContainer.layout.vertical.equal(to: headerView, offset: (4,20))
-        
+        dayInfoContainer.layout.vertical.equal(to: headerView, offset: (4, 20))
+
         headerView.addSubview(additionalDayColorsContainer)
         additionalDayColorsContainer.layout.right.equal(to: headerView, offset: -19)
         additionalDayColorsContainer.layout.top.equal(to: headerView, offset: 4)
-       // additionalDayColorsContainer.layout.width.equal(to: 45)
-    //    additionalDayColorsContainer.addArrangedSubview(ColorInfoItem(type: .first))
-        
+
+        additionalColors.forEach { additionalColor in
+            let view = DottedDayView(isDotted: false, type: additionalColor.color)
+            additionalDayColorsContainer.addArrangedSubview(view)
+        }
+        // additionalDayColorsContainer.layout.width.equal(to: 45)
+        //    additionalDayColorsContainer.addArrangedSubview(ColorInfoItem(type: .first))
+
         notesTableView.tableHeaderView = headerView // dayInfoContainer
         headerView.layout.width.equal(to: notesTableView)
 
@@ -164,6 +165,10 @@ class DayMenuLayout: UIView {
     private func setupNotes() {
     }
 
+    private func saveNote() {
+
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -177,23 +182,32 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = notesTableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! NoteTableViewCell
         cell.cellDelegate = self
+        cell.note = notes[indexPath.row]
+        cell.didEndEditing = { [weak self] _ in
+            guard let self = self else { return }
+            self.saveNoteAction(self.notes)
+            self.notes.forEach {
+                print("------- notes \($0.text)")
+            }
+
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                notes.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            } else if editingStyle == .insert {
-                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-            }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+
         }
+    }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-            -> UISwipeActionsConfiguration? {
+        -> UISwipeActionsConfiguration? {
             let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
                 // delete the item here
                 completionHandler(true)
@@ -203,7 +217,7 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
             let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
             return configuration
     }
-    
+
     func setCheckedView(type: DayType) {
         for view in dayInfoContainer.arrangedSubviews {
             let view = view as? ColorInfoItem
@@ -213,13 +227,23 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+
+    @objc
+    func handleAddNoteButtonTap(_ sender: UITapGestureRecognizer? = nil) {
+        notes.append(Note(text: "", date: Date()))
+        notesTableView.reloadData()
+        notesTableView.scrollToRow(at: IndexPath(row: notes.count - 1, section: 0), at: .bottom, animated: true)
+        let cell = notesTableView.visibleCells.last as? NoteTableViewCell
+
+    //    cell?.field.becomeFirstResponder()
+    }
 }
 
 extension DayMenuLayout: GrowingCellProtocol {
     func updateHeightOfRow(_ cell: NoteTableViewCell, _ textView: UITextView) {
         let size = textView.bounds.size
         let newSize = notesTableView.sizeThatFits(CGSize(width: size.width,
-                                                         height: CGFloat.greatestFiniteMagnitude))
+            height: CGFloat.greatestFiniteMagnitude))
         if size.height != newSize.height {
             UIView.setAnimationsEnabled(false)
             notesTableView.beginUpdates()

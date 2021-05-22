@@ -14,6 +14,8 @@ protocol GrowingCellProtocol: AnyObject {
 class NoteTableViewCell: UITableViewCell {
     let field = TextViewWithPlaceholder()
     weak var cellDelegate: GrowingCellProtocol?
+    var didEndEditing: (String)-> Void = { _ in }
+    var note: Note?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,20 +38,16 @@ class NoteTableViewCell: UITableViewCell {
     private func commonInit() {
         contentView.addSubview(field)
         field.layout.all.equal(to: contentView, offset: UIEdgeInsets(horizontal: 16, vertical: 8))
-        field.layout.bottom.equal(to: contentView, offset: -36)
+        field.layout.bottom.equal(to: contentView, offset: -16)
         field.layout.height.greater(than: 70, priority: .defaultHigh, removeExisting: true)
 
-        // field.textContainer.heightTracksTextView = true
         field.isScrollEnabled = false
-        field.placeholderText = "Hello"
+        field.placeholderText = "Вы можете оставить заметку об этом дне"
         field.textContainerInset = UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8)
-        //     field.maxHeight = 160
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.PF.stroke.cgColor
         field.layer.cornerRadius = 10
         field.backgroundColor = UIColor.PF.background
-        //    field.placeholder = "Вы можете оставить заметку об этом дне"
-        //   field.minHeight = 70
         field.font = .font(family: .rubik(.regular), size: 14)
         field.textColor = UIColor.PF.regularText
         backgroundColor = UIColor.PF.background
@@ -57,14 +55,20 @@ class NoteTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        note = nil
     }
 }
 
 extension NoteTableViewCell: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        if let deletate = cellDelegate {
-            deletate.updateHeightOfRow(self, textView)
+        if let delegate = cellDelegate {
+            delegate.updateHeightOfRow(self, textView)
         }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        note?.text = field.text
+        didEndEditing(field.text)
     }
 }
 

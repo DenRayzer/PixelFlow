@@ -9,7 +9,11 @@ import UIKit
 
 class DayMenuController: UIViewController {
     let layout = DayMenuLayout()
-    private var day = Day(date: Date())
+    private var day = Day(date: Date()) {
+        didSet {
+            print("---- chlen")
+        }
+    }
     private var delegate: DayMenuDelegate!
 
     convenience init(for day: Day, delegate: DayMenuDelegate) {
@@ -28,21 +32,23 @@ class DayMenuController: UIViewController {
 
     private func configureDayMenu() {
         for dayItem in layout.dayInfoContainer.arrangedSubviews {
-            let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+            let recognizer = UITapGestureRecognizer(target: self, action: #selector(mainColorTap(_:)))
             dayItem.addGestureRecognizer(recognizer)
         }
     }
 
     @objc
-    func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+    func mainColorTap(_ sender: UITapGestureRecognizer? = nil) {
         guard let view = sender?.view as? ColorInfoItem else { return }
         if layout.activeAdditionalColor == nil {
-        delegate.onDayMenuItemTap(dayType: view.type)
-        view.colorView.addView(view: UIImageView(image: #imageLiteral(resourceName: "check")))
-        layout.selectedItem?.colorView.addView(view: nil)
-        layout.selectedItem = view
+            delegate.onDayMenuItemTap(dayType: view.type)
+            view.colorView.addView(view: UIImageView(image: #imageLiteral(resourceName: "check")))
+            layout.selectedItem?.colorView.addView(view: nil)
+            layout.selectedItem = view
         } else {
-            layout.activeAdditionalColor?.changeColorView(with: view.color)
+            guard let activeAdditionalColor = layout.activeAdditionalColor else { return }
+            activeAdditionalColor.changeColorView(with: view.type)
+            layout.additionalColors.append(AdditionalColor(color: view.type, date: activeAdditionalColor.date))
             layout.activeAdditionalColor = nil
         }
     }
@@ -57,5 +63,8 @@ class DayMenuController: UIViewController {
         dateFormatter.dateFormat = "d MMMM yyyy, E"
         dateFormatter.locale = Locale.current
         layout.dayInfoLabel.text = dateFormatter.string(from: day.date).lowercased()
+        layout.saveNoteAction = { [weak self] notes in
+            self?.day.notes = notes
+        }
     }
 }
