@@ -8,6 +8,7 @@
 import UIKit
 
 class PixelSheetLayout: UIScrollView {
+    var year: Year?
     private let itemsInRow = 12
     private var dayItemSize: Double = 0
     private var height: Double = (25 + 5) * 31
@@ -57,6 +58,8 @@ class PixelSheetLayout: UIScrollView {
     }
 
     func configureCell(with year: Year) {
+        self.year = year
+        
         for month in 0 ... 11 {
             for day in 0 ... 30 {
                 guard let yearDay = year.months[month][day] else {

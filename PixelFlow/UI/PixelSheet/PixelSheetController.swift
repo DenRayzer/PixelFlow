@@ -11,11 +11,13 @@ import UIKit
 class PixelSheetController: UIViewController {
     var collectionView: UICollectionView!
     var header: Header!
-    var array = [Year(year: 2021), Year(year: 2020), Year(year: 2019), Year(year: 2018), Year(year: 2017)]
     var currentYearIndex = 0
     private var lastContentOffset: CGFloat = 0
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     var floaty = Floaty()
+    var presenter: PixelSheetPresenterDelegate = PixelSheetPresenter()
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,8 @@ class PixelSheetController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        let man = DataStoreManager()
+        man.fetchBoars()
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
@@ -41,7 +45,6 @@ class PixelSheetController: UIViewController {
         header = Header(type: .calendar)
         view.addSubview(header)
         header.layout.horizontal.equal(to: view)
-  //      header.layout.height.equal(to: 60)
         header.layout.top.equal(to: view.safeAreaLayoutGuide, offset: 16)
     }
 
@@ -75,37 +78,13 @@ class PixelSheetController: UIViewController {
     private func setupSettingsButton() {
         layoutFAB()
         floaty.addDragging()
-        
-//        let floatingActionButton = LiquidFloatingActionButton(frame: floatingFrame)
-//        floatingActionButton.dataSource = self
-//        floatingActionButton.delegate = self
-        
-//        let imageView = UIImageView(image: #imageLiteral(resourceName: "home"))
-//        let settingsButton = Button(type: .floating, view: imageView)
-//        view.addSubview(settingsButton)
-//        settingsButton.layout.height.equal(to: 55)
-//        settingsButton.layout.width.equal(to: 55)
-//        settingsButton.layout.bottom.equal(to: view, offset: -18)
-//        settingsButton.layout.right.equal(to: view, offset: -18)
     }
     
     func layoutFAB() {
-    //    floaty.frame = CGRect(x: 0, y: 0, width: 55, height: 55)
         floaty.buttonImage = #imageLiteral(resourceName: "settings")
-//      let item = FloatyItem()
-//        item._iconImageView = UIImageView(image: #imageLiteral(resourceName: "home"))
-//      item.hasShadow = false
-//      item.buttonColor = UIColor.blue
-//      item.circleShadowColor = UIColor.red
-//      item.titleShadowColor = UIColor.blue
-//      item.titleLabelPosition = .right
-//      item.title = "titlePosition right"
-//      item.handler = { item in
-//
-//      }
       
       floaty.hasShadow = false
-  //    floaty.addItem(title: "I got a title")
+
         floaty.addItem("I got a icon", icon: #imageLiteral(resourceName: "home_icon")) {
             item in
             let vc = NewBoardController()
@@ -115,24 +94,11 @@ class PixelSheetController: UIViewController {
         floaty.addItem("I got a handler", icon: #imageLiteral(resourceName: "settings")) { item in
         let vc = MainMenuController()
         vc.modalPresentationStyle = .fullScreen
-     //   self.navigationController?.pushViewController(vc, animated: true)
 
-//        let transition = CATransition()
-//        transition.duration = 0.5
-//        transition.type = CATransitionType.push
-//        transition.subtype = CATransitionSubtype.fromLeft
-//        transition.timingFunction = CAMediaTimingFunction(name:CAMediaTimingFunctionName.easeInEaseOut)
-//        self.view.window!.layer.add(transition, forKey: kCATransition)
         self.present(vc, animated: true, completion: nil)
-
-      //  self.present(vc, animated: true, completion: nil)
-//        let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
       }
-   //   floaty.addItem(item: item)
-        floaty.paddingX = view.safeAreaInsets.right + 20// -self.view.frame.width + floaty.frame.width// - 40
-        floaty.paddingY = view.safeAreaInsets.bottom + 20// + 20
+        floaty.paddingX = view.safeAreaInsets.right + 20
+        floaty.paddingY = view.safeAreaInsets.bottom + 20
       floaty.fabDelegate = self
       
         floaty.overlayColor = .clear
@@ -150,10 +116,10 @@ class PixelSheetController: UIViewController {
     @objc
     func handleHeaderLeftButtonTap(_ sender: UITapGestureRecognizer? = nil) {
         guard var currentIndexPath = collectionView.indexPathsForVisibleItems.first else { return }
-        if currentYearIndex == array.count - 1 { return }
+        if currentYearIndex == presenter.years.count - 1 { return }
         currentIndexPath.row += 1
         currentYearIndex += 1
-        header.titleButton.setTitle(String(array[currentYearIndex].year), for: .normal)
+        header.titleButton.setTitle(String(presenter.years[currentYearIndex].year), for: .normal)
         collectionView.setContentOffset(CGPoint(x: CGFloat(currentYearIndex) * collectionView.frame.width, y: 0), animated: true)
         lastContentOffset = collectionView.contentOffset.x
     }
@@ -164,7 +130,7 @@ class PixelSheetController: UIViewController {
         if currentYearIndex == 0 { return }
         currentIndexPath.row -= 1
         currentYearIndex -= 1
-        header.titleButton.setTitle(String(array[currentYearIndex].year), for: .normal)
+        header.titleButton.setTitle(String(presenter.years[currentYearIndex].year), for: .normal)
         collectionView.setContentOffset(CGPoint(x: CGFloat(currentYearIndex) * collectionView.frame.width, y: 0), animated: true)
         lastContentOffset = collectionView.contentOffset.x
     }
@@ -172,12 +138,12 @@ class PixelSheetController: UIViewController {
 
 extension PixelSheetController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        array.count
+        presenter.years.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionViewCell", for: indexPath) as! PixelSheetCell
-        cell.year = array[indexPath.row]
+        cell.year = presenter.years[indexPath.row]
         cell.transform = CGAffineTransform(scaleX: -1, y: 1)
         return cell
     }
@@ -187,12 +153,12 @@ extension PixelSheetController: UICollectionViewDataSource, UICollectionViewDele
         if lastContentOffset > scrollView.contentOffset.x && lastContentOffset <= scrollView.contentSize.width - scrollView.frame.width {
             if currentYearIndex == 0 { return }
             currentYearIndex -= 1
-            header.titleButton.setTitle(String(array[currentYearIndex].year), for: .normal)
+            header.titleButton.setTitle(String(presenter.years[currentYearIndex].year), for: .normal)
             lastContentOffset = scrollView.contentOffset.x
         } else if lastContentOffset < scrollView.contentOffset.x && scrollView.contentOffset.x > 0 {
-            if currentYearIndex == array.count - 1 { return }
+            if currentYearIndex == presenter.years.count - 1 { return }
             currentYearIndex += 1
-            header.titleButton.setTitle(String(array[currentYearIndex].year), for: .normal)
+            header.titleButton.setTitle(String(presenter.years[currentYearIndex].year), for: .normal)
             lastContentOffset = scrollView.contentOffset.x
         }
     }
@@ -201,18 +167,3 @@ extension PixelSheetController: UICollectionViewDataSource, UICollectionViewDele
 extension PixelSheetController: FloatyDelegate {
     
 }
-
-//extension UIView {
-//    func addDragging(){
-//
-//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedAction(_ :)))
-//        self.addGestureRecognizer(panGesture)
-//    }
-//
-//    @objc private func draggedAction(_ pan:UIPanGestureRecognizer){
-//
-//        let translation = pan.translation(in: self.superview)
-//        self.center = CGPoint(x: self.center.x + translation.x, y: self.center.y + translation.y)
-//        pan.setTranslation(CGPoint.zero, in: self.superview)
-//    }
-//}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AdditionalColor" representedClassName=".AdditionalColorMO" syncable="YES">
+        <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Board" representedClassName=".BoardMO" syncable="YES">
+        <attribute name="colorSheme" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mainColorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="Mood"/>
+        <relationship name="notifications" toMany="YES" deletionRule="Cascade" destinationEntity="Notification"/>
+        <relationship name="parameters" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="BoardParameter"/>
+        <relationship name="years" toMany="YES" deletionRule="Cascade" destinationEntity="Year"/>
+    </entity>
+    <entity name="BoardParameter" representedClassName=".BoardParameterMO" syncable="YES">
+        <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
+    <entity name="Day" representedClassName=".DayMO" syncable="YES">
+        <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="additionalColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AdditionalColor"/>
+        <relationship name="note" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Note"/>
+    </entity>
+    <entity name="Note" representedClassName=".NoteMO" syncable="YES">
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Notification" representedClassName=".NotificationMO" syncable="YES">
+        <attribute name="isOn" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="time" attributeType="Date" defaultDateTimeInterval="642877200" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Year" representedClassName=".YearMO" syncable="YES">
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Day"/>
+    </entity>
+    <elements>
+        <element name="AdditionalColor" positionX="-144" positionY="90" width="128" height="73"/>
+        <element name="Board" positionX="-353.39453125" positionY="-7.484375" width="128" height="148"/>
+        <element name="BoardParameter" positionX="-77.12890625" positionY="50.6328125" width="128" height="88"/>
+        <element name="Day" positionX="-59.578125" positionY="256.59765625" width="128" height="103"/>
+        <element name="Note" positionX="142.296875" positionY="314.23046875" width="128" height="73"/>
+        <element name="Notification" positionX="-212.78125" positionY="-58.63671875" width="128" height="73"/>
+        <element name="Year" positionX="-251.16796875" positionY="243.88671875" width="128" height="73"/>
+    </elements>
+</model>

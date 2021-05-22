@@ -17,9 +17,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
+
+        self.window = window
         window.rootViewController = PixelSheetController()
         window.makeKeyAndVisible()
-        self.window = window
+        
+        let dataStoreManager = DataStoreManager()
+//        if let boards = dataStoreManager.fetchBoars() {
+//            window.rootViewController = PixelSheetController(boards: [Board(name: "bgc", colorSheme: .base, parameters: [BoardParameter(name: "bgf", color: "black")], notifications: [NotificationSetting(time: "20:00", isOn: true)])])
+//            window.makeKeyAndVisible()
+//        } else {
+//            dataStoreManager.intitBoard()
+//            if let boards = dataStoreManager.fetchBoars() {
+//                window.rootViewController = PixelSheetController(boards: [Board(name: "bgc", colorSheme: .base, parameters: [BoardParameter(name: "bgf", color: "black")], notifications: [NotificationSetting(time: "20:00", isOn: true)])])
+//                window.makeKeyAndVisible()
+//            } else {
+//                fatalError("База пиздык")
+//            }
+//        }
+
+//        man.intitBoard()
+//    //    man.deleteAll()
+//        man.fetchBoars()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -39,7 +58,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-
+     //   (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 
