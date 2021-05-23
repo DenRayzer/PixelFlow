@@ -15,7 +15,13 @@ class NoteTableViewCell: UITableViewCell {
     let field = TextViewWithPlaceholder()
     weak var cellDelegate: GrowingCellProtocol?
     var didEndEditing: (String)-> Void = { _ in }
-    var note: Note?
+    var note: Note? {
+        didSet {
+            if note?.text != "" {
+                field.text = note?.text
+            }
+        }
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -74,14 +80,14 @@ extension NoteTableViewCell: UITextViewDelegate {
 
 import UIKit
 @IBDesignable class TextViewWithPlaceholder: UITextView {
-    override var text: String! { // Ensures that the placeholder text is never returned as the field's text
-        get {
-            if showingPlaceholder {
-                return "" // When showing the placeholder, there's no real text to return
-            } else { return super.text }
-        }
-        set { super.text = newValue }
-    }
+//    override var text: String! { // Ensures that the placeholder text is never returned as the field's text
+//        get {
+//            if showingPlaceholder {
+//                return "" // When showing the placeholder, there's no real text to return
+//            } else { return super.text }
+//        }
+//        set { super.text = newValue }
+//    }
 
     @IBInspectable var placeholderText: String = ""
     @IBInspectable var placeholderTextColor: UIColor = UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1.0) // Standard iOS placeholder color (#C7C7CD). See https://stackoverflow.com/questions/31057746/whats-the-default-color-for-placeholder-text-in-uitextfield

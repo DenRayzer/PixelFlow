@@ -23,6 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         let dataStoreManager = DataStoreManager()
+
+            // dataStoreManager.fetchDays()
+       // dataStoreManager.deletedays()
+      //  dataStoreManager.deleteAll()
 //        if let boards = dataStoreManager.fetchBoars() {
 //            window.rootViewController = PixelSheetController(boards: [Board(name: "bgc", colorSheme: .base, parameters: [BoardParameter(name: "bgf", color: "black")], notifications: [NotificationSetting(time: "20:00", isOn: true)])])
 //            window.makeKeyAndVisible()

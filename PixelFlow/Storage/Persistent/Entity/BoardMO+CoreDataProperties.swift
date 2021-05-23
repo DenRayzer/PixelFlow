@@ -19,10 +19,10 @@ extension BoardMO {
     @NSManaged public var colorSheme: Int16
     @NSManaged public var imageId: Int16
     @NSManaged public var mainColorId: Int16
-    @NSManaged public var name: String?
-    @NSManaged public var notifications: NSSet?
-    @NSManaged public var parameters: NSSet?
-    @NSManaged public var years: NSSet?
+    @NSManaged public var name: String
+    @NSManaged public var notifications: NSOrderedSet
+    @NSManaged public var parameters: NSOrderedSet
+    @NSManaged public var years: NSOrderedSet
 
 }
 

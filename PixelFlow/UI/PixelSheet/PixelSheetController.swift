@@ -23,11 +23,12 @@ class PixelSheetController: UIViewController {
         super.viewDidLoad()
 
         setupViews()
+    //    DataStoreManager().saveDay(Date())
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        let man = DataStoreManager()
-        man.fetchBoars()
+      //  let man = DataStoreManager()
+      //  man.fetchBoars()
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }

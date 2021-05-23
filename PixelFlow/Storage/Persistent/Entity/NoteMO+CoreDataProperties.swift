@@ -16,7 +16,7 @@ extension NoteMO {
         return NSFetchRequest<NoteMO>(entityName: "Note")
     }
 
-    @NSManaged public var note: String?
-    @NSManaged public var time: Date?
+    @NSManaged public var note: String
+    @NSManaged public var time: Date
 
 }

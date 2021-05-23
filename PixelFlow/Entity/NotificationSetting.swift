@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct NotificationSetting {
-    var time: String
+class NotificationSetting {
+    var time: Date
     var isOn: Bool
+
+    internal init(time: Date, isOn: Bool) {
+        self.time = time
+        self.isOn = isOn
+    }
 }

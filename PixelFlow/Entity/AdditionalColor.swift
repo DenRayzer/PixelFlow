@@ -8,11 +8,17 @@
 import UIKit
 
 class AdditionalColor {
-    var color: DayType
+    var colorType: DayType
     var date: Date
 
-    internal init(color: DayType, date: Date) {
-        self.color = color
+    internal init(colorId: Int16, date: Date) {
+        var type: DayType = .null
+        DayType.allCases.forEach { i in
+            if i.rawValue == colorId {
+                type = i
+            }
+        }
+        self.colorType = type
         self.date = date
     }
 }

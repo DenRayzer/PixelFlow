@@ -86,7 +86,7 @@ class DottedDayView: UIView {
     }
     
     func changeColorView(with dayType: DayType) {
-        let color = ThemeHelper.convertTypeToColor(for: Constants.currentBoardColorSheme, type: type)
+        let color = ThemeHelper.convertTypeToColor(for: Constants.currentBoardColorSheme, type: dayType)
      //   dottedView.removeFromSuperview()
         dottedView.isHidden = true
         coloredView.isHidden = false

@@ -17,6 +17,6 @@ extension AdditionalColorMO {
     }
 
     @NSManaged public var colorId: Int16
-    @NSManaged public var time: String?
+    @NSManaged public var time: Date
 
 }

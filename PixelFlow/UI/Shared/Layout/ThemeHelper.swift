@@ -7,12 +7,16 @@
 
 import UIKit
 
-enum DayType: Int {
+enum DayType: Int16 {
     case null = 1, first, second, third, fourth, fifth, sixth, seventh, eighth
+
+   static var allCases = [null, first, second, third, fourth, fifth, sixth, seventh, eighth]
 }
 
 enum ColorShemeType: Int {
     case base = 0
+
+    static var allCases = [base]
 }
 
 class ThemeHelper {

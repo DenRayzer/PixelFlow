@@ -70,6 +70,8 @@ class PixelSheetLayout: UIScrollView {
                     dayViews[month][day].isUserInteractionEnabled = false
                     dayViews[month][day].backgroundColor = UIColor.PF.lightGray
                    // dayViews[month][day].layer.borderColor = UIColor.PF.lightGray.cgColor
+                } else {
+                    dayViews[month][day].backgroundColor = ThemeHelper.convertTypeToColor(for: .base, type: yearDay.type)
                 }
                 dayViews[month][day].day = yearDay
             }

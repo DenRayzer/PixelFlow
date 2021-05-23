@@ -18,6 +18,6 @@ extension BoardParameterMO {
 
     @NSManaged public var colorId: Int16
     @NSManaged public var id: Int32
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
 
 }

@@ -9,9 +9,9 @@
         <attribute name="imageId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="mainColorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="Mood"/>
-        <relationship name="notifications" toMany="YES" deletionRule="Cascade" destinationEntity="Notification"/>
-        <relationship name="parameters" toMany="YES" minCount="1" deletionRule="Cascade" destinationEntity="BoardParameter"/>
-        <relationship name="years" toMany="YES" deletionRule="Cascade" destinationEntity="Year"/>
+        <relationship name="notifications" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Notification"/>
+        <relationship name="parameters" toMany="YES" minCount="1" deletionRule="Cascade" ordered="YES" destinationEntity="BoardParameter"/>
+        <relationship name="years" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Year"/>
     </entity>
     <entity name="BoardParameter" representedClassName=".BoardParameterMO" syncable="YES">
         <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -21,12 +21,12 @@
     <entity name="Day" representedClassName=".DayMO" syncable="YES">
         <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="additionalColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AdditionalColor"/>
+        <relationship name="additionalColor" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="AdditionalColor"/>
         <relationship name="note" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Note"/>
     </entity>
     <entity name="Note" representedClassName=".NoteMO" syncable="YES">
-        <attribute name="note" optional="YES" attributeType="String"/>
-        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="note" attributeType="String"/>
+        <attribute name="time" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Notification" representedClassName=".NotificationMO" syncable="YES">
         <attribute name="isOn" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>

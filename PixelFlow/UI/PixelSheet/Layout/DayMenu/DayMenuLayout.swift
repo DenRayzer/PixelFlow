@@ -36,7 +36,13 @@ class DayMenuLayout: UIView {
         return stack
     }()
 
-    var notes: [Note] = [Note(text: "", date: Date())]
+    var notes: [Note] = [] {
+        didSet {
+            if notes.count == 0 {
+                notes = [Note(text: "", date: Date())]
+            }
+        }
+    }
     var additionalColors: [AdditionalColor] = []
 
     private(set) lazy var addNoteButton: SoftUIView = {
@@ -58,7 +64,7 @@ class DayMenuLayout: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        setupViews()
+        //   setupViews()
     }
 
     private func addNewDayColor() {
@@ -95,7 +101,7 @@ class DayMenuLayout: UIView {
         activeAdditionalColor = nil
     }
 
-    private func setupViews() {
+    func setupViews() {
         addSubview(dayInfoLabel)
         dayInfoLabel.layout.top.equal(to: self, offset: 20)
         dayInfoLabel.layout.left.equal(to: self, offset: 16)
@@ -141,12 +147,9 @@ class DayMenuLayout: UIView {
         additionalDayColorsContainer.layout.top.equal(to: headerView, offset: 4)
 
         additionalColors.forEach { additionalColor in
-            let view = DottedDayView(isDotted: false, type: additionalColor.color)
+            let view = DottedDayView(isDotted: false, type: additionalColor.colorType)
             additionalDayColorsContainer.addArrangedSubview(view)
         }
-        // additionalDayColorsContainer.layout.width.equal(to: 45)
-        //    additionalDayColorsContainer.addArrangedSubview(ColorInfoItem(type: .first))
-
         notesTableView.tableHeaderView = headerView // dayInfoContainer
         headerView.layout.width.equal(to: notesTableView)
 
@@ -183,6 +186,7 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
         let cell = notesTableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! NoteTableViewCell
         cell.cellDelegate = self
         cell.note = notes[indexPath.row]
+        print("jjkj---- note \(notes[indexPath.row].text)")
         cell.didEndEditing = { [weak self] _ in
             guard let self = self else { return }
             self.saveNoteAction(self.notes)
@@ -230,12 +234,14 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
 
     @objc
     func handleAddNoteButtonTap(_ sender: UITapGestureRecognizer? = nil) {
+        notesTableView.scrollToRow(at: IndexPath(row: notes.count - 1, section: 0), at: .bottom, animated: true)
+        if notes.last?.text == "" { return }
+
         notes.append(Note(text: "", date: Date()))
         notesTableView.reloadData()
-        notesTableView.scrollToRow(at: IndexPath(row: notes.count - 1, section: 0), at: .bottom, animated: true)
-        let cell = notesTableView.visibleCells.last as? NoteTableViewCell
+        //    let cell = notesTableView.visibleCells.last as? NoteTableViewCell
 
-    //    cell?.field.becomeFirstResponder()
+        //  cell?.field.becomeFirstResponder()
     }
 }
 

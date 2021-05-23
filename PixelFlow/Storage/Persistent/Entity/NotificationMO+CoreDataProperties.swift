@@ -17,6 +17,6 @@ extension NotificationMO {
     }
 
     @NSManaged public var isOn: Bool
-    @NSManaged public var time: Date?
+    @NSManaged public var time: Date
 
 }

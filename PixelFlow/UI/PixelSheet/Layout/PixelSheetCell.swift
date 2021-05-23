@@ -13,12 +13,14 @@ class PixelSheetCell: UICollectionViewCell {
     var year: Year? {
         didSet {
             guard let year = year else { return }
+            print("zoshlo ----------------------")
             pixelLayout.configureCell(with: year)
         }
     }
     
     override func prepareForReuse() {
         year = nil
+     //   pixelLayout = nil
     }
 
     override init(frame: CGRect) {

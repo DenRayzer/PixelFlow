@@ -9,18 +9,21 @@ import UIKit
 
 class DayMenuController: UIViewController {
     let layout = DayMenuLayout()
-    private var day = Day(date: Date()) {
-        didSet {
-            print("---- chlen")
-        }
-    }
+    let storageManager: StorageManager = StorageManager()
+
+    private var day = Day(date: Date())
     private var delegate: DayMenuDelegate!
 
     convenience init(for day: Day, delegate: DayMenuDelegate) {
         self.init()
         self.day = day
         layout.setCheckedView(type: day.type)
+        layout.additionalColors = day.additionalColors
+        layout.notes = day.notes
         self.delegate = delegate
+
+        layout.setupViews()
+        layout.setCheckedView(type: day.type)
     }
 
     override func viewDidLoad() {
@@ -45,11 +48,16 @@ class DayMenuController: UIViewController {
             view.colorView.addView(view: UIImageView(image: #imageLiteral(resourceName: "check")))
             layout.selectedItem?.colorView.addView(view: nil)
             layout.selectedItem = view
+            day.type = view.type
+            storageManager.saveDay(day: day)
         } else {
             guard let activeAdditionalColor = layout.activeAdditionalColor else { return }
             activeAdditionalColor.changeColorView(with: view.type)
-            layout.additionalColors.append(AdditionalColor(color: view.type, date: activeAdditionalColor.date))
+            layout.additionalColors.append(AdditionalColor(colorId: view.type.rawValue, date: activeAdditionalColor.date))
             layout.activeAdditionalColor = nil
+            day.additionalColors = layout.additionalColors
+            print("check1 ------")
+            storageManager.saveDay(day: day)
         }
     }
 
@@ -64,7 +72,9 @@ class DayMenuController: UIViewController {
         dateFormatter.locale = Locale.current
         layout.dayInfoLabel.text = dateFormatter.string(from: day.date).lowercased()
         layout.saveNoteAction = { [weak self] notes in
-            self?.day.notes = notes
+            guard let self = self else { return }
+            self.day.notes = notes
+            self.storageManager.saveDay(day: self.day)
         }
     }
 }

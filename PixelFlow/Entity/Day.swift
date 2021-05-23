@@ -7,16 +7,22 @@
 
 import Foundation
 
-struct Day {
+class Day {
     var date: Date
     var type: DayType
-    var notes: [Note]?
-    var additionalColors: [AdditionalColor]?
-    
-    init(date: Date, type: DayType = .null, notes: [Note]? = nil, additionalColors: [AdditionalColor]? = nil) {
+    var notes: [Note]
+    var additionalColors: [AdditionalColor]
+
+    init(date: Date, typeId: Int16 = 0, notes: [Note] = [], additionalColors: [AdditionalColor] = []) {
         self.date = date
-        self.type = type
         self.notes = notes
         self.additionalColors = additionalColors
+        var dayType: DayType = .null
+        DayType.allCases.forEach { i in
+            if i.rawValue == typeId {
+                dayType = i
+            }
+        }
+        self.type = dayType
     }
 }

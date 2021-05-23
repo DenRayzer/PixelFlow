@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct BoardParameter {
+class BoardParameter {
     var name: String
-    var color: String
+    var color: Int16
+
+    internal init(name: String, color: Int16) {
+        self.name = name
+        self.color = color
+    }
 }
