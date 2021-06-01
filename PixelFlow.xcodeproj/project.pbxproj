@@ -226,7 +226,6 @@
 				6E4585E5264AE25C000166B4 /* FieldWithButtonView.swift */,
 				6E4585F7264B0D8D000166B4 /* NotificationSettingView.swift */,
 				6E4585FD264C702E000166B4 /* ColorPickerView.swift */,
-				7AFFCA7826448173004DA7AF /* MainMenuController.swift */,
 				6EB8303826504AF000883B55 /* ImagePickerView.swift */,
 			);
 			path = Components;
@@ -522,9 +521,10 @@
 		7AFFCA77264480CE004DA7AF /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
+				7AFFCA7826448173004DA7AF /* MainMenuController.swift */,
+				6EFF2FA62648360A00318BDB /* MainMenuTableViewCell.swift */,
 				6EB8303B2650727900883B55 /* EditBoard */,
 				6E4585E1264ADEDC000166B4 /* NewBoard */,
-				6EFF2FA62648360A00318BDB /* MainMenuTableViewCell.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";

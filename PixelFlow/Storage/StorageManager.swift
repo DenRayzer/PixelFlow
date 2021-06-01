@@ -11,7 +11,7 @@ class StorageManager {
     var storageManagerDelegate: StorageManagerDelegate = DataStoreManager()
 
     func saveDay(day: Day) {
-        storageManagerDelegate.saveDay(day)
+        storageManagerDelegate.updateDay(day)
     }
 
     func getBoards() -> [Board] {

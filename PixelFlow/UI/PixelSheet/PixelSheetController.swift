@@ -86,13 +86,13 @@ class PixelSheetController: UIViewController {
       
       floaty.hasShadow = false
 
-        floaty.addItem("I got a icon", icon: #imageLiteral(resourceName: "home_icon")) {
+        floaty.addItem("Settings", icon: #imageLiteral(resourceName: "home_icon")) {
             item in
             let vc = NewBoardController()
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true, completion: nil)
         }
-        floaty.addItem("I got a handler", icon: #imageLiteral(resourceName: "settings")) { item in
+        floaty.addItem("All Boards", icon: #imageLiteral(resourceName: "settings")) { item in
         let vc = MainMenuController()
         vc.modalPresentationStyle = .fullScreen
 

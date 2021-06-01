@@ -33,7 +33,7 @@ class DataStoreManager: StorageManagerDelegate {
         }
     }
 
-    func saveDay(_ dayToSave: Day) {
+    func updateDay(_ dayToSave: Day) {
         print("DATE ----  Date ---- \(dayToSave.date)")
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Day")
         fetchRequest.predicate = NSPredicate(format: "date == %@", dayToSave.date as CVarArg)

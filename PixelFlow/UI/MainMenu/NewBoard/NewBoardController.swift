@@ -10,7 +10,7 @@ import UIKit
 class NewBoardController: UIViewController {
     let navigationBar = Header(type: .navigationBar)
     private let layout = UIScrollView()
-    let newBoardView = NewBoardLayout()
+    let container = NewBoardLayout()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,33 +39,36 @@ class NewBoardController: UIViewController {
         layout.layout.horizontal.equal(to: view)
         layout.layout.bottom.equal(to: view)
         layout.showsVerticalScrollIndicator = false
+        layout.keyboardDismissMode = .onDrag
 
-        layout.addSubview(newBoardView)
-        newBoardView.selectImageAction = { [weak self] in
+        layout.addSubview(container)
+        container.selectImageAction = { [weak self] in
             guard let self = self else { return }
             let pickerView = ImagePickerView()
 
             pickerView.selectImageAction = { [weak self] image in
-                self?.newBoardView.nameField.settingButton.setImage(image, for: .normal)
+                self?.container.nameField.settingButton.setImage(image, for: .normal)
             }
 
             self.view.addSubview(pickerView)
             pickerView.layout.all.equal(to: self.view)
         }
-        newBoardView.colorViewAction = { [weak self] in
+        container.colorViewAction = { [weak self] in
             guard let self = self else { return }
-            
+
             let pickerView = ColorPickerView()
             pickerView.colorViewAction = { [weak self] color in
                 guard let self = self else { return }
-                self.newBoardView.selectedParameter?.buttonColor = color ?? UIColor.PF.background
-                
+                self.container.selectedParameter?.buttonColor = color ?? UIColor.PF.background
+
             }
             self.view.addSubview(pickerView)
             pickerView.layout.all.equal(to: self.view)
         }
-        newBoardView.layout.width.equal(to: view.frame.width)
-        newBoardView.layout.all.equal(to: layout)
+        container.layout.width.equal(to: view.frame.width)
+        container.layout.all.equal(to: layout)
     }
+
+
 
 }

@@ -11,7 +11,7 @@ class NewBoardLayout: UIView {
 
     private let parametersTitleLabel = Label(type: .regularInfo, textMode: .default, text: "pf_add_parameters_title".localize())
     private let notificationsTitleLabel = Label(type: .regularInfo, textMode: .default, text: "pf_add_notifications_title".localize())
-    private var addParameterButton: SoftUIView = {
+    private(set) var addParameterButton: SoftUIView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "additional_color"))
         let button = Button(type: .bulging, view: image)
         button.layout.height.equal(to: 45)
@@ -26,7 +26,7 @@ class NewBoardLayout: UIView {
         return view
     }()
 
-    private var removeParameterButton: Button = {
+    private(set) var removeParameterButton: Button = {
         let image = UIImageView(image: #imageLiteral(resourceName: "remove"))
         let button = Button(type: .bulging, view: image)
         button.layout.height.equal(to: 45)
@@ -36,7 +36,7 @@ class NewBoardLayout: UIView {
         return button
     }()
 
-    private var addNotificationButton: Button = {
+    private(set) var addNotificationButton: Button = {
         let image = UIImageView(image: #imageLiteral(resourceName: "additional_color"))
         let button = Button(type: .bulging, view: image)
         button.layout.height.equal(to: 45)
@@ -45,7 +45,7 @@ class NewBoardLayout: UIView {
         return button
     }()
 
-    private var removeNotificationButton: Button = {
+    private(set) var removeNotificationButton: Button = {
         let image = UIImageView(image: #imageLiteral(resourceName: "remove"))
         let button = Button(type: .bulging, view: image)
         button.layout.height.equal(to: 45)
@@ -54,7 +54,6 @@ class NewBoardLayout: UIView {
 
         return button
     }()
-
 
     private(set) lazy var paremetersContainer: UIStackView = {
         let stack = UIStackView()
@@ -76,7 +75,7 @@ class NewBoardLayout: UIView {
         return stack
     }()
 
-    private var saveButton: SoftUIView = {
+    private(set) var saveButton: SoftUIView = {
         let label = Label(type: .title, textMode: .default, text: "pf_save".localize())
         label.textColor = UIColor.PF.accentColor
         let button = Button(type: .floating, view: label)
@@ -84,6 +83,13 @@ class NewBoardLayout: UIView {
         button.cornerRadius = 24
 
         return button
+    }()
+
+    var errorLabel: Label = {
+        let label = Label(type: .custom, textMode: .default, text: "")
+        label.textColor = UIColor.colorScheme.vinous
+        label.textAlignment = .center
+        return label
     }()
 
     var parametersViews: [FieldWithButtonView] = []
@@ -163,14 +169,20 @@ class NewBoardLayout: UIView {
         removeNotificationButton.layout.left.equal(to: notificationsContainer.layout.right, offset: 16)
         removeNotificationButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveNotificationButton(_:))))
 
+        addSubview(errorLabel)
+        errorLabel.layout.horizontal.equal(to: self, offset: 24)
+        errorLabel.layout.top.greater(than: notificationsContainer.layout.bottom, offset: 35)
+
         addSubview(saveButton)
+        saveButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSaveButtonTap(_:))))
         saveButton.layout.horizontal.equal(to: self, offset: 24)
-        saveButton.layout.top.greater(than: notificationsContainer.layout.bottom, offset: 55)
+        saveButton.layout.top.equal(to: errorLabel.layout.bottom, offset: 12)
         saveButton.layout.bottom.equal(to: self, offset: -30)
     }
 
     @objc
     func handleColorViewAction(_ sender: UITapGestureRecognizer? = nil) {
+         dismissKeyboard()
         guard let selected = sender?.view as? UIButton else { return }
         selectedParameter = selected.superview as? FieldWithButtonView
         colorViewAction()
@@ -178,6 +190,7 @@ class NewBoardLayout: UIView {
 
     @objc
     func handleAddParameterButton(_ sender: UITapGestureRecognizer? = nil) {
+        dismissKeyboard()
         guard let _ = parametersViews.last?.buttonColor else { return }
         if removeParameterButton.isHidden { removeParameterButton.isHidden = false }
         let view = FieldWithButtonView(isPlaceholderRegular: true)
@@ -190,17 +203,31 @@ class NewBoardLayout: UIView {
 
     @objc
     func handleRemoveParameterButton(_ sender: UITapGestureRecognizer? = nil) {
+        dismissKeyboard()
         paremetersContainer.subviews.last?.removeFromSuperview()
         parametersViews.removeLast()
-
         if paremetersContainer.subviews.count == 1 { removeParameterButton.isHidden = true }
     }
 
     @objc
+    func handleSaveButtonTap(_ sender: UITapGestureRecognizer? = nil) {
+        dismissKeyboard()
+        //   func saveNewBoard() {
+        if nameField.textField.text == "" || parametersViews.first?.textField.text == ""
+            || parametersViews.first?.buttonColor == nil {
+            errorLabel.text = "АШИБКА!!!!!!!!!"
+        } else {
+            errorLabel.text = ""
+        }
+        //  }
+    }
+
+    @objc
     func handleAddNotificationButton(_ sender: UITapGestureRecognizer? = nil) {
+        dismissKeyboard()
         let view = NotificationSettingView()
         if removeNotificationButton.isHidden { removeNotificationButton.isHidden = false }
-     //   view.toggle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorViewAction(_:))))
+        //   view.toggle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorViewAction(_:))))
         notificationsViews.append(view)
         notificationsContainer.addArrangedSubview(view)
 
@@ -209,6 +236,7 @@ class NewBoardLayout: UIView {
 
     @objc
     func handleRemoveNotificationButton(_ sender: UITapGestureRecognizer? = nil) {
+        dismissKeyboard()
         notificationsContainer.subviews.last?.removeFromSuperview()
         notificationsViews.removeLast()
 
@@ -217,6 +245,13 @@ class NewBoardLayout: UIView {
 
     @objc
     func handleSetImageButton(_ sender: UITapGestureRecognizer? = nil) {
+        dismissKeyboard()
+
+        
         selectImageAction()
+    }
+
+    private func dismissKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

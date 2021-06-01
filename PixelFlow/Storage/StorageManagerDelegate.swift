@@ -8,6 +8,9 @@
 import Foundation
 
 protocol StorageManagerDelegate {
-    func saveDay(_ dayToSave: Day)
+    func updateDay(_ dayToSave: Day)
     func getBoards() -> [Board]
+//    func saveBoard(board: Board)
+//    func updateBoard(board: Board)
+//    func deleteBoard(board: Board)
 }

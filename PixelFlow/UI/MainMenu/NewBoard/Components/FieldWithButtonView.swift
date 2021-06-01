@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FieldWithButtonView: UIView {
+class FieldWithButtonView: UIView, UITextViewDelegate, UITextFieldDelegate {
     var buttonColor: UIColor? {
         didSet {
         print("Color")
@@ -24,6 +24,8 @@ class FieldWithButtonView: UIView {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.PF.stroke.cgColor
         field.layer.cornerRadius = 10
+        field.returnKeyType
+            = .done
 
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: field.frame.height))
         field.leftView = paddingView
@@ -61,6 +63,7 @@ class FieldWithButtonView: UIView {
     }
 
     private func configureView() {
+        textField.delegate = self
         addSubview(textField)
         textField.layout.vertical.equal(to: self)
         textField.layout.left.equal(to: self)
@@ -69,5 +72,10 @@ class FieldWithButtonView: UIView {
         settingButton.layout.vertical.equal(to: self)
         settingButton.layout.left.equal(to: textField.layout.right, offset: 16)
         settingButton.layout.right.equal(to: self)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

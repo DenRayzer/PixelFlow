@@ -17,9 +17,6 @@ class DottedDayView: UIView {
         let button = Button(type: .bulging)
         button.type = .normal
         button.isHidden = true
-     //   button.layout.height.equal(to: 43)
-     //   button.layout.width.equal(to: 43)
-     //   button.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         button.layout.size.equal(to: CGSize(width: 35, height: 35))
         return button
     }()
@@ -27,7 +24,6 @@ class DottedDayView: UIView {
     convenience init(isDotted: Bool, type: DayType = .null, date: Date = Date()) {
         self.init()
 
- //       bounds = CGRect(x: 0, y: 0, width: 92, height: 35)
         addSubview(coloredView)
         coloredView.layout.vertical.equal(to: self)
         coloredView.layout.right.equal(to: self)
@@ -43,25 +39,8 @@ class DottedDayView: UIView {
         } else {
             changeColorView(with: type)
         }
-            //    timeLabel.layout.right.equal(to: dottedView.layout.left, offset: -16)
     }
-    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        bounds = CGRect(x: 0, y: 0, width: 92, height: 35)
-//        configureColorView()
-//        addSubview(coloredView)
-//
-//        addSubview(timeLabel)
-//        timeLabel.layout.centerY.equal(to: self)
-//        timeLabel.layout.left.equal(to: self)
 
-//    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     private func configureDottedView() {
         dottedView.layout.size.equal(to: CGSize(width: 35, height: 35))
         let layer = CAShapeLayer()
@@ -82,15 +61,12 @@ class DottedDayView: UIView {
         addSubview(dottedView)
         dottedView.layout.vertical.equal(to: self)
         dottedView.layout.right.equal(to: self)
-       // layout.size.equal(to: CGSize(width: 92, height: 35))
     }
     
     func changeColorView(with dayType: DayType) {
         let color = ThemeHelper.convertTypeToColor(for: Constants.currentBoardColorSheme, type: dayType)
-     //   dottedView.removeFromSuperview()
         dottedView.isHidden = true
         coloredView.isHidden = false
         coloredView.mainColor = color.cgColor
-      //  coloredView.layout.left.equal(to: timeLabel.layout.right, offset: 16)
     }
 }

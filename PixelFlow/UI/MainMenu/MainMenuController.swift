@@ -11,7 +11,8 @@ class MainMenuController: UIViewController {
     let navigationBar = Header(type: .navigationBar)
     let tableView = UITableView()
 
-    let boards = ["navigationBar", "navigationBar.titleButton titleButton", "configureHeader"]
+    let boards = ["Настроение", "Доска с длинным названием, очень длинным", "Я рисую"]
+    let images: [UIImage] = [#imageLiteral(resourceName: "smile-cyan"),#imageLiteral(resourceName: "heart-lilac"),#imageLiteral(resourceName: "apple-peach")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,7 @@ extension MainMenuController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainMenuTableViewCell.identifier, for: indexPath) as? MainMenuTableViewCell else { return UITableViewCell() }
 
         cell.titleLabel.text = boards[indexPath.row]
+        cell.titleImage.image = images[indexPath.row]
         cell.editButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(leftButton(_:))))
 
         return cell
