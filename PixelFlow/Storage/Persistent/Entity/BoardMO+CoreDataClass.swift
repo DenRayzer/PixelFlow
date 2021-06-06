@@ -13,14 +13,14 @@ import CoreData
 public class BoardMO: NSManagedObject {
 
     func save(name: String = "pf_mood_board".localize(),
-        imageId: Int = 0,
-        notification: NotificationMO,
+        imageName: String = "yin-yang-cyan",
+        notifications: NSSet,
         parameters: NSSet,
         years: NSSet) {
 
         self.name = name
-        self.imageId = Int16(imageId)
-        addToNotifications(notification)
+        self.imageName = imageName
+        addToNotifications(notifications)
         addToParameters(parameters)
         addToYears(years)
     }

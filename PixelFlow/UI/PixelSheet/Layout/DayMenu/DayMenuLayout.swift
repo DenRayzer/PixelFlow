@@ -68,7 +68,7 @@ class DayMenuLayout: UIView {
     }
 
     private func addNewDayColor() {
-        if activeAdditionalColor != nil || additionalDayColorsContainer.subviews.count == dayInfoContainer.subviews.count - 1 { return }
+        if activeAdditionalColor != nil || additionalDayColorsContainer.subviews.count == dayInfoContainer.subviews.count { return }
 
         let dottedRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDottedTap(_:)))
         let coloredRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleColoredTap(_:)))
@@ -117,13 +117,9 @@ class DayMenuLayout: UIView {
     }
 
     private func setupColorItems() {
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .first))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .second))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .third))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .fourth))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .fifth))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .sixth))
-        dayInfoContainer.addArrangedSubview(ColorInfoItem(type: .seventh))
+        ThemeHelper.currentBoard?.parameters.forEach { parameter in
+            dayInfoContainer.addArrangedSubview(ColorInfoItem(parameter: parameter))
+        }
     }
 
     private func setupNotesTableView() {

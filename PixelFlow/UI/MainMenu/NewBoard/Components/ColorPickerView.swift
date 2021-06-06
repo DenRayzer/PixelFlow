@@ -17,7 +17,7 @@ class ColorPickerView: UIView {
     }()
 
     var colorViews: [Button] = []
-    var colorViewAction: (_ color: UIColor?)-> Void = {_ in }
+    var colorViewAction: (_ dayType: DayType) -> Void = { _ in }
     var selectedColor: UIColor?
 
     override init(frame: CGRect) {
@@ -34,7 +34,7 @@ class ColorPickerView: UIView {
         overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         addSubview(overlayView)
         overlayView.layout.all.equal(to: self)
-       // isUserInteractionEnabled = true
+        // isUserInteractionEnabled = true
 
         addSubview(backgroundView)
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap(_:)))
@@ -68,7 +68,7 @@ class ColorPickerView: UIView {
         UIColor.colorScheme.allValues.forEach { color in
             let view = Button(type: .bulging)
             view.layout.size.equal(to: CGSize(width: 40, height: 40))
-            view.mainColor = color.cgColor
+            view.mainColor = color.color.cgColor
             view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorTap(_:))))
             if count2 < 5 {
                 topStack.addArrangedSubview(view)
@@ -87,9 +87,11 @@ class ColorPickerView: UIView {
     @objc
     func handleColorTap(_ sender: UITapGestureRecognizer? = nil) {
         guard let view = sender?.view as? Button else { return }
-        selectedColor = UIColor(cgColor: view.mainColor)
-        colorViewAction(selectedColor)
-        removeFromSuperview()
-    }
+         selectedColor = UIColor(cgColor: view.mainColor)
+        let type: DayType = ThemeHelper.convertColorToType(for: .base, color: selectedColor ?? .blue)
+            colorViewAction(type)
+            //   colorViewAction(ThemeHelper.convertColorToType(for: 0, color: selectedColor))
+            removeFromSuperview()
+        }
 }
 

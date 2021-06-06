@@ -6,7 +6,7 @@
     </entity>
     <entity name="Board" representedClassName=".BoardMO" syncable="YES">
         <attribute name="colorSheme" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="imageId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageName" attributeType="String"/>
         <attribute name="mainColorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="Mood"/>
         <relationship name="notifications" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Notification"/>
@@ -15,12 +15,13 @@
     </entity>
     <entity name="BoardParameter" representedClassName=".BoardParameterMO" syncable="YES">
         <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="inOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="Day" representedClassName=".DayMO" syncable="YES">
         <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="additionalColor" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="AdditionalColor"/>
         <relationship name="note" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Note"/>
     </entity>
@@ -40,7 +41,7 @@
         <element name="AdditionalColor" positionX="-144" positionY="90" width="128" height="73"/>
         <element name="Board" positionX="-353.39453125" positionY="-7.484375" width="128" height="148"/>
         <element name="BoardParameter" positionX="-77.12890625" positionY="50.6328125" width="128" height="88"/>
-        <element name="Day" positionX="-59.578125" positionY="256.59765625" width="128" height="103"/>
+        <element name="Day" positionX="-59.578125" positionY="256.59765625" width="128" height="118"/>
         <element name="Note" positionX="142.296875" positionY="314.23046875" width="128" height="73"/>
         <element name="Notification" positionX="-212.78125" positionY="-58.63671875" width="128" height="73"/>
         <element name="Year" positionX="-251.16796875" positionY="243.88671875" width="128" height="73"/>

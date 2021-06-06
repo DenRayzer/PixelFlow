@@ -5,14 +5,14 @@
 //  Created by Елизавета on 15.05.2021.
 //
 
-import Foundation
+import UIKit
 
 class BoardParameter {
     var name: String
-    var color: Int16
+    var color: DayType
 
-    internal init(name: String, color: Int16) {
+    internal init(name: String, color: Int16, colorSheme: Int16) {
         self.name = name
-        self.color = color
+        self.color = DayType(rawValue: color) ?? DayType.null
     }
 }

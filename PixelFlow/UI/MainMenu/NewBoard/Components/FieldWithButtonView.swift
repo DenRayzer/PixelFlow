@@ -8,11 +8,10 @@
 import UIKit
 
 class FieldWithButtonView: UIView, UITextViewDelegate, UITextFieldDelegate {
-    var buttonColor: UIColor? {
+    var currentImage: UIImage?
+    var dayType: DayType = .first {
         didSet {
-        print("Color")
-            guard let color = buttonColor else { return }
-            settingButton.backgroundColor = color
+            settingButton.backgroundColor = ThemeHelper.convertTypeToColor(for: .base, type: dayType)
             settingButton.layer.borderWidth = 0//borderColor = color.cgColor
         }
     }
@@ -24,8 +23,7 @@ class FieldWithButtonView: UIView, UITextViewDelegate, UITextFieldDelegate {
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.PF.stroke.cgColor
         field.layer.cornerRadius = 10
-        field.returnKeyType
-            = .done
+        field.returnKeyType = .done
 
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: field.frame.height))
         field.leftView = paddingView

@@ -2,7 +2,7 @@
 //  BoardParameterMO+CoreDataProperties.swift
 //  
 //
-//  Created by Елизавета on 22.05.2021.
+//  Created by Елизавета on 03.06.2021.
 //
 //
 
@@ -17,7 +17,7 @@ extension BoardParameterMO {
     }
 
     @NSManaged public var colorId: Int16
-    @NSManaged public var id: Int32
     @NSManaged public var name: String
+    @NSManaged public var inOrder: Int16
 
 }

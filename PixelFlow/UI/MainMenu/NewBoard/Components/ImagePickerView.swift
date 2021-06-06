@@ -7,9 +7,9 @@
 
 import UIKit
 
+
 class ImagePickerView: UIView {
-    typealias Color = (color: UIColor, name: String)
-    let colorSheme: [Color] = [(UIColor.PF.accentColor, "-cyan"), (UIColor.PF.lilac, "-lilac"), (UIColor.colorScheme.orange, "-peach")]
+
     let imageNames: [String] = ["apple", "cart", "heart", "home", "leaves", "money", "pill", "settings", "smile", "yin-yang"]
     let overlayView = UIView()
     private let backgroundView: UIView = {
@@ -24,9 +24,9 @@ class ImagePickerView: UIView {
 
     let topImageStack = UIStackView()
     let bottomImageStack = UIStackView()
-    var currentSheme: Color = (UIColor.PF.accentColor, "-cyan")
+    var currentBorderColor: BoardColor = .cyan
     var selectedImage: UIImage = #imageLiteral(resourceName: "yin-yang-cyan")
-    var selectImageAction: (UIImage) -> Void = {_ in }
+    var selectImageAction: (_ im: UIImage, _ color: BoardColor) -> Void = { _, _ in }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,10 +102,10 @@ class ImagePickerView: UIView {
 
 
         var count2 = 0
-        colorSheme.forEach { color in
+        BoardColor.allValues.forEach { color in
             let view = Button(type: .bulging)
             view.layout.size.equal(to: CGSize(width: 40, height: 40))
-            view.mainColor = color.color.cgColor
+            view.mainColor = color.rawValue.color.cgColor
             view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorTap(_:))))
             if count2 < 5 {
                 topStack.addArrangedSubview(view)
@@ -122,8 +122,9 @@ class ImagePickerView: UIView {
         imageNames.forEach { name in
             let button = UIButton()
             //           button.layout.size.equal(to: CGSize(width: 35, height: 35))
-            let str = name + currentSheme.name
+            let str = name + currentBorderColor.rawValue.name
             let im = UIImage(named: str)
+            im?.accessibilityIdentifier = str
 
             button.setImage(im, for: .normal)
 
@@ -146,8 +147,8 @@ class ImagePickerView: UIView {
     @objc
     func handleImageTap(_ sender: UITapGestureRecognizer? = nil) {
         guard let button = sender?.view as? UIButton,
-              let image = button.imageView?.image else { return }
-        selectImageAction(image)
+            let image = button.imageView?.image else { return }
+        selectImageAction(image, currentBorderColor)
         removeFromSuperview()
     }
 
@@ -156,9 +157,9 @@ class ImagePickerView: UIView {
 
         guard let view = sender?.view as? Button else { return }
         let selectedColor = UIColor(cgColor: view.mainColor)
-        colorSheme.forEach { color in
-            if color.color == selectedColor {
-                currentSheme = color
+        BoardColor.allValues.forEach { color in
+            if color.rawValue.color == selectedColor {
+                currentBorderColor = color
                 topImageStack.subviews.forEach { $0.removeFromSuperview() }
                 bottomImageStack.subviews.forEach { $0.removeFromSuperview() }
                 addImages()

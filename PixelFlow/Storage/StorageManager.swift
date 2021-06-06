@@ -18,4 +18,8 @@ class StorageManager {
         storageManagerDelegate.getBoards()
     }
 
+    func saveBoard(board: Board) {
+        storageManagerDelegate.saveBoard(board: board)
+    }
+
 }

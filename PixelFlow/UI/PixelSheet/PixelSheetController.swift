@@ -23,6 +23,7 @@ class PixelSheetController: UIViewController {
         super.viewDidLoad()
 
         setupViews()
+        
     //    DataStoreManager().saveDay(Date())
     }
 

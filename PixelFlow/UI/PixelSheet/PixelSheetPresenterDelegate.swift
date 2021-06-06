@@ -8,5 +8,6 @@
 import Foundation
 
 protocol PixelSheetPresenterDelegate {
+    var board: Board { get }
     var years: [Year] { get set }
 }

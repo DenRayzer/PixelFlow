@@ -17,7 +17,7 @@ extension BoardMO {
     }
 
     @NSManaged public var colorSheme: Int16
-    @NSManaged public var imageId: Int16
+    @NSManaged public var imageName: String
     @NSManaged public var mainColorId: Int16
     @NSManaged public var name: String
     @NSManaged public var notifications: NSOrderedSet

@@ -29,8 +29,10 @@ extension UIColor {
         static let brown = rgb(88, 50, 78)
         static let ddd = rgb(160, 217, 147)
 
-        static let allValues = [lightGreen, darkGreen, pink, orange, vinous, dustyRose, brown]
+        static let allValues: [(color: UIColor, id: Int16)] = [(lightGreen, 0), (darkGreen, 1), (pink, 2), (orange, 3), (vinous, 4), (dustyRose, 5), (brown, 6)]
     }
+
+    
 
     static let imageValues = [PF.accentColor, PF.lilac, colorScheme.orange]
 }

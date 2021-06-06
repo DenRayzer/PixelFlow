@@ -9,12 +9,12 @@ import UIKit
 
 class MainMenuTableViewCell: UITableViewCell {
     static let identifier = "MainMenuTableViewCellId"
+    var currentBoard: Board?
 
     var titleImage: UIImageView = {
         let view = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 50))
         view.contentMode = .center
         view.layout.width.equal(to: 30)
-        view.image = #imageLiteral(resourceName: "yin_yang")
         return view
     }()
 

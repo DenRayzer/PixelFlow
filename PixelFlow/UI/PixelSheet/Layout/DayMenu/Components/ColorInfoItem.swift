@@ -21,13 +21,13 @@ class ColorInfoItem: UIView {
 
     var infoLabel = Label(type: .regularInfo)
 
-    convenience init(type: DayType) {
+    convenience init(parameter: BoardParameter) {
         self.init()
-        self.type = type
-        let info = DayTypeInfo.getDayInfo(for: type)
-        color = info.color
+        self.type = parameter.color
+       // let info = DayTypeInfo.getDayInfo(for: type)
+        color = ThemeHelper.convertTypeToColor(for: ThemeHelper.currentBoard?.colorSheme ?? .base, type: parameter.color) //info.color
         colorView.mainColor = color.cgColor
-        infoLabel.text = info.text
+        infoLabel.text = parameter.name
         addSubview(colorView)
         colorView.layout.left.equal(to: self, offset: 16)
         colorView.layout.vertical.equal(to: self)
@@ -47,27 +47,4 @@ class ColorInfoItem: UIView {
     }
 }
 
-class DayTypeInfo {
-    static func getDayInfo(for type: DayType) -> (color: UIColor, text: String) {
-        switch type {
-        case .null:
-            return (UIColor.PF.background, "Не выбрано")
-        case .first:
-            return (UIColor.colorScheme.lightGreen, "pf_day_mood_excellent".localize())
-        case .second:
-            return (UIColor.colorScheme.darkGreen, "pf_day_mood_good".localize())
-        case .third:
-            return (UIColor.colorScheme.pink, "pf_day_mood_lazy".localize())
-        case .fourth:
-            return (UIColor.colorScheme.orange, "pf_day_mood_ordinary".localize())
-        case .fifth:
-            return (UIColor.colorScheme.vinous, "pf_day_mood_bad".localize())
-        case .sixth:
-            return (UIColor.colorScheme.dustyRose, "pf_day_mood_tired".localize())
-        case .seventh:
-            return (UIColor.colorScheme.brown, "pf_day_mood_sick".localize())
-        case .eighth:
-            return (UIColor.PF.background, "Не выбрано")
-        }
-    }
-}
+

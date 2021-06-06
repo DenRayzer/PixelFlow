@@ -34,7 +34,7 @@ class PixelDayView: UIView {
         sheetController.allowPullingPastMaxHeight = false
         sheetController.gripColor = .clear
 
-        let viewController = UIApplication.shared.windows.first!.rootViewController!
+        let viewController = UIApplication.shared.windows.first!.topViewController!
         sheetController.animateIn(to: viewController.view, in: viewController)
     }
     
@@ -46,6 +46,6 @@ class PixelDayView: UIView {
 extension PixelDayView: DayMenuDelegate {
     func onDayMenuItemTap(dayType: DayType) {
         day?.type = dayType
-        backgroundColor = DayTypeInfo.getDayInfo(for: dayType).color
+        backgroundColor = ThemeHelper.convertTypeToColor(for: ThemeHelper.currentBoard?.colorSheme ?? .base, type: dayType)//DayTypeInfo.getDayInfo(for: dayType).color
     }
 }

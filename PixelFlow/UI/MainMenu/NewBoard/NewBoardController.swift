@@ -46,8 +46,9 @@ class NewBoardController: UIViewController {
             guard let self = self else { return }
             let pickerView = ImagePickerView()
 
-            pickerView.selectImageAction = { [weak self] image in
+            pickerView.selectImageAction = { [weak self] image, color in
                 self?.container.nameField.settingButton.setImage(image, for: .normal)
+                self?.container.boardColor = color
             }
 
             self.view.addSubview(pickerView)
@@ -57,9 +58,9 @@ class NewBoardController: UIViewController {
             guard let self = self else { return }
 
             let pickerView = ColorPickerView()
-            pickerView.colorViewAction = { [weak self] color in
+            pickerView.colorViewAction = { [weak self] dayType in
                 guard let self = self else { return }
-                self.container.selectedParameter?.buttonColor = color ?? UIColor.PF.background
+                self.container.selectedParameter?.dayType = dayType
 
             }
             self.view.addSubview(pickerView)
@@ -69,6 +70,6 @@ class NewBoardController: UIViewController {
         container.layout.all.equal(to: layout)
     }
 
-
+    
 
 }
