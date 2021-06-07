@@ -83,17 +83,17 @@ class PixelSheetController: UIViewController {
     }
     
     func layoutFAB() {
-        floaty.buttonImage = #imageLiteral(resourceName: "settings")
+        floaty.buttonImage = UIImage(named: presenter.board.imageName)
       
       floaty.hasShadow = false
 
-        floaty.addItem("Settings", icon: #imageLiteral(resourceName: "home_icon")) {
-            item in
-            let vc = NewBoardController()
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
-        }
-        floaty.addItem("All Boards", icon: #imageLiteral(resourceName: "settings")) { item in
+//        floaty.addItem("Settings", icon: #imageLiteral(resourceName: "home_icon")) {
+//            item in
+//            let vc = NewBoardController()
+//            vc.modalPresentationStyle = .fullScreen
+//            self.present(vc, animated: true, completion: nil)
+//        }
+        floaty.addItem("pf_all_boards".localize(), icon: #imageLiteral(resourceName: "lib")) { item in
         let vc = MainMenuController()
         vc.modalPresentationStyle = .fullScreen
 

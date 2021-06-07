@@ -8,11 +8,14 @@
 import UIKit
 
 class NotificationSettingView: UIView {
+
     let timePicker: UIDatePicker = {
         let picker = UIDatePicker()
        picker.layer.borderWidth = 1
         picker.layer.borderColor = UIColor.PF.stroke.cgColor
         picker.layer.cornerRadius = 10
+//let date = makeDate(year: 2021, month: 1, day: 1, hr: 08, min: 0, sec: 0)
+       // picker.setDate(date, animated: false)
 
 
         picker.subviews.first?.subviews.forEach { grayView in
@@ -41,8 +44,16 @@ class NotificationSettingView: UIView {
         timePicker.addTarget(self, action: #selector(startTimeDiveChanged), for: UIControl.Event.valueChanged)
     }
 
+   static func makeDate(year: Int, month: Int, day: Int, hr: Int, min: Int, sec: Int) -> Date {
+        var calendar = Calendar(identifier: .gregorian)
+        // calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        let components = DateComponents(year: year, month: month, day: day, hour: hr, minute: min, second: sec)
+        return calendar.date(from: components)!
+    }
+
     @objc func startTimeDiveChanged(sender: UIDatePicker) {
-        print("chlen ----")
+        print("chlen ----m\(sender.date)")
+
 //        let formatter = DateFormatter()
 //        formatter.timeStyle = .short
 //            timePicker.removeFromSuperview() // if you want to remove time picker

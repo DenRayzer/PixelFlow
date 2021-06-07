@@ -12,12 +12,10 @@ class MainMenuController: UIViewController {
     let tableView = UITableView()
     let storageManager = StorageManager()
 
-    var boards: [Board] = []//["Настроение", "Доска с длинным названием, очень длинным", "Я рисую"]
-    //   let images: [UIImage] = [#imageLiteral(resourceName: "smile-cyan"),#imageLiteral(resourceName: "heart-lilac"),#imageLiteral(resourceName: "apple-peach")]
+    var boards: [Board] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        boards = storageManager.getBoards()
         configureHeader()
         configureTableView()
         view.backgroundColor = UIColor.PF.background
@@ -30,6 +28,25 @@ class MainMenuController: UIViewController {
         settingsButton.layout.width.equal(to: 50)
         settingsButton.layout.bottom.equal(to: view, offset: -24)
         settingsButton.layout.right.equal(to: view, offset: -24)
+        settingsButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showNewBoardView(_:))))
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            guard let self = self else { return }
+            self.boards = self.storageManager.getBoards()
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+    }
+
+    @objc private func showNewBoardView(_ sender: UITapGestureRecognizer? = nil) {
+        let vc = NewBoardController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
 
     private func configureHeader() {
@@ -46,7 +63,7 @@ class MainMenuController: UIViewController {
 
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.layout.top.equal(to: navigationBar.layout.bottom, offset: 12)
+        tableView.layout.top.equal(to: navigationBar.layout.bottom, offset: 24)
         tableView.layout.bottom.equal(to: view)
         tableView.layout.horizontal.equal(to: view)
 
@@ -56,6 +73,17 @@ class MainMenuController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.register(MainMenuTableViewCell.self, forCellReuseIdentifier: MainMenuTableViewCell.identifier)
 
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if granted {
+                print("We have permission")
+            } else {
+                print("Permission denied")
+            }
+        }
     }
 
 }
@@ -80,6 +108,11 @@ extension MainMenuController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as? MainMenuTableViewCell
         ThemeHelper.currentBoard = cell?.currentBoard
+        measure("ХЫХЫХЫХ") { finish in
+            ThemeHelper.currentBoard?.years.forEach { $0.configureMonths() }
+            finish()
+        }
+
         let vc = PixelSheetController()// cell?.currentBoard
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
@@ -116,23 +149,51 @@ extension MainMenuController: UITableViewDelegate, UITableViewDataSource {
     @objc
     private func leftButton(_ sender: UITapGestureRecognizer? = nil) {
 
-        guard let sender = sender?.view else { return }
-        print(" mfdkvmk")
+        guard let sender = sender?.view, // as? UIButton else { return }
+        let cell = sender.superview?.superview as? MainMenuTableViewCell else { return }
+
         let vc = CellMenuViewController()
+        vc.board = cell.currentBoard
+        if boards.count == 1 {
+            vc.isLastBoard = true
+            vc.onDeleteAction = { [weak self] _ in
+                vc.dismiss(animated: false) {
+                self?.showMessageAlert(title: "Нельзя удалить единственную доску", message: "В приложении должна быть хотя бы одна активная доска.")
+                }
+            }
+        } else {
+            vc.onDeleteAction = { [weak self] isSucceed in
+                if isSucceed {
+                    self?.boards.removeAll(where: { $0.name == cell.currentBoard?.name ?? "" })
+                    self?.tableView.reloadData()
+                } else {
+                    self?.showMessageAlert(title: "Возникла ошибка при удалении", message: "Попробуйте повторить попытку позже")
+                }
+            }
+        }
         vc.modalPresentationStyle = .popover
         let popoverVC = vc.popoverPresentationController
         popoverVC?.delegate = self
         popoverVC?.sourceView = sender
-        popoverVC?.sourceRect = CGRect(x: sender.bounds.minX, y: sender.bounds.midY, width: 0, height: 0)
-      //  vc.preferredContentSize = CGSize(width: 250,height: 250)
         present(vc, animated: true, completion: nil)
+    }
+
+    private func showMessageAlert(title: String, message: String) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        alert.setValue(NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: UIFont.font(family: .rubik(.medium), size: 18), NSAttributedString.Key.foregroundColor: UIColor.PF.regularText]), forKey: "attributedTitle")
+        alert.setValue(NSAttributedString(string: message, attributes: [NSAttributedString.Key.font: UIFont.font(family: .rubik(.regular), size: 14), NSAttributedString.Key.foregroundColor: UIColor.PF.regularText]), forKey: "attributedMessage")
+
+        alert.view.tintColor = UIColor.PF.regularText
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+
     }
 
 }
 
 extension MainMenuController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        .none
+            .none
     }
 
 }

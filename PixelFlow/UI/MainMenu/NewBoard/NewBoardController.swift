@@ -41,6 +41,11 @@ class NewBoardController: UIViewController {
         layout.showsVerticalScrollIndicator = false
         layout.keyboardDismissMode = .onDrag
 
+        container.saveBoardAction = { [weak self] board in
+            let storageManager = StorageManager()
+            storageManager.saveBoard(board: board)
+            self?.dismiss(animated: true)
+        }
         layout.addSubview(container)
         container.selectImageAction = { [weak self] in
             guard let self = self else { return }
@@ -70,6 +75,6 @@ class NewBoardController: UIViewController {
         container.layout.all.equal(to: layout)
     }
 
-    
+
 
 }

@@ -17,12 +17,6 @@ class Day {
         self.date = date
         self.notes = notes
         self.additionalColors = additionalColors
-        var dayType: DayType = .null
-        DayType.allCases.forEach { i in
-            if i.rawValue == typeId {
-                dayType = i
-            }
-        }
-        self.type = dayType
+        self.type = DayType(rawValue: typeId) ?? .null
     }
 }

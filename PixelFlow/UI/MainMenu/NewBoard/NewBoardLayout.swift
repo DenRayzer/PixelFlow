@@ -9,6 +9,7 @@ import UIKit
 
 class NewBoardLayout: UIView {
     var boardColor: BoardColor?
+    var saveBoardAction: (_ board: Board) -> Void = {_ in}
     private let parametersTitleLabel = Label(type: .regularInfo, textMode: .default, text: "pf_add_parameters_title".localize())
     private let notificationsTitleLabel = Label(type: .regularInfo, textMode: .default, text: "pf_add_notifications_title".localize())
     private(set) var addParameterButton: SoftUIView = {
@@ -239,10 +240,13 @@ class NewBoardLayout: UIView {
                                              color: parameterView.dayType.rawValue,
                                              colorSheme: 0))
         }
+        let notificationManager = NotificationManager()
 
         var notifications: [NotificationSetting] = []
         notificationsViews.forEach { notificationView in
-            notifications.append(NotificationSetting(time: notificationView.timePicker.date, isOn: notificationView.toggle.isOn))
+            let setting = NotificationSetting(time: notificationView.timePicker.date, isOn: notificationView.toggle.isOn)
+            notifications.append(setting)
+            notificationManager.scheduleNotification(notification: setting, boardName: nameField.textField.text ?? "")
         }
 
         let board = Board(name: nameField.textField.text ?? "",
@@ -253,8 +257,7 @@ class NewBoardLayout: UIView {
                           parameters: parameters,
                           notifications: notifications)
 
-        let storageManager = StorageManager()
-        storageManager.saveBoard(board: board)
+        saveBoardAction(board)
     }
 
     @objc

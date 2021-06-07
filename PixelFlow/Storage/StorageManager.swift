@@ -8,7 +8,7 @@
 import Foundation
 
 class StorageManager {
-    var storageManagerDelegate: StorageManagerDelegate = DataStoreManager()
+    var storageManagerDelegate: StorageManagerDelegate = CoreDataDataStoreManager()
 
     func saveDay(day: Day) {
         storageManagerDelegate.updateDay(day)
@@ -22,4 +22,7 @@ class StorageManager {
         storageManagerDelegate.saveBoard(board: board)
     }
 
+    func deleteBoard(boardName: String) -> Bool {
+        storageManagerDelegate.deleteBoard(boardName: boardName)
+    }
 }

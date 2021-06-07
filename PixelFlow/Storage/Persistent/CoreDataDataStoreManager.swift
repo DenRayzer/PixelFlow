@@ -8,12 +8,8 @@
 import Foundation
 import CoreData
 
-class DataStoreManager: StorageManagerDelegate {
+class CoreDataDataStoreManager: StorageManagerDelegate {
     func updateBoard(board: Board) {
-
-    }
-
-    func deleteBoard(board: Board) {
 
     }
 
@@ -41,80 +37,16 @@ class DataStoreManager: StorageManagerDelegate {
         }
     }
 
-//    func updateDay(_ dayToSave: Day) {
-//        print("DATE ----  Date ---- \(dayToSave.date)")
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Day")
-//        fetchRequest.predicate = NSPredicate(format: "date == %@", dayToSave.date as CVarArg)
-//        if let mm = try? viewContext.fetch(fetchRequest) as? [DayMO] {
-//
-//            guard let _ = mm.first else {
-//                print("vkdsijvidsvjsi ---- jisdjfisdjvsid")
-//
-//                //    let dayMO = makeDayMO(from: dayToSave)
-//                saveDayForYear(year: dayToSave.date.get(.year), dayToSave: dayToSave)
-//                return
-//            }
-//            print("повторное ---- jisdjfisdjvsid")
-//            mm.first!.colorId = dayToSave.type.rawValue
-//
-//            var additionalColors: [AdditionalColorMO] = []
-//            dayToSave.additionalColors.forEach { additionalColor in
-//                let color = AdditionalColorMO(context: viewContext)
-//                color.colorId = additionalColor.colorType.rawValue
-//                color.time = additionalColor.date
-//                additionalColors.append(color)
-//            }
-//
-//            var notes: [NoteMO] = []
-//            dayToSave.notes.forEach { note in
-//                let noteMO = NoteMO(context: viewContext)
-//                noteMO.note = note.text
-//                noteMO.time = note.date
-//                notes.append(noteMO)
-//            }
-//
-//            mm.first!.addToAdditionalColor(NSOrderedSet(array: additionalColors)) //.addToAdditionalColor(NSOrderedSet(array: additionalColors))
-//            mm.first!.addToNote(NSOrderedSet(array: notes))
-//            try? viewContext.save()
-//            //  saveContext()
-//        }
-//    }
-
     func updateDay(_ dayToSave: Day) {
-        print("DATE ----  Date ---- \(dayToSave.date)")
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Board")
         fetchRequest.predicate = NSPredicate(format: "name == %@", ThemeHelper.currentBoard?.name ?? "")
         if let board = try? viewContext.fetch(fetchRequest) as? [BoardMO] {
 
             guard let _ = board.first else {
-                print("vkdsijvidsvjsi ---- jisdjfisdjvsid")
 
-                //    let dayMO = makeDayMO(from: dayToSave)
-                //   saveDayForYear(year: dayToSave.date.get(.year), dayToSave: dayToSave)
                 return
             }
-            print("повторное ---- jisdjfisdjvsid")
             let newDay = makeDayMO(from: dayToSave)
-//            mm.first!.colorId = dayToSave.type.rawValue
-//
-//            var additionalColors: [AdditionalColorMO] = []
-//            dayToSave.additionalColors.forEach { additionalColor in
-//                let color = AdditionalColorMO(context: viewContext)
-//                color.colorId = additionalColor.colorType.rawValue
-//                color.time = additionalColor.date
-//                additionalColors.append(color)
-//            }
-//
-//            var notes: [NoteMO] = []
-//            dayToSave.notes.forEach { note in
-//                let noteMO = NoteMO(context: viewContext)
-//                noteMO.note = note.text
-//                noteMO.time = note.date
-//                notes.append(noteMO)
-//            }
-
-//            mm.first!.addToAdditionalColor(NSOrderedSet(array: additionalColors)) //.addToAdditionalColor(NSOrderedSet(array: additionalColors))
-//            mm.first!.addToNote(NSOrderedSet(array: notes))
             board.first?.years.forEach { year in
                 guard let year = year as? YearMO else { return }
                 if year.year == dayToSave.date.get(.year) {
@@ -141,7 +73,6 @@ class DataStoreManager: StorageManagerDelegate {
                             }
                             day.addToAdditionalColor(NSOrderedSet(array: additionalColors))
                             day.addToNote(NSOrderedSet(array: notes))
-                            print("bfgkib fgdgb1 --------")
                             return
                         }
                     }
@@ -149,13 +80,10 @@ class DataStoreManager: StorageManagerDelegate {
                         let dayMO = makeDayMO(from: dayToSave)
                         year.addToDays(dayMO)
                     }
-                    print("nhgminfgj jbifg2 ---")
-                    //     year.addToDays(newDay)
                     return
                 }
             }
             try? viewContext.save()
-            //  saveContext()
         }
     }
 
@@ -232,6 +160,7 @@ class DataStoreManager: StorageManagerDelegate {
         do {
             if let boards = try viewContext.fetch(fetchRequest) as? [BoardMO] {
                 if boards.count > 0 {
+                    print("ZASHLO SYDA ---------")
                     return convertBoardsMO(boardsMO: boards)
                 } else {
                     return convertBoardsMO(boardsMO: [intitBoard()])
@@ -340,7 +269,7 @@ class DataStoreManager: StorageManagerDelegate {
 }
 
 // MARK: - convert models methods
-extension DataStoreManager {
+extension CoreDataDataStoreManager {
     private func convertBoardsMO(boardsMO: [BoardMO]) -> [Board] {
         var boards: [Board] = []
 
@@ -349,22 +278,31 @@ extension DataStoreManager {
             let board = Board(name: boardMO.name,
                 imageName: boardMO.imageName,
                 mainColorId: boardMO.mainColorId,
-                years: convertYearsMO(yearsSet: boardMO.years),
+               years: convertYearsMO(yearsSet: boardMO.years),
                 colorShemeId: boardMO.colorSheme,
                 parameters: parameters,
                 notifications: convertNotificationsMO(notificationsSet: boardMO.notifications))
             boards.append(board)
         }
+
+        print("A Typer ZASHLO SYDA ---------")
         return boards
     }
 
     private func convertYearsMO(yearsSet: NSOrderedSet) -> [Year] {
         guard let yearMO = yearsSet.array as? [YearMO] else { return [] }
         var years: [Year] = []
+
+        print("ggg1 \(Date())")
+
         yearMO.forEach { mo in
             let year = Year(year: mo.year, days: convertDays(daysSet: mo.days ?? NSOrderedSet()))
             years.append(year)
+          //  i += 1
         }
+
+        print("ggg2 \(Date())")
+
         return years
     }
 
@@ -431,13 +369,13 @@ extension DataStoreManager {
 }
 
 // MARK: --- SaveBoard
-extension DataStoreManager {
+extension CoreDataDataStoreManager {
 
     private func createBaseYears() -> NSSet {
         var years: [YearMO] = []
         let components = Calendar.current.dateComponents([.year], from: Date())
 
-        for i in 0...5 {
+        for i in 0...3 {
             print("vfdvfd  \(components)")
             let year = YearMO(context: viewContext)
 
@@ -488,3 +426,20 @@ extension DataStoreManager {
 
 }
 
+// MARK: --- DeleteBoard
+extension CoreDataDataStoreManager {
+    func deleteBoard(boardName: String) -> Bool {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Board")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", boardName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try viewContext.execute(deleteRequest)
+            try viewContext.save()
+            return true
+        } catch let error {
+            print ("There was an error \(error.localizedDescription)")
+            return false
+        }
+    }
+}

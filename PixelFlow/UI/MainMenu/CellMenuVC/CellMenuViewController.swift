@@ -7,83 +7,140 @@
 
 import UIKit
 
+fileprivate enum MenuItem: RawRepresentable {
+    case edit
+    case setMain
+    case delete
+
+    static let allValues = [edit, setMain, delete]
+
+    init?(rawValue: (name: String, image: UIImage)) {
+        switch rawValue {
+        case (name: "Edit", image: #imageLiteral(resourceName: "edit_16")): self = .edit
+        case (name: "Set main", image: #imageLiteral(resourceName: "home_16")): self = .setMain
+        case (name: "Delete", image: #imageLiteral(resourceName: "delete_16")): self = .delete
+        default: return nil
+        }
+    }
+    var rawValue: (name: String, image: UIImage) {
+        switch self {
+        case .edit:
+            return (name: "Edit", image: #imageLiteral(resourceName: "edit_16"))
+        case .setMain:
+            return (name: "Set main", image: #imageLiteral(resourceName: "home_16"))
+        case .delete:
+            return (name: "Delete", image: #imageLiteral(resourceName: "delete_16"))
+        }
+    }
+}
+
 class CellMenuViewController: UITableViewController {
+    let dataStoreManager = StorageManager()
+    var board: Board?
+    var onDeleteAction: (_ isSucceed: Bool) -> Void = { _ in }
+    var isLastBoard = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.separatorStyle = .none
+        tableView.register(CellMenuCell.self, forCellReuseIdentifier: "cell")
+        tableView.isScrollEnabled = false
+    }
+
+    override func viewWillLayoutSubviews() {
+        preferredContentSize = CGSize(width: 200, height: tableView.contentSize.height)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return MenuItem.allValues.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellMenuCell
+        cell.item = MenuItem.allValues[indexPath.row]
+        cell.textLabel?.text = MenuItem.allValues[indexPath.row].rawValue.name
+        cell.imageView?.image = MenuItem.allValues[indexPath.row].rawValue.image
 
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? CellMenuCell else { return }
+        switch cell.item {
+        case .edit:
+            editBoard()
+        case .setMain:
+            setMAinBoard()
+        case .delete:
+            deleteBoard()
+        }
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        50
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    private func editBoard() {
 
     }
-    */
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    private func setMAinBoard() {
+
     }
-    */
 
-    /*
-    // MARK: - Navigation
+    private func deleteBoard() {
+        guard let board = board, !isLastBoard else {
+            onDeleteAction(false)
+            return
+        }
+        NotificationManager().removeNotification(for: board.notifications.map { "\(board.name)-\($0.time))" })
+        let isSucceed = dataStoreManager.deleteBoard(boardName: board.name)
+        onDeleteAction(isSucceed)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        dismiss(animated: true)
+
     }
-    */
-
 }
+
+fileprivate class CellMenuCell: UITableViewCell {
+    var item: MenuItem = .edit
+    //       var label = Label()
+    //  var imageView = UIImageView()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        commonInit()
+
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        commonInit()
+
+    }
+
+    private func commonInit() {
+        textLabel?.font = .font(family: .rubik(.regular), size: 14)
+        textLabel?.textColor = UIColor.PF.regularText
+        textLabel?.layout.left.equal(to: self, offset: 16)
+        textLabel?.layout.centerY.equal(to: self)
+
+//        imageView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        imageView?.layout.left.equal(to: (textLabel?.layout.right)!, offset: 16)
+        imageView?.layout.centerY.equal(to: self)
+        imageView?.layout.right.equal(to: self, offset: -32)
+    }
+}
+

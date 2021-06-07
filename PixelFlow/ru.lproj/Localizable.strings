@@ -27,6 +27,7 @@
 "pf_month_dec" = "Дек";
 
 "pf_your_boards" = "Ваши доски";
+"pf_all_boards" = "Все доски";
 "pf_new_board" = "Новая доска";
 "pf_name_field_placeholder" = "Название";
 "pf_add_parameters_title" = "Добавьте параметры";
