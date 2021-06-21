@@ -72,18 +72,6 @@ class MainMenuController: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.register(MainMenuTableViewCell.self, forCellReuseIdentifier: MainMenuTableViewCell.identifier)
-
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
-            if granted {
-                print("We have permission")
-            } else {
-                print("Permission denied")
-            }
-        }
     }
 
 }
@@ -149,16 +137,22 @@ extension MainMenuController: UITableViewDelegate, UITableViewDataSource {
     @objc
     private func leftButton(_ sender: UITapGestureRecognizer? = nil) {
 
-        guard let sender = sender?.view, // as? UIButton else { return }
-        let cell = sender.superview?.superview as? MainMenuTableViewCell else { return }
-
+        guard let sender = sender?.view,
+            let cell = sender.superview?.superview as? MainMenuTableViewCell else { return }
         let vc = CellMenuViewController()
         vc.board = cell.currentBoard
+        vc.onEditAction = {
+            vc.dismiss(animated: false) {
+                let vc = NewBoardController(boardToChange: cell.currentBoard)
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
         if boards.count == 1 {
             vc.isLastBoard = true
             vc.onDeleteAction = { [weak self] _ in
                 vc.dismiss(animated: false) {
-                self?.showMessageAlert(title: "Нельзя удалить единственную доску", message: "В приложении должна быть хотя бы одна активная доска.")
+                    self?.showMessageAlert(title: "Нельзя удалить единственную доску", message: "В приложении должна быть хотя бы одна активная доска.")
                 }
             }
         } else {

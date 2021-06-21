@@ -19,6 +19,7 @@ class FieldWithButtonView: UIView, UITextViewDelegate, UITextFieldDelegate {
     let textField: UITextField = {
         let field = UITextField()
         field.font = .font(family: .rubik(.medium), size: 16)
+        field.textColor = UIColor.PF.regularText
         field.placeholder = "pf_name_field_placeholder".localize()
         field.layer.borderWidth = 1
         field.layer.borderColor = UIColor.PF.stroke.cgColor

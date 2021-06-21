@@ -15,23 +15,35 @@ class PixelSheetController: UIViewController {
     private var lastContentOffset: CGFloat = 0
     let collectionViewFlowLayout = UICollectionViewFlowLayout()
     var floaty = Floaty()
-    var presenter: PixelSheetPresenterDelegate = PixelSheetPresenter()
+    var presenter: PixelSheetPresenterDelegate!
 
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        presenter = PixelSheetPresenter()
+        print( "чпок \(presenter.board.name)")
         setupViews()
-        
-    //    DataStoreManager().saveDay(Date())
+
+        //    DataStoreManager().saveDay(Date())
     }
 
     override func viewWillAppear(_ animated: Bool) {
-      //  let man = DataStoreManager()
-      //  man.fetchBoars()
+        //  let man = DataStoreManager()
+        //  man.fetchBoars()
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if granted {
+                print("We have permission")
+            } else {
+                print("Permission denied")
+            }
+        }
     }
 
     private func setupViews() {
@@ -75,41 +87,36 @@ class PixelSheetController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
-    } 
+    }
 
     private func setupSettingsButton() {
         layoutFAB()
         floaty.addDragging()
     }
-    
+
     func layoutFAB() {
         floaty.buttonImage = UIImage(named: presenter.board.imageName)
-      
-      floaty.hasShadow = false
 
-//        floaty.addItem("Settings", icon: #imageLiteral(resourceName: "home_icon")) {
-//            item in
-//            let vc = NewBoardController()
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true, completion: nil)
-//        }
+        floaty.hasShadow = false
+
         floaty.addItem("pf_all_boards".localize(), icon: #imageLiteral(resourceName: "lib")) { item in
-        let vc = MainMenuController()
-        vc.modalPresentationStyle = .fullScreen
+            let vc = MainMenuController()
+            vc.modalPresentationStyle = .fullScreen
 
-        self.present(vc, animated: true, completion: nil)
-      }
+            self.present(vc, animated: true, completion: nil)
+        }
         floaty.paddingX = view.safeAreaInsets.right + 20
         floaty.paddingY = view.safeAreaInsets.bottom + 20
-      floaty.fabDelegate = self
-      
+        floaty.fabDelegate = self
+
         floaty.overlayColor = .clear
-      self.view.addSubview(floaty)
-      
+        self.view.addSubview(floaty)
+
     }
 
     private func setupHeaderButtons() {
         let leftRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleHeaderLeftButtonTap(_:)))
+        header.rightButton.isEnabled = false
         header.leftButton.addGestureRecognizer(leftRecognizer)
         let rightRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleHeaderRightButtonTap(_:)))
         header.rightButton.addGestureRecognizer(rightRecognizer)
@@ -117,6 +124,7 @@ class PixelSheetController: UIViewController {
 
     @objc
     func handleHeaderLeftButtonTap(_ sender: UITapGestureRecognizer? = nil) {
+        header.rightButton.isEnabled = true
         guard var currentIndexPath = collectionView.indexPathsForVisibleItems.first else { return }
         if currentYearIndex == presenter.years.count - 1 { return }
         currentIndexPath.row += 1
@@ -132,6 +140,9 @@ class PixelSheetController: UIViewController {
         if currentYearIndex == 0 { return }
         currentIndexPath.row -= 1
         currentYearIndex -= 1
+        if currentYearIndex == 0 {
+            header.rightButton.isEnabled = false
+        }
         header.titleButton.setTitle(String(presenter.years[currentYearIndex].year), for: .normal)
         collectionView.setContentOffset(CGPoint(x: CGFloat(currentYearIndex) * collectionView.frame.width, y: 0), animated: true)
         lastContentOffset = collectionView.contentOffset.x
@@ -155,9 +166,13 @@ extension PixelSheetController: UICollectionViewDataSource, UICollectionViewDele
         if lastContentOffset > scrollView.contentOffset.x && lastContentOffset <= scrollView.contentSize.width - scrollView.frame.width {
             if currentYearIndex == 0 { return }
             currentYearIndex -= 1
+            if currentYearIndex == 0 {
+                header.rightButton.isEnabled = false
+            }
             header.titleButton.setTitle(String(presenter.years[currentYearIndex].year), for: .normal)
             lastContentOffset = scrollView.contentOffset.x
         } else if lastContentOffset < scrollView.contentOffset.x && scrollView.contentOffset.x > 0 {
+            header.rightButton.isEnabled = true
             if currentYearIndex == presenter.years.count - 1 { return }
             currentYearIndex += 1
             header.titleButton.setTitle(String(presenter.years[currentYearIndex].year), for: .normal)
@@ -167,5 +182,5 @@ extension PixelSheetController: UICollectionViewDataSource, UICollectionViewDele
 }
 
 extension PixelSheetController: FloatyDelegate {
-    
+
 }

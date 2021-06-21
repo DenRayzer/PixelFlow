@@ -15,7 +15,7 @@ public class BoardMO: NSManagedObject {
     func save(name: String = "pf_mood_board".localize(),
         imageName: String = "yin-yang-cyan",
         notifications: NSSet,
-        parameters: NSSet,
+        parameters: NSOrderedSet,
         years: NSSet) {
 
         self.name = name

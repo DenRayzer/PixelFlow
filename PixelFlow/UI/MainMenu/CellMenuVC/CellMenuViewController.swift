@@ -16,20 +16,20 @@ fileprivate enum MenuItem: RawRepresentable {
 
     init?(rawValue: (name: String, image: UIImage)) {
         switch rawValue {
-        case (name: "Edit", image: #imageLiteral(resourceName: "edit_16")): self = .edit
-        case (name: "Set main", image: #imageLiteral(resourceName: "home_16")): self = .setMain
-        case (name: "Delete", image: #imageLiteral(resourceName: "delete_16")): self = .delete
+        case (name: "Редактировать", image: #imageLiteral(resourceName: "edit_16")): self = .edit
+        case (name: "Главная доска", image: #imageLiteral(resourceName: "home_16")): self = .setMain
+        case (name: "Удалить", image: #imageLiteral(resourceName: "delete_16")): self = .delete
         default: return nil
         }
     }
     var rawValue: (name: String, image: UIImage) {
         switch self {
         case .edit:
-            return (name: "Edit", image: #imageLiteral(resourceName: "edit_16"))
+            return (name: "Редактировать", image: #imageLiteral(resourceName: "edit_16"))
         case .setMain:
-            return (name: "Set main", image: #imageLiteral(resourceName: "home_16"))
+            return (name: "Главная доска", image: #imageLiteral(resourceName: "home_16"))
         case .delete:
-            return (name: "Delete", image: #imageLiteral(resourceName: "delete_16"))
+            return (name: "Удалить", image: #imageLiteral(resourceName: "delete_16"))
         }
     }
 }
@@ -38,7 +38,9 @@ class CellMenuViewController: UITableViewController {
     let dataStoreManager = StorageManager()
     var board: Board?
     var onDeleteAction: (_ isSucceed: Bool) -> Void = { _ in }
+    var onEditAction: () -> Void = { }
     var isLastBoard = false
+    var isMain = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +48,7 @@ class CellMenuViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.register(CellMenuCell.self, forCellReuseIdentifier: "cell")
         tableView.isScrollEnabled = false
+
     }
 
     override func viewWillLayoutSubviews() {
@@ -68,9 +71,14 @@ class CellMenuViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CellMenuCell
         cell.item = MenuItem.allValues[indexPath.row]
-        cell.textLabel?.text = MenuItem.allValues[indexPath.row].rawValue.name
+        if cell.item == .setMain && board?.name == StorageManager.getMainBoardName() {
+            cell.textLabel?.text = MenuItem.allValues[indexPath.row].rawValue.name + "  ✓"
+            isMain = true
+        } else {
+            cell.textLabel?.text = MenuItem.allValues[indexPath.row].rawValue.name
+        }
         cell.imageView?.image = MenuItem.allValues[indexPath.row].rawValue.image
-
+        cell.selectionStyle = .none
         return cell
     }
 
@@ -80,6 +88,9 @@ class CellMenuViewController: UITableViewController {
         case .edit:
             editBoard()
         case .setMain:
+            if !isMain {
+                cell.textLabel?.text = MenuItem.allValues[indexPath.row].rawValue.name + "  ✓"
+            }
             setMAinBoard()
         case .delete:
             deleteBoard()
@@ -91,23 +102,47 @@ class CellMenuViewController: UITableViewController {
     }
 
     private func editBoard() {
-
+        onEditAction()
     }
 
     private func setMAinBoard() {
-
+        guard let board = board else { return }
+        isMain = true
+        StorageManager.setMainBoardName(name: board.name)
+        dismiss(animated: true)
     }
 
     private func deleteBoard() {
-        guard let board = board, !isLastBoard else {
+        guard let board = board, !isLastBoard, !(StorageManager.getMainBoardName() == board.name) else {
             onDeleteAction(false)
             return
         }
-        NotificationManager().removeNotification(for: board.notifications.map { "\(board.name)-\($0.time))" })
-        let isSucceed = dataStoreManager.deleteBoard(boardName: board.name)
-        onDeleteAction(isSucceed)
 
-        dismiss(animated: true)
+        let alertController = UIAlertController(title: "Вы уверены, что хотите удалить доску '\(board.name)'?", message: "Данные будут потеряны навсегда.", preferredStyle: .alert)
+
+        // Create OK button
+        let OKAction = UIAlertAction(title: "Удалить", style: .default) { (action: UIAlertAction!) in
+
+            // Code in this block will trigger when OK button tapped.
+            NotificationManager().removeNotification(for: board.notifications.map { "\(board.name)-\($0.time))" })
+            let isSucceed = self.dataStoreManager.deleteBoard(boardName: board.name)
+            self.onDeleteAction(isSucceed)
+            self.dismiss(animated: true)
+            print("Ok button tapped");
+        }
+        alertController.addAction(OKAction)
+
+        // Create Cancel button
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action: UIAlertAction!) in
+            print("Cancel button tapped");
+            self.dismiss(animated: true)
+        }
+        alertController.addAction(cancelAction)
+
+        // Present Dialog message
+        self.present(alertController, animated: true, completion: nil)
+
+    //    dismiss(animated: true)
 
     }
 }

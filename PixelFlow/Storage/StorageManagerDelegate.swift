@@ -11,6 +11,7 @@ protocol StorageManagerDelegate {
     func updateDay(_ dayToSave: Day)
     func getBoards() -> [Board]
     func saveBoard(board: Board)
-    func updateBoard(board: Board)
+    func updateBoard(boardToUpdate: Board)
     func deleteBoard(boardName: String) -> Bool
+    func getBoardByName(boardName: String) -> Board?
 }

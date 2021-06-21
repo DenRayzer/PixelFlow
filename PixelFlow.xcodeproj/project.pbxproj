@@ -56,8 +56,6 @@
 		6EC1189026234B8C00212203 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1188D26234B4400212203 /* Rubik-Regular.ttf */; };
 		6EC1189326234E7700212203 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1189226234E7700212203 /* UIFont+Extension.swift */; };
 		6EC118A12623664F00212203 /* SoftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC118A02623664F00212203 /* SoftUIView.swift */; };
-		6ED49EBC2651045D0084B6D9 /* EditBoardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED49EBB2651045D0084B6D9 /* EditBoardLayout.swift */; };
-		6ED49EBF2651062D0084B6D9 /* EditBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED49EBE2651062D0084B6D9 /* EditBoardController.swift */; };
 		6ED49EE8265127730084B6D9 /* PixelFlowDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6ED49EE6265127730084B6D9 /* PixelFlowDB.xcdatamodeld */; };
 		6ED49F5B265158610084B6D9 /* CoreDataDataStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED49F5A265158610084B6D9 /* CoreDataDataStoreManager.swift */; };
 		6ED49F6A265163B90084B6D9 /* NotificationMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED49F5E265163B80084B6D9 /* NotificationMO+CoreDataClass.swift */; };
@@ -150,8 +148,6 @@
 		6EC1188D26234B4400212203 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		6EC1189226234E7700212203 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		6EC118A02623664F00212203 /* SoftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftUIView.swift; sourceTree = "<group>"; };
-		6ED49EBB2651045D0084B6D9 /* EditBoardLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBoardLayout.swift; sourceTree = "<group>"; };
-		6ED49EBE2651062D0084B6D9 /* EditBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBoardController.swift; sourceTree = "<group>"; };
 		6ED49EE7265127730084B6D9 /* PixelFlowDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PixelFlowDB.xcdatamodel; sourceTree = "<group>"; };
 		6ED49F5A265158610084B6D9 /* CoreDataDataStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDataStoreManager.swift; sourceTree = "<group>"; };
 		6ED49F5E265163B80084B6D9 /* NotificationMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NotificationMO+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -261,15 +257,6 @@
 				6EC1186C2621ED4B00212203 /* CalendarHeader */,
 			);
 			path = Layout;
-			sourceTree = "<group>";
-		};
-		6EB8303B2650727900883B55 /* EditBoard */ = {
-			isa = PBXGroup;
-			children = (
-				6ED49EBB2651045D0084B6D9 /* EditBoardLayout.swift */,
-				6ED49EBE2651062D0084B6D9 /* EditBoardController.swift */,
-			);
-			path = EditBoard;
 			sourceTree = "<group>";
 		};
 		6EBA74F8261863F600C1F18D = {
@@ -501,7 +488,6 @@
 		7A2DDC8F26346D6C009976EF /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7AE1E5822635CDA900E4E9B2 /* Cells */,
 				6EF8EA1D261A2651009FA21B /* PixelDayView.swift */,
 				7A2DDC8C26346D63009976EF /* ColorInfoItem.swift */,
 				7ACE6C212642FFD70051A5EB /* DottedDayView.swift */,
@@ -521,13 +507,6 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
-		7AE1E5822635CDA900E4E9B2 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		7AEB8F6E2646A22400C6F0D9 /* Floaty */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,7 +524,6 @@
 				6E4D3647266C084B00B66E36 /* CellMenuVC */,
 				7AFFCA7826448173004DA7AF /* MainMenuController.swift */,
 				6EFF2FA62648360A00318BDB /* MainMenuTableViewCell.swift */,
-				6EB8303B2650727900883B55 /* EditBoard */,
 				6E4585E1264ADEDC000166B4 /* NewBoard */,
 			);
 			path = MainMenu;
@@ -694,7 +672,6 @@
 				6EC1189326234E7700212203 /* UIFont+Extension.swift in Sources */,
 				7AE1E5802635BC8900E4E9B2 /* KeyBoardCloser.swift in Sources */,
 				6E089A6C2659876C00E95F01 /* Date+Extension.swift in Sources */,
-				6ED49EBF2651062D0084B6D9 /* EditBoardController.swift in Sources */,
 				6E089A5F2659619000E95F01 /* AdditionalColorMO+CoreDataClass.swift in Sources */,
 				6E3991E8266D309C0060F6CA /* NotificationManager.swift in Sources */,
 				6ED49F70265163B90084B6D9 /* BoardMO+CoreDataClass.swift in Sources */,
@@ -739,7 +716,6 @@
 				6E4585F8264B0D8D000166B4 /* NotificationSettingView.swift in Sources */,
 				6E4D3649266C088100B66E36 /* CellMenuViewController.swift in Sources */,
 				6E089A722659AF2F00E95F01 /* Constants.swift in Sources */,
-				6ED49EBC2651045D0084B6D9 /* EditBoardLayout.swift in Sources */,
 				6E76EAF0261B937500DCF8C9 /* Constrainable.swift in Sources */,
 				7AEB8F742646CF7C00C6F0D9 /* SoftViewBase.swift in Sources */,
 				6E4585FE264C702E000166B4 /* ColorPickerView.swift in Sources */,

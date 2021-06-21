@@ -9,7 +9,6 @@ import UIKit
 
 class NewBoardLayout: UIView {
     var boardColor: BoardColor?
-    var saveBoardAction: (_ board: Board) -> Void = {_ in}
     private let parametersTitleLabel = Label(type: .regularInfo, textMode: .default, text: "pf_add_parameters_title".localize())
     private let notificationsTitleLabel = Label(type: .regularInfo, textMode: .default, text: "pf_add_notifications_title".localize())
     private(set) var addParameterButton: SoftUIView = {
@@ -95,13 +94,18 @@ class NewBoardLayout: UIView {
         return label
     }()
 
+
     var parametersViews: [FieldWithButtonView] = []
+    var savedParameterViews: [FieldWithButtonView] = []
     var notificationsViews: [NotificationSettingView] = []
     var colorViewAction: () -> Void = { }
     var addParameterButtonAction: () -> Void = { }
     var addNotificationButtonAction: () -> Void = { }
     var selectImageAction: () -> Void = { }
     var selectedParameter: FieldWithButtonView?
+    var isEdit = false
+    var saveBoardAction: (_ board: Board) -> Void = { _ in }
+    var updateBoardAction: (_ board: Board) -> Void = { _ in }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -129,16 +133,6 @@ class NewBoardLayout: UIView {
         paremetersContainer.layout.top.equal(to: parametersTitleLabel.layout.bottom, offset: 20)
         paremetersContainer.layout.horizontal.equal(to: self, offset: 16)
 
-        if parametersViews.isEmpty {
-            let view = FieldWithButtonView(isPlaceholderRegular: true)
-            view.settingButton.backgroundColor = UIColor.colorScheme.allValues.first?.color
-            parametersViews.append(view)
-        }
-        parametersViews.forEach { view in
-            view.settingButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorViewAction(_:))))
-            paremetersContainer.addArrangedSubview(view)
-        }
-
         addSubview(addParameterButton)
         addParameterButton.layout.top.equal(to: paremetersContainer.layout.bottom, offset: 20)
         addParameterButton.layout.right.equal(to: self, offset: -16)
@@ -157,10 +151,6 @@ class NewBoardLayout: UIView {
         addSubview(notificationsContainer)
         notificationsContainer.layout.top.equal(to: notificationsTitleLabel.layout.bottom, offset: 20)
         notificationsContainer.layout.left.equal(to: self, offset: 16)
-        notificationsViews.append(NotificationSettingView())
-        notificationsViews.forEach { view in
-            notificationsContainer.addArrangedSubview(view)
-        }
 
         addSubview(addNotificationButton)
         addNotificationButton.layout.bottom.equal(to: notificationsContainer.layout.bottom)
@@ -184,9 +174,26 @@ class NewBoardLayout: UIView {
         saveButton.layout.bottom.equal(to: self, offset: -30)
     }
 
+    func configureParameterViews() {
+        if parametersViews.isEmpty && !isEdit {
+            let view = FieldWithButtonView(isPlaceholderRegular: true)
+            view.settingButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorViewAction(_:))))
+            view.settingButton.backgroundColor = UIColor.colorScheme.allValues.first?.color
+            parametersViews.append(view)
+            paremetersContainer.addArrangedSubview(view)
+        }
+
+        if notificationsViews.isEmpty && !isEdit {
+            notificationsViews.append(NotificationSettingView())
+        }
+        notificationsViews.forEach { view in
+            notificationsContainer.addArrangedSubview(view)
+        }
+    }
+
     @objc
     func handleColorViewAction(_ sender: UITapGestureRecognizer? = nil) {
-         dismissKeyboard()
+        dismissKeyboard()
         guard let selected = sender?.view as? UIButton else { return }
         selectedParameter = selected.superview as? FieldWithButtonView
         colorViewAction()
@@ -195,9 +202,10 @@ class NewBoardLayout: UIView {
     @objc
     func handleAddParameterButton(_ sender: UITapGestureRecognizer? = nil) {
         dismissKeyboard()
-        guard let _ = parametersViews.last?.dayType else { return }
+        if parametersViews.last?.textField.text == "" && parametersViews.count > 0 { return }
         if removeParameterButton.isHidden { removeParameterButton.isHidden = false }
         let view = FieldWithButtonView(isPlaceholderRegular: true)
+        view.settingButton.backgroundColor = ThemeHelper.convertTypeToColor(for: .base, type: .first)
         view.settingButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorViewAction(_:))))
         parametersViews.append(view)
         paremetersContainer.addArrangedSubview(view)
@@ -210,23 +218,48 @@ class NewBoardLayout: UIView {
         dismissKeyboard()
         paremetersContainer.subviews.last?.removeFromSuperview()
         parametersViews.removeLast()
-        if paremetersContainer.subviews.count == 1 { removeParameterButton.isHidden = true }
+        if parametersViews.count == 1 && !isEdit || parametersViews.count == 0 && isEdit { removeParameterButton.isHidden = true }
     }
 
     @objc
     func handleSaveButtonTap(_ sender: UITapGestureRecognizer? = nil) {
         dismissKeyboard()
-        //   func saveNewBoard() {
-        if nameField.textField.text == "" || parametersViews.first?.textField.text == ""
-            || parametersViews.first?.dayType == nil {
+        let lastParameter = paremetersContainer.subviews.last as? FieldWithButtonView
+        if nameField.textField.text == "" || lastParameter?.textField.text == "" {
             errorLabel.text = "АШИБКАjfdjfd!!!!!!!!!"
         } else {
-            print("\(nameField.settingButton.image(for: .normal)?.accessibilityIdentifier)")
-            
-            createBoard()
+            if isEdit {
+                updateBoard()
+            } else {
+                createBoard()
+            }
             errorLabel.text = ""
         }
-        //  }
+    }
+
+    private func updateBoard() {
+        var parameters: [BoardParameter] = []
+        parametersViews.forEach { parameterView in
+            parameters.append(BoardParameter(name: parameterView.textField.text ?? "",
+                color: parameterView.dayType.rawValue,
+                colorSheme: 0))
+        }
+
+        var notifications: [NotificationSetting] = []
+        notificationsViews.forEach { notificationView in
+            let setting = NotificationSetting(time: notificationView.timePicker.date, isOn: notificationView.toggle.isOn)
+            notifications.append(setting)
+        }
+
+        let board = Board(name: nameField.textField.text ?? "",
+            imageName: nameField.settingButton.image(for: .normal)?.accessibilityIdentifier ?? "",
+            mainColorId: (boardColor?.rawValue.id ?? 0),
+            years: [],
+            colorShemeId: 0,
+            parameters: parameters,
+            notifications: notifications)
+
+        updateBoardAction(board)
     }
 
     private func createBoard() {
@@ -237,8 +270,8 @@ class NewBoardLayout: UIView {
         var parameters: [BoardParameter] = []
         parametersViews.forEach { parameterView in
             parameters.append(BoardParameter(name: parameterView.textField.text ?? "",
-                                             color: parameterView.dayType.rawValue,
-                                             colorSheme: 0))
+                color: parameterView.dayType.rawValue,
+                colorSheme: 0))
         }
         let notificationManager = NotificationManager()
 
@@ -246,16 +279,16 @@ class NewBoardLayout: UIView {
         notificationsViews.forEach { notificationView in
             let setting = NotificationSetting(time: notificationView.timePicker.date, isOn: notificationView.toggle.isOn)
             notifications.append(setting)
-            notificationManager.scheduleNotification(notification: setting, boardName: nameField.textField.text ?? "")
+            if setting.isOn { notificationManager.scheduleNotification(notification: setting, boardName: nameField.textField.text ?? "") }
         }
 
         let board = Board(name: nameField.textField.text ?? "",
-                          imageName: nameField.settingButton.image(for: .normal)?.accessibilityIdentifier ?? "",
-                          mainColorId: (boardColor?.rawValue.id ?? 0),
-                          years: years,
-                          colorShemeId: 0,
-                          parameters: parameters,
-                          notifications: notifications)
+            imageName: nameField.settingButton.image(for: .normal)?.accessibilityIdentifier ?? "",
+            mainColorId: (boardColor?.rawValue.id ?? 0),
+            years: years,
+            colorShemeId: 0,
+            parameters: parameters,
+            notifications: notifications)
 
         saveBoardAction(board)
     }
@@ -265,7 +298,6 @@ class NewBoardLayout: UIView {
         dismissKeyboard()
         let view = NotificationSettingView()
         if removeNotificationButton.isHidden { removeNotificationButton.isHidden = false }
-        //   view.toggle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleColorViewAction(_:))))
         notificationsViews.append(view)
         notificationsContainer.addArrangedSubview(view)
 
@@ -284,7 +316,7 @@ class NewBoardLayout: UIView {
     @objc
     func handleSetImageButton(_ sender: UITapGestureRecognizer? = nil) {
         dismissKeyboard()
-        
+
         selectImageAction()
     }
 

@@ -53,10 +53,10 @@ extension BoardMO {
     @NSManaged public func removeFromParameters(_ value: BoardParameterMO)
 
     @objc(addParameters:)
-    @NSManaged public func addToParameters(_ values: NSSet)
+    @NSManaged public func addToParameters(_ values: NSOrderedSet)
 
     @objc(removeParameters:)
-    @NSManaged public func removeFromParameters(_ values: NSSet)
+    @NSManaged public func removeFromParameters(_ values: NSOrderedSet)
 
 }
 

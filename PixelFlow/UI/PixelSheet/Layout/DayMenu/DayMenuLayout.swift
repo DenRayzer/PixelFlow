@@ -144,6 +144,7 @@ class DayMenuLayout: UIView {
 
         additionalColors.forEach { additionalColor in
             let view = DottedDayView(isDotted: false, type: additionalColor.colorType)
+            view.timeLabel.text = additionalColor.date.getString(with: "HH:mm")
             additionalDayColorsContainer.addArrangedSubview(view)
         }
         notesTableView.tableHeaderView = headerView // dayInfoContainer

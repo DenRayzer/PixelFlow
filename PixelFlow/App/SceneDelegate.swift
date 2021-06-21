@@ -19,14 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         self.window = window
-        window.rootViewController = MainMenuController()
-        window.makeKeyAndVisible()
         
         let dataStoreManager = CoreDataDataStoreManager()
 
+        if StorageManager.getMainBoardName() == "" {
+            dataStoreManager.intitBoard()
+        }
+
+        window.rootViewController = PixelSheetController()//MainMenuController()
+        window.makeKeyAndVisible()
+
             // dataStoreManager.fetchDays()
        // dataStoreManager.deletedays()
-      //        dataStoreManager.deleteAll()
+         //     dataStoreManager.deleteAll()
 //        if let boards = dataStoreManager.fetchBoars() {
 //            window.rootViewController = PixelSheetController(boards: [Board(name: "bgc", colorSheme: .base, parameters: [BoardParameter(name: "bgf", color: "black")], notifications: [NotificationSetting(time: "20:00", isOn: true)])])
 //            window.makeKeyAndVisible()

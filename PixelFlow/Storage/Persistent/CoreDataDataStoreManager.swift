@@ -9,9 +9,16 @@ import Foundation
 import CoreData
 
 class CoreDataDataStoreManager: StorageManagerDelegate {
-    func updateBoard(board: Board) {
-
+    func getBoardByName(boardName: String) -> Board? {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Board")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", boardName)
+        if let boards = try? viewContext.fetch(fetchRequest) as? [BoardMO] {
+            guard let board = boards.first else { return nil }
+            return convertBoardsMO(boardsMO: [board]).first
+        }
+        return nil
     }
+
 
     lazy var viewContext: NSManagedObjectContext = persistentContainer.viewContext
 
@@ -160,7 +167,6 @@ class CoreDataDataStoreManager: StorageManagerDelegate {
         do {
             if let boards = try viewContext.fetch(fetchRequest) as? [BoardMO] {
                 if boards.count > 0 {
-                    print("ZASHLO SYDA ---------")
                     return convertBoardsMO(boardsMO: boards)
                 } else {
                     return convertBoardsMO(boardsMO: [intitBoard()])
@@ -174,22 +180,20 @@ class CoreDataDataStoreManager: StorageManagerDelegate {
         return []
     }
 
-    func fetchDays() {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Day")
 
-        do {
-            if let boards = try viewContext.fetch(fetchRequest) as? [DayMO] {
-                boards.forEach { day in
-                    print("DAYS DAYS ---- \(day.date)  ----  \(day.colorId)")
 
-                }
-            }
-
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-
-    }
+//    func fetchDays() {
+//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Day")
+//
+//        do {
+//            if let boards = try viewContext.fetch(fetchRequest) as? [DayMO] {
+//            }
+//
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//
+//    }
 
     func fetchYears() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Year")
@@ -216,12 +220,14 @@ class CoreDataDataStoreManager: StorageManagerDelegate {
         }
 
         let board = BoardMO(context: viewContext)
-        board.save(notifications: NSSet(object: NotificationMO(context: viewContext)), parameters: NSSet(array: parameters), years: createBaseYears())
+        board.save(notifications: NSSet(object: NotificationMO(context: viewContext)), parameters: NSOrderedSet(array: parameters), years: createBaseYears())
         do {
             try viewContext.save()
         } catch let error {
             print("save board error \(error.localizedDescription)")
         }
+
+        UserDefaults.standard.setValue("pf_mood_board".localize(), forKey: StorageManager.mainBoardKey)
         return board
     }
 
@@ -278,7 +284,7 @@ extension CoreDataDataStoreManager {
             let board = Board(name: boardMO.name,
                 imageName: boardMO.imageName,
                 mainColorId: boardMO.mainColorId,
-               years: convertYearsMO(yearsSet: boardMO.years),
+                years: convertYearsMO(yearsSet: boardMO.years),
                 colorShemeId: boardMO.colorSheme,
                 parameters: parameters,
                 notifications: convertNotificationsMO(notificationsSet: boardMO.notifications))
@@ -298,7 +304,7 @@ extension CoreDataDataStoreManager {
         yearMO.forEach { mo in
             let year = Year(year: mo.year, days: convertDays(daysSet: mo.days ?? NSOrderedSet()))
             years.append(year)
-          //  i += 1
+            //  i += 1
         }
 
         print("ggg2 \(Date())")
@@ -371,6 +377,23 @@ extension CoreDataDataStoreManager {
 // MARK: --- SaveBoard
 extension CoreDataDataStoreManager {
 
+    internal func updateBoard(boardToUpdate: Board) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Board")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", boardToUpdate.name)
+        if let boards = try? viewContext.fetch(fetchRequest) as? [BoardMO] {
+
+            guard let board = boards.first else { return }
+            board.imageName = boardToUpdate.imageName
+            board.addToParameters(convertParameters(parameters: boardToUpdate.parameters))
+        }
+
+        do {
+            try viewContext.save()
+        } catch let error {
+            print("save board error \(error.localizedDescription)")
+        }
+    }
+
     private func createBaseYears() -> NSSet {
         var years: [YearMO] = []
         let components = Calendar.current.dateComponents([.year], from: Date())
@@ -412,7 +435,7 @@ extension CoreDataDataStoreManager {
         return NSSet(array: notificationsMO)
     }
 
-    private func convertParameters(parameters: [BoardParameter]) -> NSSet {
+    private func convertParameters(parameters: [BoardParameter]) -> NSOrderedSet {
         var parametersMO: [BoardParameterMO] = []
         parameters.forEach { parameter in
             let parameterMO = BoardParameterMO(context: viewContext)
@@ -421,7 +444,7 @@ extension CoreDataDataStoreManager {
             parameterMO.inOrder = parameter.color.rawValue
             parametersMO.append(parameterMO)
         }
-        return NSSet(array: parametersMO)
+        return NSOrderedSet(array: parametersMO)
     }
 
 }
