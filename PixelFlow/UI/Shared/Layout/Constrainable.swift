@@ -85,7 +85,7 @@ extension UIView {
 
 extension UIView: Constrainable {
 
-    var __view: UIView? { return self } // swiftlint:disable:this identifier_name
+    var __view: UIView? { return self } 
 }
 
 extension UILayoutGuide: Constrainable {
@@ -94,7 +94,7 @@ extension UILayoutGuide: Constrainable {
         return UIView.Anchors(owner: .layoutGuide(self))
     }
 
-    var __view: UIView? { return self.owningView } // swiftlint:disable:this identifier_name
+    var __view: UIView? { return self.owningView }
 }
 
 extension UIView.Anchors: Constrainable {
@@ -103,7 +103,7 @@ extension UIView.Anchors: Constrainable {
         return self
     }
 
-    var __view: UIView? { // swiftlint:disable:this identifier_name
+    var __view: UIView? {
         switch self.owner {
         case .view(let view):
             return view.__view

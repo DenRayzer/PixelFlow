@@ -13,12 +13,6 @@ class PixelSheetPresenter: PixelSheetPresenterDelegate {
     let storageManager = StorageManager()
 
     init() {
-//        if true {
-//            self.board = Board(name: "Board", imageName: "yin-yang-cyan", mainColorId: 0, years: [Year(year: 2021, days: [])], colorShemeId: 0, parameters: [BoardParameter(name: "PAr1", color: 1, colorSheme: 0)], notifications: [NotificationSetting(time: Date(), isOn: true)])
-//        } else {
-//            self.board = storageManager.getBoards().last!
-//        }
-
         if ThemeHelper.currentBoard == nil {
             ThemeHelper.currentBoard = storageManager.getBoard(boardName: StorageManager.getMainBoardName())
             measure("ХЫХЫХЫХ") { finish in
@@ -35,11 +29,4 @@ class PixelSheetPresenter: PixelSheetPresenterDelegate {
         ThemeHelper.currentBoard = board
     }
 
-//    private func getBoardInfo() -> Board {
-//        return Board(name: "Board1", imageName: StringConstants.defaultBoardImageName, mainColorName: StringConstants.defaultBoardColorName,
-//            years: [Year(year: 2021)],
-//            colorSheme: .base,
-//            parameters: [BoardParameter(name: "Good", color: StringConstants.defaultBoardColorName)],
-//            notifications: [NotificationSetting(time: "20:00", isOn: true)])
-//    }
 }

@@ -90,7 +90,6 @@ class ColorPickerView: UIView {
          selectedColor = UIColor(cgColor: view.mainColor)
         let type: DayType = ThemeHelper.convertColorToType(for: .base, color: selectedColor ?? .blue)
             colorViewAction(type)
-            //   colorViewAction(ThemeHelper.convertColorToType(for: 0, color: selectedColor))
             removeFromSuperview()
         }
 }

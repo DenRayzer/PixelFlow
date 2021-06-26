@@ -24,7 +24,7 @@ class ColorInfoItem: UIView {
     convenience init(parameter: BoardParameter) {
         self.init()
         self.type = parameter.color
-       // let info = DayTypeInfo.getDayInfo(for: type)
+
         color = ThemeHelper.convertTypeToColor(for: ThemeHelper.currentBoard?.colorSheme ?? .base, type: parameter.color) //info.color
         colorView.mainColor = color.cgColor
         infoLabel.text = parameter.name

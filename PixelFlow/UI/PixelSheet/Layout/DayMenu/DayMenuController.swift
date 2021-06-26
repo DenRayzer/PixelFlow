@@ -56,7 +56,6 @@ class DayMenuController: UIViewController {
             layout.additionalColors.append(AdditionalColor(colorId: view.type.rawValue, date: activeAdditionalColor.date))
             layout.activeAdditionalColor = nil
             day.additionalColors = layout.additionalColors
-            print("check1 ------")
             storageManager.saveDay(day: day)
         }
     }

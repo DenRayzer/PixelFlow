@@ -74,10 +74,7 @@ class DayMenuLayout: UIView {
         let coloredRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleColoredTap(_:)))
 
         let newView = DottedDayView(isDotted: true)
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-//        dateFormatter.locale = Locale.current
-        //  newView.timeLabel.text = Date().getString(with: "HH:mm")
+
         newView.dottedView.addGestureRecognizer(dottedRecognizer)
         newView.coloredView.addGestureRecognizer(coloredRecognizer)
         activeAdditionalColor = newView
@@ -87,17 +84,17 @@ class DayMenuLayout: UIView {
 
     @objc
     func handleDottedTap(_ sender: UITapGestureRecognizer? = nil) {
-        let view = sender?.view //activeAdditionalColor
+        let view = sender?.view
         view?.superview?.removeFromSuperview()
-        //  view?.changeColorView(with: .cyan)
+
         activeAdditionalColor = nil
     }
 
     @objc
     func handleColoredTap(_ sender: UITapGestureRecognizer? = nil) {
-        let view = sender?.view //activeAdditionalColor
+        let view = sender?.view
         view?.superview?.removeFromSuperview()
-        //  view?.changeColorView(with: .cyan)
+
         activeAdditionalColor = nil
     }
 
@@ -183,13 +180,9 @@ extension DayMenuLayout: UITableViewDelegate, UITableViewDataSource {
         let cell = notesTableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! NoteTableViewCell
         cell.cellDelegate = self
         cell.note = notes[indexPath.row]
-        print("jjkj---- note \(notes[indexPath.row].text)")
         cell.didEndEditing = { [weak self] _ in
             guard let self = self else { return }
             self.saveNoteAction(self.notes)
-            self.notes.forEach {
-                print("------- notes \($0.text)")
-            }
 
         }
         return cell

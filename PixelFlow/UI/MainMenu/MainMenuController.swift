@@ -87,8 +87,6 @@ extension MainMenuController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = boards[indexPath.row].name
         cell.titleImage.image = UIImage(named: boards[indexPath.row].imageName)
         cell.editButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(leftButton(_:))))
-//        let interaction = UIContextMenuInteraction(delegate: self)
-//        cell.editButton.addInteraction(interaction)
 
         return cell
     }
@@ -101,7 +99,7 @@ extension MainMenuController: UITableViewDelegate, UITableViewDataSource {
             finish()
         }
 
-        let vc = PixelSheetController()// cell?.currentBoard
+        let vc = PixelSheetController()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
@@ -114,18 +112,15 @@ extension MainMenuController: UITableViewDelegate, UITableViewDataSource {
 
             let favorite = UIAction(title: "Favorite",
                 image: UIImage(systemName: "heart.fill")) { _ in
-                // Perform action
             }
 
             let share = UIAction(title: "Share",
                 image: UIImage(systemName: "square.and.arrow.up.fill")) { action in
-                // Perform action
             }
 
             let delete = UIAction(title: "Delete",
                 image: UIImage(systemName: "trash.fill"),
                 attributes: [.destructive]) { action in
-                // Perform action
             }
 
             return UIContextMenuConfiguration(identifier: nil,

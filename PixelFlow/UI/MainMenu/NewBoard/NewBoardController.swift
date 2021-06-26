@@ -91,13 +91,9 @@ class NewBoardController: UIViewController {
                     isNotificationsEqual = false
                     return
                 }
-                print("isNotificationsEqual \(isNotificationsEqual)")
             }
-            print("name \(board.imageName) - \(boardToSave.imageName)")
-            print("\(boardToSave.parameters.count)")
             if board.imageName == boardToSave.imageName,
                 boardToSave.parameters.count == 0, isNotificationsEqual {
-                print("ЧИРЫК")
             } else {
                 if !isNotificationsEqual {
                     let notificationsHelper = NotificationManager()

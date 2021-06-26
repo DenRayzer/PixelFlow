@@ -81,7 +81,6 @@
 		7A2DDC8D26346D63009976EF /* ColorInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2DDC8C26346D63009976EF /* ColorInfoItem.swift */; };
 		7A55C594262C951B0013865E /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A55C593262C951B0013865E /* Year.swift */; };
 		7A8DA45C26403A7700268578 /* DayMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8DA45B26403A7700268578 /* DayMenuDelegate.swift */; };
-		7A8DA45E2640794B00268578 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8DA45D2640794B00268578 /* UITextView+Extension.swift */; };
 		7ACE6C222642FFD70051A5EB /* DottedDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACE6C212642FFD70051A5EB /* DottedDayView.swift */; };
 		7AE1E56926357A9B00E4E9B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AE1E56B26357A9B00E4E9B2 /* Localizable.strings */; };
 		7AE1E56F2635821100E4E9B2 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE1E56E2635821100E4E9B2 /* String+Extension.swift */; };
@@ -173,7 +172,6 @@
 		7A2DDC8C26346D63009976EF /* ColorInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorInfoItem.swift; sourceTree = "<group>"; };
 		7A55C593262C951B0013865E /* Year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Year.swift; sourceTree = "<group>"; };
 		7A8DA45B26403A7700268578 /* DayMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayMenuDelegate.swift; sourceTree = "<group>"; };
-		7A8DA45D2640794B00268578 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		7ACE6C212642FFD70051A5EB /* DottedDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedDayView.swift; sourceTree = "<group>"; };
 		7AE1E56A26357A9B00E4E9B2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7AE1E56D26357AA000E4E9B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 				6E76EAFB261B95C400DCF8C9 /* UIWindow+Extension.swift */,
 				6EC1187F26231E2400212203 /* Delegated.swift */,
 				7AE1E56E2635821100E4E9B2 /* String+Extension.swift */,
-				7A8DA45D2640794B00268578 /* UITextView+Extension.swift */,
 				6E089A6B2659876C00E95F01 /* Date+Extension.swift */,
 			);
 			path = Extensions;
@@ -710,7 +707,6 @@
 				7ACE6C222642FFD70051A5EB /* DottedDayView.swift in Sources */,
 				6E83F27526595C1D0046D374 /* NotificationMO+CoreDataProperties.swift in Sources */,
 				6EC1188326233F6D00212203 /* TextButton.swift in Sources */,
-				7A8DA45E2640794B00268578 /* UITextView+Extension.swift in Sources */,
 				6EB830332650163400883B55 /* BoardParameter.swift in Sources */,
 				6EBA7507261863F600C1F18D /* SceneDelegate.swift in Sources */,
 				6E4585F8264B0D8D000166B4 /* NotificationSettingView.swift in Sources */,

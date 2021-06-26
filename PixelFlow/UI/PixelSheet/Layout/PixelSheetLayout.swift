@@ -59,7 +59,7 @@ class PixelSheetLayout: UIScrollView {
 
     func configureCell(with year: Year) {
         self.year = year
-        
+
         for month in 0 ... 11 {
             for day in 0 ... 30 {
                 guard let yearDay = year.months[month][day] else {
@@ -69,7 +69,6 @@ class PixelSheetLayout: UIScrollView {
                 if yearDay.date > Date() {
                     dayViews[month][day].isUserInteractionEnabled = false
                     dayViews[month][day].backgroundColor = UIColor.PF.lightGray
-                   // dayViews[month][day].layer.borderColor = UIColor.PF.lightGray.cgColor
                 } else {
                     dayViews[month][day].backgroundColor = ThemeHelper.convertTypeToColor(for: .base, type: yearDay.type)
                 }

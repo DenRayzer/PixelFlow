@@ -46,6 +46,6 @@ class PixelDayView: UIView {
 extension PixelDayView: DayMenuDelegate {
     func onDayMenuItemTap(dayType: DayType) {
         day?.type = dayType
-        backgroundColor = ThemeHelper.convertTypeToColor(for: ThemeHelper.currentBoard?.colorSheme ?? .base, type: dayType)//DayTypeInfo.getDayInfo(for: dayType).color
+        backgroundColor = ThemeHelper.convertTypeToColor(for: ThemeHelper.currentBoard?.colorSheme ?? .base, type: dayType)
     }
 }

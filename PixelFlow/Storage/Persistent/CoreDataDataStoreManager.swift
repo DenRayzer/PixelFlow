@@ -53,7 +53,7 @@ class CoreDataDataStoreManager: StorageManagerDelegate {
 
                 return
             }
-            let newDay = makeDayMO(from: dayToSave)
+
             board.first?.years.forEach { year in
                 guard let year = year as? YearMO else { return }
                 if year.year == dayToSave.date.get(.year) {
@@ -179,21 +179,6 @@ class CoreDataDataStoreManager: StorageManagerDelegate {
 
         return []
     }
-
-
-
-//    func fetchDays() {
-//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Day")
-//
-//        do {
-//            if let boards = try viewContext.fetch(fetchRequest) as? [DayMO] {
-//            }
-//
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//
-//    }
 
     func fetchYears() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Year")

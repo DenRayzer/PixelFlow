@@ -120,10 +120,8 @@ class CellMenuViewController: UITableViewController {
 
         let alertController = UIAlertController(title: "Вы уверены, что хотите удалить доску '\(board.name)'?", message: "Данные будут потеряны навсегда.", preferredStyle: .alert)
 
-        // Create OK button
         let OKAction = UIAlertAction(title: "Удалить", style: .default) { (action: UIAlertAction!) in
 
-            // Code in this block will trigger when OK button tapped.
             NotificationManager().removeNotification(for: board.notifications.map { "\(board.name)-\($0.time))" })
             let isSucceed = self.dataStoreManager.deleteBoard(boardName: board.name)
             self.onDeleteAction(isSucceed)
@@ -132,25 +130,19 @@ class CellMenuViewController: UITableViewController {
         }
         alertController.addAction(OKAction)
 
-        // Create Cancel button
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { (action: UIAlertAction!) in
             print("Cancel button tapped");
             self.dismiss(animated: true)
         }
         alertController.addAction(cancelAction)
-
-        // Present Dialog message
         self.present(alertController, animated: true, completion: nil)
 
-    //    dismiss(animated: true)
 
     }
 }
 
 fileprivate class CellMenuCell: UITableViewCell {
     var item: MenuItem = .edit
-    //       var label = Label()
-    //  var imageView = UIImageView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -172,7 +164,7 @@ fileprivate class CellMenuCell: UITableViewCell {
         textLabel?.layout.left.equal(to: self, offset: 16)
         textLabel?.layout.centerY.equal(to: self)
 
-//        imageView?.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+
         imageView?.layout.left.equal(to: (textLabel?.layout.right)!, offset: 16)
         imageView?.layout.centerY.equal(to: self)
         imageView?.layout.right.equal(to: self, offset: -32)

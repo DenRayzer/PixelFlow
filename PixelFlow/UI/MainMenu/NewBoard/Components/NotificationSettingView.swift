@@ -14,8 +14,6 @@ class NotificationSettingView: UIView {
         picker.layer.borderWidth = 1
         picker.layer.borderColor = UIColor.PF.stroke.cgColor
         picker.layer.cornerRadius = 10
-//let date = makeDate(year: 2021, month: 1, day: 1, hr: 08, min: 0, sec: 0)
-        // picker.setDate(date, animated: false)
 
 
         picker.subviews.first?.subviews.forEach { grayView in
